@@ -134,6 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeade738911507c0b14366f35521358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!20 &519420031 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4613709322711057243, guid: 0856782c1c9603c4da84caaca5b2be71, type: 3}
+  m_PrefabInstance: {fileID: 4613709322288659236}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &819922712
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,6 +901,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 132011173, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402773975, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 1947181774, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676793794945742269, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5761297661259541696, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -943,10 +964,6 @@ PrefabInstance:
     - target: {fileID: 5761297661259541697, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761297661977322946, guid: 165c4350cb644b047906ec81d227009f, type: 3}
-      propertyPath: m_MaskInteraction
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165c4350cb644b047906ec81d227009f, type: 3}
