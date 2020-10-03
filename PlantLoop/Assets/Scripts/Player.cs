@@ -19,6 +19,10 @@ public class Player : MonoBehaviour
     [SerializeField] public Attribute water;
     [SerializeField] public Attribute energy;
 
+    [Header("Node Control")]
+    [SerializeField] private GameObject treeBase;
+    [SerializeField] private GameObject branchPrefab;
+
     private void Awake()
     {
         SetupPlayerAttributes();
