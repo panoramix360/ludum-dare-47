@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         SetupPlayerAttributes();
+    }
+
+    private void Start()
+    {
         GameController.Instance.UpdatePlayerAttributes();
     }
 
