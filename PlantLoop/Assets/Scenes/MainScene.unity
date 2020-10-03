@@ -953,6 +953,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5761297661259541711, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: initialHp
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761297661259541711, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: initialWater
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761297661259541711, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: initialEnergy
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165c4350cb644b047906ec81d227009f, type: 3}
 --- !u!1001 &9019834243258958897

@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Left Node");
         CreateLeftUpgradeBranch();
+        water.UpgradeBaseValue(10);
         nodeUi.SetActive(false);
     }
 
@@ -78,7 +79,9 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Middle Node");
         IncrementMiddleUpgradeBranch();
-
+        hp.UpgradeBaseValue(5);
+        water.UpgradeBaseValue(5);
+        energy.UpgradeBaseValue(5);
         nodeUi.SetActive(false);
     }
 
@@ -86,6 +89,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Right Node");
         CreateRightUpgradeBranch();
+        energy.UpgradeBaseValue(10);
         nodeUi.SetActive(false);
     }
 

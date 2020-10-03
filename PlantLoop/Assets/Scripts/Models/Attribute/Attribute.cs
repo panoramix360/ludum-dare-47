@@ -24,4 +24,9 @@ public abstract class Attribute
             this.value = Math.Min(this.value, baseValue);
         }
     }
+
+    public void UpgradeBaseValue(double value)
+    {
+        this.baseValue += value;
+    }
 }
