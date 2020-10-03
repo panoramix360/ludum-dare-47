@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject nodeUi;
 
+    private bool canUpgradeLeftBranch = true;
+    private bool canUpgradeRightBranch = true;
+
     private void Awake()
     {
         SetupPlayerAttributes();
@@ -65,18 +68,48 @@ public class Player : MonoBehaviour
     public void onClickLeftNode()
     {
         Debug.Log("Left Node");
+        CreateLeftUpgradeBranch();
         nodeUi.SetActive(false);
     }
 
     public void onClickMiddleNode()
     {
         Debug.Log("Middle Node");
+        IncrementMiddleUpgradeBranch();
+
         nodeUi.SetActive(false);
     }
 
     public void onClickRightNode()
     {
         Debug.Log("Right Node");
+        CreateRightUpgradeBranch();
         nodeUi.SetActive(false);
+    }
+
+    public void CreateLeftUpgradeBranch()
+    {
+        if (!canUpgradeLeftBranch) return;
+
+        Instantiate(branchPrefab, treeBase.transform.position, Quaternion.identity, transform);
+
+        canUpgradeLeftBranch = false;
+    }
+
+    public void CreateRightUpgradeBranch()
+    {
+        if (!canUpgradeRightBranch) return;
+
+        GameObject branch = Instantiate(branchPrefab, treeBase.transform.position, Quaternion.identity, transform);
+        branch.GetComponent<SpriteRenderer>().flipX = true;
+
+        canUpgradeRightBranch = false;
+    }
+
+    public void IncrementMiddleUpgradeBranch()
+    {
+        treeBase.transform.position = new Vector2(treeBase.transform.position.x, treeBase.transform.position.y + 1);
+        canUpgradeLeftBranch = true;
+        canUpgradeRightBranch = true;
     }
 }
