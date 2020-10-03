@@ -118,7 +118,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 132011173}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5761297661259541711}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: onClickMiddleNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1402773972
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,12 +144,12 @@ GameObject:
   - component: {fileID: 1402773974}
   - component: {fileID: 1402773973}
   m_Layer: 5
-  m_Name: World Canvas
+  m_Name: Node UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1402773976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -338,7 +350,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1947181774}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5761297661259541711}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: onClickLeftNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1324819232623066292
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +481,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1676793794945742269}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5761297661259541711}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: onClickRightNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5761297661259541697
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +546,7 @@ MonoBehaviour:
   initialEnergy: 50
   treeBase: {fileID: 5761297661977322948}
   branchPrefab: {fileID: 5356759098469853450, guid: b0eb0760ffe867a40a91fe99ad1a8283, type: 3}
+  nodeUi: {fileID: 1402773972}
 --- !u!1 &5761297661977322948
 GameObject:
   m_ObjectHideFlags: 0

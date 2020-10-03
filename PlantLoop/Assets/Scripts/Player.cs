@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject treeBase;
     [SerializeField] private GameObject branchPrefab;
 
+    [SerializeField] private GameObject nodeUi;
+
     private void Awake()
     {
         SetupPlayerAttributes();
@@ -53,5 +55,28 @@ public class Player : MonoBehaviour
     public void IncrementEnergyAttribute(double value)
     {
         energy.IncrementValue(value);
+    }
+
+    public void ShowUpgradeNode()
+    {
+        nodeUi.SetActive(true);
+    }
+
+    public void onClickLeftNode()
+    {
+        Debug.Log("Left Node");
+        nodeUi.SetActive(false);
+    }
+
+    public void onClickMiddleNode()
+    {
+        Debug.Log("Middle Node");
+        nodeUi.SetActive(false);
+    }
+
+    public void onClickRightNode()
+    {
+        Debug.Log("Right Node");
+        nodeUi.SetActive(false);
     }
 }

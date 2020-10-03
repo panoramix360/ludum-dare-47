@@ -28,6 +28,11 @@ public class GameController : Singleton<GameController>
         energyTxt.text = player.energy.value.ToString();
     }
 
+    public void UpgradePlayerNode()
+    {
+        player.ShowUpgradeNode();
+    }
+
     public void UpdatePlayerAttributesByTimeUnits()
     {
         EnvironmentObject = new Environment(EnvironmentType);
