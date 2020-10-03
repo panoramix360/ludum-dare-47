@@ -63,6 +63,8 @@ public class Player : MonoBehaviour
     public void ShowUpgradeNode()
     {
         nodeUi.SetActive(true);
+        nodeUi.transform.GetChild(0).gameObject.SetActive(canUpgradeLeftBranch);
+        nodeUi.transform.GetChild(2).gameObject.SetActive(canUpgradeRightBranch);
     }
 
     public void onClickLeftNode()
