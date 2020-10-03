@@ -17,6 +17,10 @@ public class GameController : Singleton<GameController>
     [SerializeField] private double waterPerTime;
     [SerializeField] private double energyPerTime;
 
+    [Header("Environment Modifiers")]
+    [SerializeField] private EnvironmentType EnvironmentType;
+    [SerializeField] private Environment EnvironmentObject;
+
     public void UpdatePlayerAttributes()
     {
         hpTxt.text = player.hp.value.ToString();
@@ -26,9 +30,11 @@ public class GameController : Singleton<GameController>
 
     public void UpdatePlayerAttributesByTimeUnits()
     {
-        player.IncrementHpAttribute(hpPerTime);
-        player.IncrementWaterAttribute(waterPerTime);
-        player.IncrementEnergyAttribute(energyPerTime);
+        EnvironmentObject = new Environment(EnvironmentType);
+
+        player.IncrementHpAttribute(hpPerTime * EnvironmentObject.HpModifier);
+        player.IncrementWaterAttribute(waterPerTime * EnvironmentObject.WaterModifier);
+        player.IncrementEnergyAttribute(energyPerTime * EnvironmentObject.EnergyModifier);
 
         UpdatePlayerAttributes();
     }
