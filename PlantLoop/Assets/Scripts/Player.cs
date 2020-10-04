@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject treeBase;
     [SerializeField] private GameObject branchPrefab;
     [SerializeField] private GameObject nodeUi;
+    [SerializeField] private int middleUpgradeIncrementUnit;
     [SerializeField] private float upgradeLeftValue;
     [SerializeField] private float upgradeMiddleValue;
     [SerializeField] private float upgradeRightValue;
@@ -116,7 +117,7 @@ public class Player : MonoBehaviour
 
     public void IncrementMiddleUpgradeBranch()
     {
-        treeBase.transform.position = new Vector2(treeBase.transform.position.x, treeBase.transform.position.y + 1);
+        treeBase.transform.position = new Vector2(treeBase.transform.position.x, treeBase.transform.position.y + middleUpgradeIncrementUnit);
         canUpgradeLeftBranch = true;
         canUpgradeRightBranch = true;
     }
