@@ -28,8 +28,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float upgradeMiddleValue;
     [SerializeField] private float upgradeRightValue;
 
+    private int currentLeftUpgradeNode;
+    private int currentMiddleUpgradeNode;
+    private int currentRightUpgradeNode;
+
     private bool canUpgradeLeftBranch = true;
     private bool canUpgradeRightBranch = true;
+
+    private PlayerLevelUp playerLevelUp;
 
     private void Awake()
     {
@@ -39,6 +45,39 @@ public class Player : MonoBehaviour
     private void Start()
     {
         GameController.Instance.UpdatePlayerAttributes();
+
+        playerLevelUp = GetComponent<PlayerLevelUp>();
+    }
+
+    private void Update()
+    {
+        int totalUpgradesNode = currentLeftUpgradeNode + currentMiddleUpgradeNode + currentRightUpgradeNode;
+        if (totalUpgradesNode >= playerLevelUp.GetUpgradesToLevelUp())
+        {
+            bool isMaiorityLeft = currentLeftUpgradeNode > currentMiddleUpgradeNode && currentLeftUpgradeNode > currentRightUpgradeNode ? true : false;
+            bool isMaiorityMiddle = currentMiddleUpgradeNode > currentLeftUpgradeNode && currentMiddleUpgradeNode > currentRightUpgradeNode ? true : false;
+            bool isMaiorityRight = currentRightUpgradeNode > currentLeftUpgradeNode && currentRightUpgradeNode > currentMiddleUpgradeNode ? true : false;
+            if (isMaiorityLeft)
+            {
+                playerLevelUp.NextLevel(PlayerLevelUp.LevelType.WATER);
+            }
+            else if (isMaiorityMiddle)
+            {
+                playerLevelUp.NextLevel(PlayerLevelUp.LevelType.HP);
+            }
+            else if (isMaiorityRight)
+            {
+                playerLevelUp.NextLevel(PlayerLevelUp.LevelType.ENERGY);
+            }
+            else
+            {
+                playerLevelUp.NextLevel(PlayerLevelUp.LevelType.DRAW);
+            }
+
+            currentLeftUpgradeNode = 0;
+            currentMiddleUpgradeNode = 0;
+            currentRightUpgradeNode = 0;
+        }
     }
 
     private void SetupPlayerAttributes()
@@ -150,6 +189,8 @@ public class Player : MonoBehaviour
             nodeUi.SetActive(false);
 
             GameController.Instance.UpdatePlayerAttributes();
+
+            currentLeftUpgradeNode++;
         }
     }
 
@@ -169,6 +210,8 @@ public class Player : MonoBehaviour
             nodeUi.SetActive(false);
 
             GameController.Instance.UpdatePlayerAttributes();
+
+            currentMiddleUpgradeNode++;
         }
     }
 
@@ -184,6 +227,8 @@ public class Player : MonoBehaviour
             nodeUi.SetActive(false);
 
             GameController.Instance.UpdatePlayerAttributes();
+
+            currentRightUpgradeNode++;
         }
     }
 
