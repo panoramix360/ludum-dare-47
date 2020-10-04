@@ -68,6 +68,18 @@ public class Player : MonoBehaviour
         nodeUi.SetActive(true);
         nodeUi.transform.GetChild(0).gameObject.SetActive(canUpgradeLeftBranch);
         nodeUi.transform.GetChild(2).gameObject.SetActive(canUpgradeRightBranch);
+
+        HideAllChilds(nodeUi.transform.GetChild(0));
+        HideAllChilds(nodeUi.transform.GetChild(1));
+        HideAllChilds(nodeUi.transform.GetChild(2));
+    }
+    
+    private void HideAllChilds(Transform transform)
+    {
+        foreach(Transform node in transform)
+        {
+            node.gameObject.SetActive(false);
+        }
     }
 
     public void onClickLeftNode()
