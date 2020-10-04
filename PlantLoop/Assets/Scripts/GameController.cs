@@ -74,6 +74,7 @@ public class GameController : Singleton<GameController>
     {
         Modifier modifier = currentModifiers.Find(x => x.identifier == identifier);
         currentModifiers.Remove(modifier);
+        CalculateAndUpdateTotalModifiers();
     }
 
     public void CalculateAndUpdateTotalModifiers()
@@ -142,30 +143,33 @@ public class GameController : Singleton<GameController>
 
     private void UpdatePlayerAttributesByEvent()
     {
-        EventIncrementValues();
-        EventDecrementValue();
-        EventChangeModifierValue();
+        ApplyInstantBonusEventsInPlayer();
+        ApplyInstantDamageEventsInPlayer();
+        ApplyEventModifiersInPlayer();
     }
 
-    private void EventIncrementValues()
+    private void ApplyInstantBonusEventsInPlayer()
     {
         playerAttributes.hp.IncrementValue(GameEvent.HpBonus);
         playerAttributes.energy.IncrementValue(GameEvent.EnergyBonus);
         playerAttributes.water.IncrementValue(GameEvent.WaterBonus);
     }
 
-    private void EventDecrementValue()
+    private void ApplyInstantDamageEventsInPlayer()
     {
         playerAttributes.hp.DecrementValue(GameEvent.HpDamage);
         playerAttributes.energy.DecrementValue(GameEvent.EnergyDamage);
         playerAttributes.water.DecrementValue(GameEvent.WaterDamage);
     }
 
-    private void EventChangeModifierValue()
+    private void ApplyEventModifiersInPlayer()
     {
-        playerAttributes.hp.IncrementModifier(GameEvent.HpModifier);
-        playerAttributes.energy.IncrementModifier(GameEvent.EnergyModifier);
-        playerAttributes.water.IncrementModifier(GameEvent.WaterModifier);
+        InsertModifier(new Modifier(GameEvent.Type.ToString(), new Dictionary<AttributeEnum, float>
+        {
+            [AttributeEnum.HP] = GameEvent.HpModifier,
+            [AttributeEnum.ENERGY] = GameEvent.EnergyModifier,
+            [AttributeEnum.WATER] = GameEvent.WaterModifier
+        }));
     }
     #endregion
 }
