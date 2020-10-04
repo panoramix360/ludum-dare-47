@@ -16,11 +16,10 @@ public class GameController : Singleton<GameController>
     [SerializeField] private Image waterImg;
     [SerializeField] private Image energyImg;
 
-
     [Header("Incrementals based on time")]
-    [SerializeField] private double hpPerTime;
-    [SerializeField] private double waterPerTime;
-    [SerializeField] private double energyPerTime;
+    [SerializeField] private float hpPerTime;
+    [SerializeField] private float waterPerTime;
+    [SerializeField] private float energyPerTime;
 
     [Header("Environment Modifiers")]
     [SerializeField] private EnvironmentType EnvironmentType;
@@ -31,9 +30,14 @@ public class GameController : Singleton<GameController>
         hpTxt.text = player.hp.value.ToString();
         waterTxt.text = player.water.value.ToString();
         energyTxt.text = player.energy.value.ToString();
-        hpImg.fillAmount = (float)(player.hp.value / player.hp.baseValue);
-        waterImg.fillAmount = (float)(player.water.value / player.hp.baseValue);
-        energyImg.fillAmount = (float)(player.energy.value / player.hp.baseValue);
+        hpImg.fillAmount = player.hp.value / player.hp.baseValue;
+        waterImg.fillAmount = player.water.value / player.water.baseValue;
+        energyImg.fillAmount = player.energy.value / player.energy.baseValue;
+    }
+
+    public void UpgradePlayerNode()
+    {
+        player.ShowUpgradeNode();
     }
 
     public void UpdatePlayerAttributesByTimeUnits()

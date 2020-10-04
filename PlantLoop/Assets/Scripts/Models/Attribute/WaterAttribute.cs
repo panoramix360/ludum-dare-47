@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class WaterAttribute : Attribute
 {
-    public WaterAttribute(double baseValue, double value) : base(baseValue, value) { }
+    public WaterAttribute(float baseValue, float value) : base(baseValue, value) { }
 }

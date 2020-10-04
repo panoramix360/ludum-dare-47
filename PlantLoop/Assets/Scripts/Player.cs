@@ -6,14 +6,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Bases")]
-    [SerializeField] private double baseHp;
-    [SerializeField] private double baseWater;
-    [SerializeField] private double baseEnergy;
+    [SerializeField] private float baseHp;
+    [SerializeField] private float baseWater;
+    [SerializeField] private float baseEnergy;
 
     [Header("Player Attributes")]
-    [SerializeField] private double initialHp;
-    [SerializeField] private double initialWater;
-    [SerializeField] private double initialEnergy;
+    [SerializeField] private float initialHp;
+    [SerializeField] private float initialWater;
+    [SerializeField] private float initialEnergy;
 
     [SerializeField] public Attribute hp;
     [SerializeField] public Attribute water;
@@ -22,6 +22,13 @@ public class Player : MonoBehaviour
     [Header("Node Control")]
     [SerializeField] private GameObject treeBase;
     [SerializeField] private GameObject branchPrefab;
+    [SerializeField] private GameObject nodeUi;
+    [SerializeField] private float upgradeLeftValue;
+    [SerializeField] private float upgradeMiddleValue;
+    [SerializeField] private float upgradeRightValue;
+
+    private bool canUpgradeLeftBranch = true;
+    private bool canUpgradeRightBranch = true;
 
     private void Awake()
     {
@@ -40,18 +47,77 @@ public class Player : MonoBehaviour
         energy = new EnergyAttribute(baseEnergy, initialEnergy);
     }
 
-    public void IncrementHpAttribute(double value)
+    public void IncrementHpAttribute(float value)
     {
         hp.IncrementValue(value);
     }
 
-    public void IncrementWaterAttribute(double value)
+    public void IncrementWaterAttribute(float value)
     {
         water.IncrementValue(value);
     }
 
-    public void IncrementEnergyAttribute(double value)
+    public void IncrementEnergyAttribute(float value)
     {
         energy.IncrementValue(value);
+    }
+
+    public void ShowUpgradeNode()
+    {
+        nodeUi.SetActive(true);
+        nodeUi.transform.GetChild(0).gameObject.SetActive(canUpgradeLeftBranch);
+        nodeUi.transform.GetChild(2).gameObject.SetActive(canUpgradeRightBranch);
+    }
+
+    public void onClickLeftNode()
+    {
+        Debug.Log("Left Node");
+        CreateLeftUpgradeBranch();
+        water.UpgradeBaseValue(upgradeLeftValue);
+        nodeUi.SetActive(false);
+    }
+
+    public void onClickMiddleNode()
+    {
+        Debug.Log("Middle Node");
+        IncrementMiddleUpgradeBranch();
+        hp.UpgradeBaseValue(upgradeMiddleValue);
+        water.UpgradeBaseValue(upgradeMiddleValue);
+        energy.UpgradeBaseValue(upgradeMiddleValue);
+        nodeUi.SetActive(false);
+    }
+
+    public void onClickRightNode()
+    {
+        Debug.Log("Right Node");
+        CreateRightUpgradeBranch();
+        energy.UpgradeBaseValue(upgradeRightValue);
+        nodeUi.SetActive(false);
+    }
+
+    public void CreateLeftUpgradeBranch()
+    {
+        if (!canUpgradeLeftBranch) return;
+
+        Instantiate(branchPrefab, treeBase.transform.position, Quaternion.identity, transform);
+
+        canUpgradeLeftBranch = false;
+    }
+
+    public void CreateRightUpgradeBranch()
+    {
+        if (!canUpgradeRightBranch) return;
+
+        GameObject branch = Instantiate(branchPrefab, treeBase.transform.position, Quaternion.identity, transform);
+        branch.GetComponent<SpriteRenderer>().flipX = true;
+
+        canUpgradeRightBranch = false;
+    }
+
+    public void IncrementMiddleUpgradeBranch()
+    {
+        treeBase.transform.position = new Vector2(treeBase.transform.position.x, treeBase.transform.position.y + 1);
+        canUpgradeLeftBranch = true;
+        canUpgradeRightBranch = true;
     }
 }

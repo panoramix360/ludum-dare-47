@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class EnergyAttribute : Attribute
 {
-    public EnergyAttribute(double baseValue, double value) : base(baseValue, value) { }
+    public EnergyAttribute(float baseValue, float value) : base(baseValue, value) { }
 }
