@@ -148,6 +148,8 @@ public class Player : MonoBehaviour
             water.UpgradeBaseValue(upgradeLeftValue);
 
             nodeUi.SetActive(false);
+
+            GameController.Instance.UpdatePlayerAttributes();
         }
     }
 
@@ -165,6 +167,8 @@ public class Player : MonoBehaviour
             energy.UpgradeBaseValue(upgradeMiddleValue);
 
             nodeUi.SetActive(false);
+
+            GameController.Instance.UpdatePlayerAttributes();
         }
     }
 
@@ -178,6 +182,8 @@ public class Player : MonoBehaviour
             energy.UpgradeBaseValue(upgradeRightValue);
 
             nodeUi.SetActive(false);
+
+            GameController.Instance.UpdatePlayerAttributes();
         }
     }
 
