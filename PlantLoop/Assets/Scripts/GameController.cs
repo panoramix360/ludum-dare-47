@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameController : Singleton<GameController>
 {
@@ -19,9 +21,27 @@ public class GameController : Singleton<GameController>
     [SerializeField] private Image energyImg;
 
     [Header("Environment Modifiers")]
-    [SerializeField] private EnvironmentType EnvironmentType;
-    private Environment EnvironmentObject;
+    [SerializeField] private EnvironmentType initialEnvironmentType;
+    private Environment currentEnvironment;
     private GameEvent GameEvent;
+
+    private List<Modifier> currentModifiers;
+
+    private float totalHpModifiers;
+    private float totalEnergyModifiers;
+    private float totalWaterModifiers;
+
+    private void Start()
+    {
+        currentModifiers = new List<Modifier>();
+        currentEnvironment = new Environment(initialEnvironmentType);
+        InsertModifier(new Modifier(currentEnvironment.Type.ToString(), new Dictionary<AttributeEnum, float>
+        {
+            [AttributeEnum.HP] = currentEnvironment.HpModifier,
+            [AttributeEnum.ENERGY] = currentEnvironment.EnergyModifier,
+            [AttributeEnum.WATER] = currentEnvironment.WaterModifier
+        }));
+    }
 
     public void UpdatePlayerAttributes()
     {
@@ -44,13 +64,56 @@ public class GameController : Singleton<GameController>
         timeController.ResumeTime();
     }
 
+    public void InsertModifier(Modifier modifier)
+    {
+        currentModifiers.Add(modifier);
+        CalculateAndUpdateTotalModifiers();
+    }
+
+    public void RemoveModifier(string identifier)
+    {
+        Modifier modifier = currentModifiers.Find(x => x.identifier == identifier);
+        currentModifiers.Remove(modifier);
+    }
+
+    public void CalculateAndUpdateTotalModifiers()
+    {
+        float totalHp = 0f;
+        float totalEnergy = 0f;
+        float totalWater = 0f;
+
+        foreach (Modifier modifier in currentModifiers)
+        {
+            foreach (KeyValuePair<AttributeEnum, float> entry in modifier.values)
+            {
+                switch (entry.Key)
+                {
+                    case AttributeEnum.HP:
+                        totalHp += entry.Value * playerAttributes.hp.unitPerTime;
+                        break;
+                    case AttributeEnum.ENERGY:
+                        totalEnergy += entry.Value * playerAttributes.energy.unitPerTime;
+                        break;
+                    case AttributeEnum.WATER:
+                        totalWater += entry.Value * playerAttributes.water.unitPerTime;
+                        break;
+                    default:
+                        Debug.LogError("Atributo não encontrado");
+                        break;
+                }
+            }
+        }
+
+        totalHpModifiers = totalHp;
+        totalEnergyModifiers = totalEnergy;
+        totalWaterModifiers = totalWater;
+    }
+
     public void UpdatePlayerAttributesByTimeUnits()
     {
-        EnvironmentObject = new Environment(EnvironmentType);
-
-        playerAttributes.hp.IncrementValue(playerAttributes.hp.unitPerTime * EnvironmentObject.HpModifier);
-        playerAttributes.water.IncrementValue(playerAttributes.water.unitPerTime * EnvironmentObject.WaterModifier);
-        playerAttributes.energy.IncrementValue(playerAttributes.energy.unitPerTime * EnvironmentObject.EnergyModifier);
+        playerAttributes.hp.IncrementValue(playerAttributes.hp.unitPerTime + totalHpModifiers);
+        playerAttributes.water.IncrementValue(playerAttributes.water.unitPerTime + totalWaterModifiers);
+        playerAttributes.energy.IncrementValue(playerAttributes.energy.unitPerTime + totalEnergyModifiers);
 
         UpdatePlayerAttributes();
     }

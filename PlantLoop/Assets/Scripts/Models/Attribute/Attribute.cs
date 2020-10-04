@@ -37,7 +37,12 @@ public class Attribute
 
     public void IncrementModifier(float modifierIncrement)
     {
-        this.modifier += modifierIncrement;
+        this.modifier = modifierIncrement;
+    }
+
+    public float GetUnitPerTime()
+    {
+        return this.unitPerTime + this.modifier;
     }
 
     public void IncrementBaseValue(float value)

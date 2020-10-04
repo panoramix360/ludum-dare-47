@@ -341,6 +341,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 582893948}
     - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: timeController
+      value: 
+      objectReference: {fileID: 1427215719}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: hpTxt
       value: 
       objectReference: {fileID: 954663108}
@@ -364,10 +368,6 @@ PrefabInstance:
       propertyPath: energyImg
       value: 
       objectReference: {fileID: 808790341}
-    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
-      propertyPath: timeController
-      value: 
-      objectReference: {fileID: 1427215719}
     - target: {fileID: 9019834244053384063, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -741,7 +741,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: timeToUpgrade
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 175321356335401281, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: m_LocalPosition.x

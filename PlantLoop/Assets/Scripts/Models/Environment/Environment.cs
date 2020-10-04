@@ -33,21 +33,23 @@ public class Environment
     {
         Type = EnvironmentType.FOREST;
         this.HpModifier = 0.5f;
-        this.WaterModifier = 1.5f;
-        this.EnergyModifier = 1f;
+        this.WaterModifier = 0.5f;
+        this.EnergyModifier = 0f;
     }
+
     private void Swamp()
     {
         Type = EnvironmentType.SWAMP;
         this.HpModifier = 0.3f;
-        this.WaterModifier = 2f;
-        this.EnergyModifier = 0.5f;
+        this.WaterModifier = 1f;
+        this.EnergyModifier = -0.5f;
     }
+
     private void Desert()
     {
         Type = EnvironmentType.DESERT;
         this.HpModifier = 0.1f;
-        this.WaterModifier = 0.5f;
-        this.EnergyModifier = 2f;
+        this.WaterModifier = -0.5f;
+        this.EnergyModifier = 1f;
     }
 }
