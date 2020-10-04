@@ -23,7 +23,7 @@ public class GameController : Singleton<GameController>
     [Header("Environment Modifiers")]
     [SerializeField] private EnvironmentType initialEnvironmentType;
     private Environment currentEnvironment;
-    private GameEvent GameEvent;
+    private List<GameEvent> gameEventList;
 
     private List<Modifier> currentModifiers;
 
@@ -34,6 +34,7 @@ public class GameController : Singleton<GameController>
     private void Start()
     {
         currentModifiers = new List<Modifier>();
+        gameEventList = new List<GameEvent>();
         currentEnvironment = new Environment(initialEnvironmentType);
         InsertModifier(new Modifier(currentEnvironment.Type.ToString(), new Dictionary<AttributeEnum, float>
         {
@@ -125,13 +126,13 @@ public class GameController : Singleton<GameController>
         switch (gameEventBase.Type)
         {
             case GameEventType.CLIMATE:
-                GameEvent = new ClimateEvent(gameEventBase);
+                gameEventList.Add(new ClimateEvent(gameEventBase));
                 break;
             case GameEventType.DANGER:
-                GameEvent = new DangerEvent(gameEventBase);
+                gameEventList.Add(new DangerEvent(gameEventBase));
                 break;
             case GameEventType.OTHEREVENT:
-                GameEvent = new OtherEvent(gameEventBase);
+                gameEventList.Add(new OtherEvent(gameEventBase));
                 break;
             default:
                 Debug.LogError("Erro criando evento");
