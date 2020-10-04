@@ -9,6 +9,7 @@ public abstract class Attribute
     [SerializeField] public float baseValue;
     [SerializeField] public float value;
     [SerializeField] public float modifier;
+    [SerializeField] public float unitPerTime;
     [SerializeField] public List<UpgradeCost> upgradeCosts;
 
     public Attribute(float baseValue, float value)
