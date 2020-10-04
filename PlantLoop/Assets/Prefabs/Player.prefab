@@ -123,7 +123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5761297661259541711}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: onClickMiddleNode
+        m_MethodName: OnClickHpNode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -402,7 +402,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5761297661259541711}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: onClickLeftNode
+        m_MethodName: OnClickWaterNode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -580,7 +580,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5761297661259541711}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: onClickRightNode
+        m_MethodName: OnClickEnergyNode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1367,19 +1367,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeade738911507c0b14366f35521358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHp: 100
-  baseWater: 100
-  baseEnergy: 100
-  initialHp: 80
-  initialWater: 80
-  initialEnergy: 80
   treeBase: {fileID: 5761297661977322948}
   branchPrefab: {fileID: 5356759098469853450, guid: b0eb0760ffe867a40a91fe99ad1a8283, type: 3}
   nodeUi: {fileID: 1402773972}
   middleUpgradeIncrementUnit: 2
-  upgradeLeftValue: 10
-  upgradeMiddleValue: 5
-  upgradeRightValue: 10
+  upgradeWaterValue: 20
+  upgradeHpValue: 10
+  upgradeEnergyValue: 15
 --- !u!114 &7970839108920968698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1412,6 +1406,27 @@ MonoBehaviour:
   initialHp: 80
   initialWater: 80
   initialEnergy: 80
+  initialHpPerSec: 1
+  initialWaterPerSec: 1
+  initialEnergyPerSec: 1
+  hp:
+    baseValue: 0
+    value: 0
+    modifier: 0
+    unitPerTime: 0
+    upgradeCosts: []
+  water:
+    baseValue: 0
+    value: 0
+    modifier: 0
+    unitPerTime: 0
+    upgradeCosts: []
+  energy:
+    baseValue: 0
+    value: 0
+    modifier: 0
+    unitPerTime: 0
+    upgradeCosts: []
 --- !u!1 &5761297661977322948
 GameObject:
   m_ObjectHideFlags: 0

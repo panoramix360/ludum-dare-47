@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public abstract class Attribute
+public class Attribute
 {
     [SerializeField] public float baseValue;
     [SerializeField] public float value;
@@ -12,10 +12,11 @@ public abstract class Attribute
     [SerializeField] public float unitPerTime;
     [SerializeField] public List<UpgradeCost> upgradeCosts;
 
-    public Attribute(float baseValue, float value)
+    public Attribute(float baseValue, float value, float unitPerTime)
     {
         this.baseValue = baseValue;
         this.value = value;
+        this.unitPerTime = unitPerTime;
         this.upgradeCosts = new List<UpgradeCost>();
     }
 

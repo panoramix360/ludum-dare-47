@@ -9,18 +9,13 @@ public class GameController : Singleton<GameController>
     [SerializeField] private Player player;
     [SerializeField] private PlayerAttributes playerAttributes;
 
-    [Header("Player Attributes")]
+    [Header("Player Attributes UI")]
     [SerializeField] private TextMeshProUGUI hpTxt;
     [SerializeField] private TextMeshProUGUI waterTxt;
     [SerializeField] private TextMeshProUGUI energyTxt;
     [SerializeField] private Image hpImg;
     [SerializeField] private Image waterImg;
     [SerializeField] private Image energyImg;
-
-    [Header("Incrementals based on time")]
-    [SerializeField] private float hpPerTime;
-    [SerializeField] private float waterPerTime;
-    [SerializeField] private float energyPerTime;
 
     [Header("Environment Modifiers")]
     [SerializeField] private EnvironmentType EnvironmentType;
@@ -46,9 +41,9 @@ public class GameController : Singleton<GameController>
     {
         EnvironmentObject = new Environment(EnvironmentType);
 
-        playerAttributes.hp.IncrementValue(hpPerTime * EnvironmentObject.HpModifier);
-        playerAttributes.water.IncrementValue(waterPerTime * EnvironmentObject.WaterModifier);
-        playerAttributes.energy.IncrementValue(energyPerTime * EnvironmentObject.EnergyModifier);
+        playerAttributes.hp.IncrementValue(playerAttributes.hp.unitPerTime * EnvironmentObject.HpModifier);
+        playerAttributes.water.IncrementValue(playerAttributes.water.unitPerTime * EnvironmentObject.WaterModifier);
+        playerAttributes.energy.IncrementValue(playerAttributes.energy.unitPerTime * EnvironmentObject.EnergyModifier);
 
         UpdatePlayerAttributes();
     }

@@ -9,10 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject treeBase;
     [SerializeField] private GameObject branchPrefab;
     [SerializeField] private GameObject nodeUi;
-    [SerializeField] private int middleUpgradeIncrementUnit;
-    [SerializeField] private float upgradeLeftValue;
-    [SerializeField] private float upgradeMiddleValue;
-    [SerializeField] private float upgradeRightValue;
+    [SerializeField] private float upgradeWaterValue;
+    [SerializeField] private float upgradeHpValue;
+    [SerializeField] private float upgradeEnergyValue;
 
     private int currentLeftUpgradeNode;
     private int currentMiddleUpgradeNode;
@@ -135,7 +134,7 @@ public class Player : MonoBehaviour
         return hasIncome;
     }
 
-    public void onClickLeftNode()
+    public void OnClickWaterNode()
     {
         Debug.Log("Left Node");
 
@@ -143,7 +142,7 @@ public class Player : MonoBehaviour
         {
             CreateLeftUpgradeBranch();
 
-            playerAttributes.water.IncrementBaseValue(upgradeLeftValue);
+            playerAttributes.water.IncrementBaseValue(upgradeWaterValue);
 
             nodeUi.SetActive(false);
 
@@ -153,18 +152,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void onClickMiddleNode()
+    public void OnClickHpNode()
     {
         Debug.Log("Middle Node");
         if (CheckAndPayAttributeCost(playerAttributes.hp))
         {
             IncrementMiddleUpgradeBranch();
 
-            playerAttributes.hp.IncrementBaseValue(upgradeMiddleValue);
+            playerAttributes.hp.IncrementBaseValue(upgradeHpValue);
 
-            playerAttributes.water.IncrementBaseValue(upgradeMiddleValue);
+            playerAttributes.water.IncrementBaseValue(upgradeHpValue);
 
-            playerAttributes.energy.IncrementBaseValue(upgradeMiddleValue);
+            playerAttributes.energy.IncrementBaseValue(upgradeHpValue);
 
             nodeUi.SetActive(false);
 
@@ -174,14 +173,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void onClickRightNode()
+    public void OnClickEnergyNode()
     {
         Debug.Log("Right Node");
         if (CheckAndPayAttributeCost(playerAttributes.energy))
         {
             CreateRightUpgradeBranch();
 
-            playerAttributes.energy.IncrementBaseValue(upgradeRightValue);
+            playerAttributes.energy.IncrementBaseValue(upgradeEnergyValue);
 
             nodeUi.SetActive(false);
 
@@ -212,7 +211,7 @@ public class Player : MonoBehaviour
 
     public void IncrementMiddleUpgradeBranch()
     {
-        treeBase.transform.position = new Vector2(treeBase.transform.position.x, treeBase.transform.position.y + middleUpgradeIncrementUnit);
+        treeBase.transform.position = new Vector2(treeBase.transform.position.x, treeBase.transform.position.y + 2);
         canUpgradeLeftBranch = true;
         canUpgradeRightBranch = true;
     }

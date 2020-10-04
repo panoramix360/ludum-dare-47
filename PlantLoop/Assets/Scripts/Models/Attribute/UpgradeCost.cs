@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class UpgradeCost
 {
-    public int cost;
-    public AttributeEnum attributeType;
+    [SerializeField] public int cost;
+    [SerializeField] public AttributeEnum attributeType;
 
     public UpgradeCost(int cost, AttributeEnum attributeType)
     {

@@ -66,6 +66,8 @@ public class PlayerLevelUp : MonoBehaviour
         }
 
         IncrementAttributes(incrementors);
+
+        upgradesToLevelUp++;
     }
 
     private void IncrementAttributes(List<AttributeIncrementor> incrementors)

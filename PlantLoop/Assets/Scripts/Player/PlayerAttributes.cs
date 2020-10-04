@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class PlayerAttributes : MonoBehaviour
 {
-    [Header("Bases")]
+    [Header("Initial Bases")]
     [SerializeField] private float baseHp;
     [SerializeField] private float baseWater;
     [SerializeField] private float baseEnergy;
 
-    [Header("Player Attributes")]
+    [Header("Initial stats")]
     [SerializeField] private float initialHp;
     [SerializeField] private float initialWater;
     [SerializeField] private float initialEnergy;
+
+    [Header("Initial PerSec")]
+    [SerializeField] private float initialHpPerSec;
+    [SerializeField] private float initialWaterPerSec;
+    [SerializeField] private float initialEnergyPerSec;
 
     [SerializeField] public Attribute hp;
     [SerializeField] public Attribute water;
@@ -30,9 +35,9 @@ public class PlayerAttributes : MonoBehaviour
 
     private void SetupPlayerAttributes()
     {
-        hp = new HpAttribute(baseHp, initialHp);
-        water = new WaterAttribute(baseWater, initialWater);
-        energy = new EnergyAttribute(baseEnergy, initialEnergy);
+        hp = new HpAttribute(baseHp, initialHp, initialHpPerSec);
+        water = new WaterAttribute(baseWater, initialWater, initialWaterPerSec);
+        energy = new EnergyAttribute(baseEnergy, initialEnergy, initialEnergyPerSec);
     }
 
     public void IncrementHpAttribute(float value)

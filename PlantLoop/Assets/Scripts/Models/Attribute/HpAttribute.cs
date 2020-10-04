@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class HpAttribute : Attribute
 {
-    public HpAttribute(float baseValue, float value) : base(baseValue, value)
+    public HpAttribute(float baseValue, float value, float unitPerTime) : base(baseValue, value, unitPerTime)
     {
         this.upgradeCosts.Add(new UpgradeCost(10, AttributeEnum.ENERGY));
         this.upgradeCosts.Add(new UpgradeCost(10, AttributeEnum.WATER));
