@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5946331998204710169}
   - component: {fileID: 2730684310725608739}
   m_Layer: 5
-  m_Name: Middle
+  m_Name: HP Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 5416593539423340658}
   - component: {fileID: 2293440327732034775}
   m_Layer: 5
-  m_Name: Left
+  m_Name: Water Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 4608346590480883876}
   - component: {fileID: 6753584493552292079}
   m_Layer: 5
-  m_Name: Right
+  m_Name: Energy Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -911,7 +911,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 30
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
