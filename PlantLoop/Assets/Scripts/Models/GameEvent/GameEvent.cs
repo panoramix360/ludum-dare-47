@@ -99,6 +99,7 @@ public class GameEvent : MonoBehaviour
 
     public void SetEventInstaDamage(float energy = 0, float hp = 0, float water = 0)
     {
+        //Subtrair a quantidade
         this.EnergyDamage = energy;
         this.HpDamage = hp;
         this.WaterDamage = water;
@@ -106,6 +107,7 @@ public class GameEvent : MonoBehaviour
 
     public void SetEventInstaBonuses(float energy = 0, float hp = 0, float water = 0)
     {
+        //Adicionar a quantidade
         this.EnergyBonus = energy;
         this.HpBonus = hp;
         this.WaterBonus = water;

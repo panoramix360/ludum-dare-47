@@ -14,14 +14,14 @@ public class ClimateEvent : GameEvent
         switch (ClimateType)
         {
             case ClimateEventType.SUNNY:
-                SetEventModifiers(2f, 0f, 0.1f);
+                SetEventModifiers(1f, 0f, -0.5f);
                 break;
             case ClimateEventType.CLOUDY:
-                SetEventModifiers(0.5f, 0f, 0f);
+                SetEventModifiers(-0.5f, 0f, 0f);
                 break;
             case ClimateEventType.RAINY:
-                SetEventModifiers(0f, 0f, 2f);
-                SetEventInstaBonuses(0, 0, 10);
+                SetEventModifiers(-1f, 0f, 1f);
+                SetEventInstaBonuses(0f, 0f, 10f);
                 break;
             default:
                 Debug.LogError("Sem tipo de evento de clima");

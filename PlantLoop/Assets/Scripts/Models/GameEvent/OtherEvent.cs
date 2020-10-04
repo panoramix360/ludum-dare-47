@@ -12,9 +12,9 @@ public class OtherEvent : GameEvent
     private void GetEventModifiers()
     {
         switch (OtherType)
-        {
+        {   
             case OtherEventType.PoorSoilQuality:
-                SetEventModifiers(0.7f, -0.1f, 0.5f);
+                SetEventModifiers(-0.3f, -0.3f, -0.5f);
                 SetEventInstaDamage(0f, 10f, 10f);
                 break;
             default:

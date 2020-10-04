@@ -14,12 +14,12 @@ public class DangerEvent : GameEvent
         switch (DangerType)
         {
             case DangerEventType.CATTERPILLAR:
-                SetEventModifiers(-0.3f, -0.8f, 1f);
-                SetEventInstaDamage(0f, -10f, 0f);
+                SetEventModifiers(-0.1f, -0.8f, 0f);
+                SetEventInstaDamage(0f, 10f, 0f);
                 break;
             case DangerEventType.FUNGUS:
                 SetEventModifiers(1f, -0.8f, -0.3f);
-                SetEventInstaDamage(0f, -10f, 0f);
+                SetEventInstaDamage(0f, 10f, 0f);
                 break;
             default:
                 Debug.LogError("Sem tipo de evento de perigos");
