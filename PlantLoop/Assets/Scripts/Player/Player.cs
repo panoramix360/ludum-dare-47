@@ -5,20 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Bases")]
-    [SerializeField] private float baseHp;
-    [SerializeField] private float baseWater;
-    [SerializeField] private float baseEnergy;
-
-    [Header("Player Attributes")]
-    [SerializeField] private float initialHp;
-    [SerializeField] private float initialWater;
-    [SerializeField] private float initialEnergy;
-
-    [SerializeField] public Attribute hp;
-    [SerializeField] public Attribute water;
-    [SerializeField] public Attribute energy;
-
     [Header("Node Control")]
     [SerializeField] private GameObject treeBase;
     [SerializeField] private GameObject branchPrefab;
@@ -35,17 +21,12 @@ public class Player : MonoBehaviour
     private bool canUpgradeLeftBranch = true;
     private bool canUpgradeRightBranch = true;
 
+    private PlayerAttributes playerAttributes;
     private PlayerLevelUp playerLevelUp;
-
-    private void Awake()
-    {
-        SetupPlayerAttributes();
-    }
 
     private void Start()
     {
-        GameController.Instance.UpdatePlayerAttributes();
-
+        playerAttributes = GetComponent<PlayerAttributes>();
         playerLevelUp = GetComponent<PlayerLevelUp>();
     }
 
@@ -80,28 +61,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void SetupPlayerAttributes()
-    {
-        hp = new HpAttribute(baseHp, initialHp);
-        water = new WaterAttribute(baseWater, initialWater);
-        energy = new EnergyAttribute(baseEnergy, initialEnergy);
-    }
-
-    public void IncrementHpAttribute(float value)
-    {
-        hp.IncrementValue(value);
-    }
-
-    public void IncrementWaterAttribute(float value)
-    {
-        water.IncrementValue(value);
-    }
-
-    public void IncrementEnergyAttribute(float value)
-    {
-        energy.IncrementValue(value);
-    }
-
     public void ShowUpgradeNode()
     {
         nodeUi.SetActive(true);
@@ -134,7 +93,7 @@ public class Player : MonoBehaviour
             switch(upgradeCost.attributeType)
             {
                 case AttributeEnum.ENERGY:
-                    if (energy.value >= upgradeCost.cost)
+                    if (playerAttributes.energy.value >= upgradeCost.cost)
                     {
                         totalEnergyToDecrement = upgradeCost.cost;
                     }
@@ -144,7 +103,7 @@ public class Player : MonoBehaviour
                     }
                     break;
                 case AttributeEnum.WATER:
-                    if (water.value >= upgradeCost.cost)
+                    if (playerAttributes.water.value >= upgradeCost.cost)
                     {
                         totalWaterToDecrement = upgradeCost.cost;
                     }
@@ -154,7 +113,7 @@ public class Player : MonoBehaviour
                     }
                     break;
                 case AttributeEnum.HP:
-                    if (hp.value >= upgradeCost.cost)
+                    if (playerAttributes.hp.value >= upgradeCost.cost)
                     {
                         totalHpToDecrement = upgradeCost.cost;
                     }
@@ -168,9 +127,9 @@ public class Player : MonoBehaviour
 
         if (hasIncome)
         {
-            hp.DecrementValue(totalHpToDecrement);
-            water.DecrementValue(totalWaterToDecrement);
-            energy.DecrementValue(totalEnergyToDecrement);
+            playerAttributes.hp.DecrementValue(totalHpToDecrement);
+            playerAttributes.water.DecrementValue(totalWaterToDecrement);
+            playerAttributes.energy.DecrementValue(totalEnergyToDecrement);
         }
 
         return hasIncome;
@@ -180,11 +139,11 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Left Node");
 
-        if (CheckAndPayAttributeCost(water))
+        if (CheckAndPayAttributeCost(playerAttributes.water))
         {
             CreateLeftUpgradeBranch();
 
-            water.UpgradeBaseValue(upgradeLeftValue);
+            playerAttributes.water.IncrementBaseValue(upgradeLeftValue);
 
             nodeUi.SetActive(false);
 
@@ -197,15 +156,15 @@ public class Player : MonoBehaviour
     public void onClickMiddleNode()
     {
         Debug.Log("Middle Node");
-        if (CheckAndPayAttributeCost(hp))
+        if (CheckAndPayAttributeCost(playerAttributes.hp))
         {
             IncrementMiddleUpgradeBranch();
 
-            hp.UpgradeBaseValue(upgradeMiddleValue);
+            playerAttributes.hp.IncrementBaseValue(upgradeMiddleValue);
 
-            water.UpgradeBaseValue(upgradeMiddleValue);
+            playerAttributes.water.IncrementBaseValue(upgradeMiddleValue);
 
-            energy.UpgradeBaseValue(upgradeMiddleValue);
+            playerAttributes.energy.IncrementBaseValue(upgradeMiddleValue);
 
             nodeUi.SetActive(false);
 
@@ -218,11 +177,11 @@ public class Player : MonoBehaviour
     public void onClickRightNode()
     {
         Debug.Log("Right Node");
-        if (CheckAndPayAttributeCost(energy))
+        if (CheckAndPayAttributeCost(playerAttributes.energy))
         {
             CreateRightUpgradeBranch();
 
-            energy.UpgradeBaseValue(upgradeRightValue);
+            playerAttributes.energy.IncrementBaseValue(upgradeRightValue);
 
             nodeUi.SetActive(false);
 

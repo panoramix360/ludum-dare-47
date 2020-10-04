@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToUpgrade: 10
+  eventRoutineChance: 0

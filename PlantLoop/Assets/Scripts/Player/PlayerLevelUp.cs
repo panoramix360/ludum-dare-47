@@ -7,11 +7,11 @@ public class PlayerLevelUp : MonoBehaviour
     [SerializeField] private int currentLevel;
     [SerializeField] private int upgradesToLevelUp;
 
-    private Player player;
+    private PlayerAttributes playerAttributes;
 
     private void Start()
     {
-        player = GetComponent<Player>();
+        playerAttributes = GetComponent<PlayerAttributes>();
     }
 
     public int GetUpgradesToLevelUp()
@@ -75,16 +75,16 @@ public class PlayerLevelUp : MonoBehaviour
             switch(incrementor.type)
             {
                 case AttributeEnum.ENERGY:
-                    player.energy.baseValue += incrementor.baseIncrementor;
-                    player.energy.unitPerTime += incrementor.perTimeIncrementor;
+                    playerAttributes.energy.IncrementBaseValue(incrementor.baseIncrementor);
+                    playerAttributes.energy.unitPerTime += incrementor.perTimeIncrementor;
                     break;
                 case AttributeEnum.WATER:
-                    player.water.baseValue += incrementor.baseIncrementor;
-                    player.water.unitPerTime += incrementor.perTimeIncrementor;
+                    playerAttributes.water.IncrementBaseValue(incrementor.baseIncrementor);
+                    playerAttributes.water.unitPerTime += incrementor.perTimeIncrementor;
                     break;
                 case AttributeEnum.HP:
-                    player.hp.baseValue += incrementor.baseIncrementor;
-                    player.hp.unitPerTime += incrementor.perTimeIncrementor;
+                    playerAttributes.hp.IncrementBaseValue(incrementor.baseIncrementor);
+                    playerAttributes.hp.unitPerTime += incrementor.perTimeIncrementor;
                     break;
             }
         }

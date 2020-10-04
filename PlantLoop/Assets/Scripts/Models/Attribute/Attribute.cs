@@ -34,7 +34,12 @@ public abstract class Attribute
         this.value = Math.Max(this.value, 0);
     }
 
-    public void UpgradeBaseValue(float value)
+    public void IncrementModifier(float modifierIncrement)
+    {
+        this.modifier += modifierIncrement;
+    }
+
+    public void IncrementBaseValue(float value)
     {
         this.baseValue += value;
     }

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  playerAttributes: {fileID: 0}
   hpTxt: {fileID: 0}
   waterTxt: {fileID: 0}
   energyTxt: {fileID: 0}
@@ -54,8 +55,3 @@ MonoBehaviour:
   waterPerTime: 1
   energyPerTime: 1
   EnvironmentType: 0
-  EnvironmentObject:
-    HpModifier: 0
-    WaterModifier: 0
-    EnergyModifier: 0
-    Type: 0

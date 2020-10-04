@@ -265,6 +265,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeade738911507c0b14366f35521358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &582893948 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4254568061153637541, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+  m_PrefabInstance: {fileID: 582893946}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e35bedba9fb55c49ad8c113ced19ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &683927253 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7017440353666104986, guid: 4f5d4807e64dbfd4ea5d1a7fcd587447, type: 3}
@@ -325,6 +336,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 582893947}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: playerAttributes
+      value: 
+      objectReference: {fileID: 582893948}
     - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: hpTxt
       value: 

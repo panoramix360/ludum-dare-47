@@ -7,6 +7,7 @@ public class GameController : Singleton<GameController>
 {
     [Header("Game Objects")]
     [SerializeField] private Player player;
+    [SerializeField] private PlayerAttributes playerAttributes;
 
     [Header("Player Attributes")]
     [SerializeField] private TextMeshProUGUI hpTxt;
@@ -28,12 +29,12 @@ public class GameController : Singleton<GameController>
 
     public void UpdatePlayerAttributes()
     {
-        hpTxt.text = player.hp.value.ToString();
-        waterTxt.text = player.water.value.ToString();
-        energyTxt.text = player.energy.value.ToString();
-        hpImg.fillAmount = player.hp.value / player.hp.baseValue;
-        waterImg.fillAmount = player.water.value / player.water.baseValue;
-        energyImg.fillAmount = player.energy.value / player.energy.baseValue;
+        hpTxt.text = playerAttributes.hp.value.ToString();
+        waterTxt.text = playerAttributes.water.value.ToString();
+        energyTxt.text = playerAttributes.energy.value.ToString();
+        hpImg.fillAmount = playerAttributes.hp.value / playerAttributes.hp.baseValue;
+        waterImg.fillAmount = playerAttributes.water.value / playerAttributes.water.baseValue;
+        energyImg.fillAmount = playerAttributes.energy.value / playerAttributes.energy.baseValue;
     }
 
     public void UpgradePlayerNode()
@@ -45,9 +46,9 @@ public class GameController : Singleton<GameController>
     {
         EnvironmentObject = new Environment(EnvironmentType);
 
-        player.IncrementHpAttribute(hpPerTime * EnvironmentObject.HpModifier);
-        player.IncrementWaterAttribute(waterPerTime * EnvironmentObject.WaterModifier);
-        player.IncrementEnergyAttribute(energyPerTime * EnvironmentObject.EnergyModifier);
+        playerAttributes.hp.IncrementValue(hpPerTime * EnvironmentObject.HpModifier);
+        playerAttributes.water.IncrementValue(waterPerTime * EnvironmentObject.WaterModifier);
+        playerAttributes.energy.IncrementValue(energyPerTime * EnvironmentObject.EnergyModifier);
 
         UpdatePlayerAttributes();
     }
@@ -83,23 +84,23 @@ public class GameController : Singleton<GameController>
 
     private void EventIncrementValues()
     {
-        player.hp.IncrementValue(GameEvent.HpBonus);
-        player.energy.IncrementValue(GameEvent.EnergyBonus);
-        player.water.IncrementValue(GameEvent.WaterBonus);
+        playerAttributes.hp.IncrementValue(GameEvent.HpBonus);
+        playerAttributes.energy.IncrementValue(GameEvent.EnergyBonus);
+        playerAttributes.water.IncrementValue(GameEvent.WaterBonus);
     }
 
     private void EventDecrementValue()
     {
-        player.hp.DecrementValue(GameEvent.HpDamage);
-        player.energy.DecrementValue(GameEvent.EnergyDamage);
-        player.water.DecrementValue(GameEvent.WaterDamage);
+        playerAttributes.hp.DecrementValue(GameEvent.HpDamage);
+        playerAttributes.energy.DecrementValue(GameEvent.EnergyDamage);
+        playerAttributes.water.DecrementValue(GameEvent.WaterDamage);
     }
 
     private void EventChangeModifierValue()
     {
-        player.hp.modifier += GameEvent.HpModifier;
-        player.energy.modifier += GameEvent.EnergyModifier;
-        player.water.modifier += GameEvent.WaterModifier;
+        playerAttributes.hp.IncrementModifier(GameEvent.HpModifier);
+        playerAttributes.energy.IncrementModifier(GameEvent.EnergyModifier);
+        playerAttributes.water.IncrementModifier(GameEvent.WaterModifier);
     }
     #endregion
 }
