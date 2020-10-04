@@ -68,32 +68,117 @@ public class Player : MonoBehaviour
         nodeUi.SetActive(true);
         nodeUi.transform.GetChild(0).gameObject.SetActive(canUpgradeLeftBranch);
         nodeUi.transform.GetChild(2).gameObject.SetActive(canUpgradeRightBranch);
+
+        HideAllChilds(nodeUi.transform.GetChild(0));
+        HideAllChilds(nodeUi.transform.GetChild(1));
+        HideAllChilds(nodeUi.transform.GetChild(2));
+    }
+    
+    private void HideAllChilds(Transform transform)
+    {
+        foreach(Transform node in transform)
+        {
+            node.gameObject.SetActive(false);
+        }
+    }
+
+    private bool CheckAndPayAttributeCost(Attribute attribute)
+    {
+        bool hasIncome = true;
+
+        int totalHpToDecrement = 0;
+        int totalWaterToDecrement = 0;
+        int totalEnergyToDecrement = 0;
+
+        foreach (UpgradeCost upgradeCost in attribute.upgradeCosts)
+        {
+            switch(upgradeCost.attributeType)
+            {
+                case AttributeEnum.ENERGY:
+                    if (energy.value >= upgradeCost.cost)
+                    {
+                        totalEnergyToDecrement = upgradeCost.cost;
+                    }
+                    else
+                    {
+                        hasIncome = false;
+                    }
+                    break;
+                case AttributeEnum.WATER:
+                    if (water.value >= upgradeCost.cost)
+                    {
+                        totalWaterToDecrement = upgradeCost.cost;
+                    }
+                    else
+                    {
+                        hasIncome = false;
+                    }
+                    break;
+                case AttributeEnum.HP:
+                    if (hp.value >= upgradeCost.cost)
+                    {
+                        totalHpToDecrement = upgradeCost.cost;
+                    }
+                    else
+                    {
+                        hasIncome = false;
+                    }
+                    break;
+            }
+        }
+
+        if (hasIncome)
+        {
+            hp.DecrementValue(totalHpToDecrement);
+            water.DecrementValue(totalWaterToDecrement);
+            energy.DecrementValue(totalEnergyToDecrement);
+        }
+
+        return hasIncome;
     }
 
     public void onClickLeftNode()
     {
         Debug.Log("Left Node");
-        CreateLeftUpgradeBranch();
-        water.UpgradeBaseValue(upgradeLeftValue);
-        nodeUi.SetActive(false);
+
+        if (CheckAndPayAttributeCost(water))
+        {
+            CreateLeftUpgradeBranch();
+
+            water.UpgradeBaseValue(upgradeLeftValue);
+
+            nodeUi.SetActive(false);
+        }
     }
 
     public void onClickMiddleNode()
     {
         Debug.Log("Middle Node");
-        IncrementMiddleUpgradeBranch();
-        hp.UpgradeBaseValue(upgradeMiddleValue);
-        water.UpgradeBaseValue(upgradeMiddleValue);
-        energy.UpgradeBaseValue(upgradeMiddleValue);
-        nodeUi.SetActive(false);
+        if (CheckAndPayAttributeCost(hp))
+        {
+            IncrementMiddleUpgradeBranch();
+
+            hp.UpgradeBaseValue(upgradeMiddleValue);
+
+            water.UpgradeBaseValue(upgradeMiddleValue);
+
+            energy.UpgradeBaseValue(upgradeMiddleValue);
+
+            nodeUi.SetActive(false);
+        }
     }
 
     public void onClickRightNode()
     {
         Debug.Log("Right Node");
-        CreateRightUpgradeBranch();
-        energy.UpgradeBaseValue(upgradeRightValue);
-        nodeUi.SetActive(false);
+        if (CheckAndPayAttributeCost(energy))
+        {
+            CreateRightUpgradeBranch();
+
+            energy.UpgradeBaseValue(upgradeRightValue);
+
+            nodeUi.SetActive(false);
+        }
     }
 
     public void CreateLeftUpgradeBranch()
