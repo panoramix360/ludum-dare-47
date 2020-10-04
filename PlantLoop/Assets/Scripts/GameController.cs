@@ -24,6 +24,7 @@ public class GameController : Singleton<GameController>
     [Header("Environment Modifiers")]
     [SerializeField] private EnvironmentType EnvironmentType;
     private Environment EnvironmentObject;
+    private GameEvent GameEvent;
 
     public void UpdatePlayerAttributes()
     {
@@ -50,4 +51,55 @@ public class GameController : Singleton<GameController>
 
         UpdatePlayerAttributes();
     }
+
+    #region EVENT
+    public void CreateGameEvent()
+    {
+        var gameEventBase = new GameEvent();
+        switch (gameEventBase.Type)
+        {
+            case GameEventType.CLIMATE:
+                GameEvent = new ClimateEvent(gameEventBase);
+                break;
+            case GameEventType.DANGER:
+                GameEvent = new DangerEvent(gameEventBase);
+                break;
+            case GameEventType.OTHEREVENT:
+                GameEvent = new OtherEvent(gameEventBase);
+                break;
+            default:
+                Debug.LogError("Erro criando evento");
+                break;
+        }
+        UpdatePlayerAttributesByEvent();
+    }
+
+    private void UpdatePlayerAttributesByEvent()
+    {
+        EventIncrementValues();
+        EventDecrementValue();
+        EventChangeModifierValue();
+    }
+
+    private void EventIncrementValues()
+    {
+        player.hp.IncrementValue(GameEvent.HpBonus);
+        player.energy.IncrementValue(GameEvent.EnergyBonus);
+        player.water.IncrementValue(GameEvent.WaterBonus);
+    }
+
+    private void EventDecrementValue()
+    {
+        player.hp.DecrementValue(GameEvent.HpDamage);
+        player.energy.DecrementValue(GameEvent.EnergyDamage);
+        player.water.DecrementValue(GameEvent.WaterDamage);
+    }
+
+    private void EventChangeModifierValue()
+    {
+        player.hp.modifier += GameEvent.HpModifier;
+        player.energy.modifier += GameEvent.EnergyModifier;
+        player.water.modifier += GameEvent.WaterModifier;
+    }
+    #endregion
 }

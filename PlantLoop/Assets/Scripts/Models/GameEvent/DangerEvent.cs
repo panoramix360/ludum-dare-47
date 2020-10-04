@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DangerEvent : GameEvent
 {
-    public DangerEvent(): base()
+    public DangerEvent(GameEvent gameEvent) : base(gameEvent)
     {
         GetEventModifiers();
     }

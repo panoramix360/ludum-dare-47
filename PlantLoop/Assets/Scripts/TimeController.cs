@@ -8,6 +8,7 @@ public class TimeController : MonoBehaviour
     private int timeInSeconds = 0;
 
     [SerializeField] private int timeToUpgrade;
+    [SerializeField] private int eventRoutineChance;
 
     private void Start()
     {
@@ -41,48 +42,53 @@ public class TimeController : MonoBehaviour
     private void EventRoutine()
     {
         System.Random rnd = new System.Random();
-
-        if (timeInSeconds == 10)
+        if (rnd.Next(100) <= eventRoutineChance)
         {
-            if (rnd.Next(100) <= 10)
-            {
-
-            }
-        } 
-        else if(timeInSeconds == 30)
-        {
-            if (rnd.Next(100) <= 95)
-            {
-
-            }
+            Debug.Log("Criando evento");
+            GameController.Instance.CreateGameEvent();
         }
-        else if (timeInSeconds == 50)
-        {
-            if (rnd.Next(100) <= 95)
-            {
-
-            }
-        }
-        else if (timeInSeconds == 80)
-        {
-            if (rnd.Next(100) <= 95)
-            {
-
-            }
-        }
-        else if (timeInSeconds == 100)
-        {
-            if (rnd.Next(100) <= 95)
-            {
-
-            }
-        }
-        else if (timeInSeconds == 120)
-        {
-            if (rnd.Next(100) <= 95)
-            {
-
-            }
-        }
+        //COMENTEI PRA SER MAIS FÁCIL PRA TESTAR
+        //if (timeInSeconds == 10)
+        //{
+        //    //if (rnd.Next(100) <= 10)
+        //    //{
+        //        GameController.Instance.CreateGameEvent();
+        //    //}
+        //} 
+        //else if(timeInSeconds == 30)
+        //{
+        //    //if (rnd.Next(100) <= 95)
+        //    //{
+        //        GameController.Instance.CreateGameEvent();
+        //    //}
+        //}
+        //else if (timeInSeconds == 50)
+        //{
+        //    //if (rnd.Next(100) <= 95)
+        //    //{
+        //        GameController.Instance.CreateGameEvent();
+        //    //}
+        //}
+        //else if (timeInSeconds == 80)
+        //{
+        //    //if (rnd.Next(100) <= 95)
+        //    //{
+        //        GameController.Instance.CreateGameEvent();
+        //    //}
+        //}
+        //else if (timeInSeconds == 100)
+        //{
+        //    //if (rnd.Next(100) <= 95)
+        //    //{
+        //        GameController.Instance.CreateGameEvent();
+        //    //}
+        //}
+        //else if (timeInSeconds == 120)
+        //{
+        //    //if (rnd.Next(100) <= 95)
+        //    //{
+        //        GameController.Instance.CreateGameEvent();
+        //    //}
+        //}
     }
 }

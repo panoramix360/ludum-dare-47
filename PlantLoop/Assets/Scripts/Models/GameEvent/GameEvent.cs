@@ -28,13 +28,29 @@ public class GameEvent : MonoBehaviour
     public float HpBonus;
     public float WaterBonus;
 
-    public GameEvent()
+    public GameEvent(GameEvent gameEvent = null)
     {
-        Random = new System.Random();
-        Array values = Enum.GetValues(typeof(GameEventType));
-        Type = (GameEventType)values.GetValue(Random.Next(values.Length));
+        //Se o gameevent já foi instanciado e decidido fora, ele só seta as propriedades no filho
+        if (gameEvent is null)
+        {
+            Random = new System.Random();
+            Array values = Enum.GetValues(typeof(GameEventType));
+            Type = (GameEventType)values.GetValue(Random.Next(values.Length));
 
-        GenerateGameEvent();
+            GenerateGameEvent();
+        } 
+        else
+        {
+            UpdateVariables(gameEvent);
+        }
+    }
+
+    private void UpdateVariables(GameEvent gameEvent)
+    {
+        this.Type = gameEvent.Type;
+        this.DangerType = gameEvent.DangerType;
+        this.ClimateType = gameEvent.ClimateType;
+        this.OtherType = gameEvent.OtherType;
     }
 
     private void GenerateGameEvent()

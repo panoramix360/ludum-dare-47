@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OtherEvent : GameEvent
 {
-    public OtherEvent(): base()
+    public OtherEvent(GameEvent gameEvent) : base(gameEvent)
     {
         GetEventModifiers();
     }

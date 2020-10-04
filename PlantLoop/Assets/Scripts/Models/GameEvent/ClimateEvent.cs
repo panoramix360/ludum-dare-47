@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClimateEvent : GameEvent
 {
-    public ClimateEvent() : base()
+    public ClimateEvent(GameEvent gameEvent) : base(gameEvent)
     {
         GetEventModifiers();
     }
