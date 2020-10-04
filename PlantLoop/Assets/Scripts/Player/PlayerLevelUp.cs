@@ -78,15 +78,15 @@ public class PlayerLevelUp : MonoBehaviour
             {
                 case AttributeEnum.ENERGY:
                     playerAttributes.energy.IncrementBaseValue(incrementor.baseIncrementor);
-                    playerAttributes.energy.unitPerTime += incrementor.perTimeIncrementor;
+                    playerAttributes.energy.IncrementUnitPerTime(incrementor.perTimeIncrementor);
                     break;
                 case AttributeEnum.WATER:
                     playerAttributes.water.IncrementBaseValue(incrementor.baseIncrementor);
-                    playerAttributes.water.unitPerTime += incrementor.perTimeIncrementor;
+                    playerAttributes.water.IncrementUnitPerTime(incrementor.perTimeIncrementor);
                     break;
                 case AttributeEnum.HP:
                     playerAttributes.hp.IncrementBaseValue(incrementor.baseIncrementor);
-                    playerAttributes.hp.unitPerTime += incrementor.perTimeIncrementor;
+                    playerAttributes.hp.IncrementUnitPerTime(incrementor.perTimeIncrementor);
                     break;
             }
         }

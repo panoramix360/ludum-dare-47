@@ -6,6 +6,7 @@ using UnityEngine;
 public class TimeController : MonoBehaviour
 {
     private int timeInSeconds = 0;
+    private bool isPaused = false;
 
     [SerializeField] private int timeToUpgrade;
     [SerializeField] private int eventRoutineChance;
@@ -23,20 +24,36 @@ public class TimeController : MonoBehaviour
 
     private IEnumerator BeginTime()
     {
-        // Lógica de tempo do jogo
-        GameController.Instance.UpdatePlayerAttributesByTimeUnits();
-
-        if (CheckIfIsTime(timeToUpgrade))
+        while(true)
         {
-            GameController.Instance.UpgradePlayerNode();
+            while(isPaused)
+            {
+                yield return null;
+            }
+
+            // Lógica de tempo do jogo
+            GameController.Instance.UpdatePlayerAttributesByTimeUnits();
+
+            if (CheckIfIsTime(timeToUpgrade))
+            {
+                GameController.Instance.UpgradePlayerNode();
+            }
+
+            EventRoutine();
+
+            yield return new WaitForSeconds(1f);
+            timeInSeconds++;
         }
+    }
 
-        EventRoutine();
+    public void PauseTime()
+    {
+        isPaused = true;
+    }
 
-        yield return new WaitForSeconds(1f);
-        timeInSeconds++;
-
-        StartCoroutine(BeginTime());
+    public void ResumeTime()
+    {
+        isPaused = false;
     }
 
     private void EventRoutine()

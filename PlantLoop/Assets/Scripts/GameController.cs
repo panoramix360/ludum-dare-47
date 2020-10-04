@@ -8,6 +8,7 @@ public class GameController : Singleton<GameController>
     [Header("Game Objects")]
     [SerializeField] private Player player;
     [SerializeField] private PlayerAttributes playerAttributes;
+    [SerializeField] private TimeController timeController;
 
     [Header("Player Attributes UI")]
     [SerializeField] private TextMeshProUGUI hpTxt;
@@ -35,6 +36,12 @@ public class GameController : Singleton<GameController>
     public void UpgradePlayerNode()
     {
         player.ShowUpgradeNode();
+        timeController.PauseTime();
+    }
+
+    public void ResumeGame()
+    {
+        timeController.ResumeTime();
     }
 
     public void UpdatePlayerAttributesByTimeUnits()

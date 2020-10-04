@@ -364,6 +364,10 @@ PrefabInstance:
       propertyPath: energyImg
       value: 
       objectReference: {fileID: 808790341}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: timeController
+      value: 
+      objectReference: {fileID: 1427215719}
     - target: {fileID: 9019834244053384063, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -1017,6 +1021,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1427215719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
+  m_PrefabInstance: {fileID: 1203378675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30363ed8fd862bd4fabe4c2dd1c6ffc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1554521487
 GameObject:
   m_ObjectHideFlags: 0

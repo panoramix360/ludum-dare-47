@@ -1370,7 +1370,6 @@ MonoBehaviour:
   treeBase: {fileID: 5761297661977322948}
   branchPrefab: {fileID: 5356759098469853450, guid: b0eb0760ffe867a40a91fe99ad1a8283, type: 3}
   nodeUi: {fileID: 1402773972}
-  middleUpgradeIncrementUnit: 2
   upgradeWaterValue: 20
   upgradeHpValue: 10
   upgradeEnergyValue: 15
@@ -1400,12 +1399,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e35bedba9fb55c49ad8c113ced19ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHp: 100
-  baseWater: 100
-  baseEnergy: 100
-  initialHp: 80
-  initialWater: 80
-  initialEnergy: 80
+  baseHp: 50
+  baseWater: 50
+  baseEnergy: 50
+  initialHp: 25
+  initialWater: 25
+  initialEnergy: 25
   initialHpPerSec: 1
   initialWaterPerSec: 1
   initialEnergyPerSec: 1

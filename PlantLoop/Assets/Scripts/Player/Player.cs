@@ -149,6 +149,8 @@ public class Player : MonoBehaviour
             GameController.Instance.UpdatePlayerAttributes();
 
             currentLeftUpgradeNode++;
+
+            GameController.Instance.ResumeGame();
         }
     }
 
@@ -170,6 +172,8 @@ public class Player : MonoBehaviour
             GameController.Instance.UpdatePlayerAttributes();
 
             currentMiddleUpgradeNode++;
+
+            GameController.Instance.ResumeGame();
         }
     }
 
@@ -187,6 +191,8 @@ public class Player : MonoBehaviour
             GameController.Instance.UpdatePlayerAttributes();
 
             currentRightUpgradeNode++;
+
+            GameController.Instance.ResumeGame();
         }
     }
 

@@ -44,4 +44,9 @@ public class Attribute
     {
         this.baseValue += value;
     }
+
+    public void IncrementUnitPerTime(float increment)
+    {
+        this.unitPerTime += increment;
+    }
 }

@@ -39,24 +39,4 @@ public class PlayerAttributes : MonoBehaviour
         water = new WaterAttribute(baseWater, initialWater, initialWaterPerSec);
         energy = new EnergyAttribute(baseEnergy, initialEnergy, initialEnergyPerSec);
     }
-
-    public void IncrementHpAttribute(float value)
-    {
-        hp.IncrementValue(value);
-    }
-
-    public void IncrementWaterAttribute(float value)
-    {
-        water.IncrementValue(value);
-    }
-
-    public void IncrementEnergyAttribute(float value)
-    {
-        energy.IncrementValue(value);
-    }
-
-    public void DecrementAttribute(Attribute attribute, float value)
-    {
-        attribute.DecrementValue(value);
-    }
 }
