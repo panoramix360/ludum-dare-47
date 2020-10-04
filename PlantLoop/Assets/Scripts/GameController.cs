@@ -24,7 +24,7 @@ public class GameController : Singleton<GameController>
 
     [Header("Environment Modifiers")]
     [SerializeField] private EnvironmentType EnvironmentType;
-    [SerializeField] private Environment EnvironmentObject;
+    private Environment EnvironmentObject;
 
     public void UpdatePlayerAttributes()
     {
