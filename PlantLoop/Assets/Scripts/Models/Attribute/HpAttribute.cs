@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class HpAttribute : Attribute
 {
-    public HpAttribute(double baseValue, double value) : base(baseValue, value) {}
+    public HpAttribute(float baseValue, float value) : base(baseValue, value) {}
 }

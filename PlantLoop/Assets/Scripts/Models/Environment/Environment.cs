@@ -6,9 +6,9 @@ using UnityEngine;
 [Serializable]
 public class Environment
 {
-    public double HpModifier;
-    public double WaterModifier;
-    public double EnergyModifier;
+    public float HpModifier;
+    public float WaterModifier;
+    public float EnergyModifier;
     public EnvironmentType Type;
 
     public Environment(EnvironmentType type)
@@ -33,22 +33,22 @@ public class Environment
     private void Forest()
     {
         Type = EnvironmentType.FOREST;
-        this.HpModifier = 0.5;
-        this.WaterModifier = 1.5;
-        this.EnergyModifier = 1;
+        this.HpModifier = 0.5f;
+        this.WaterModifier = 1.5f;
+        this.EnergyModifier = 1f;
     }
     private void Swamp()
     {
         Type = EnvironmentType.SWAMP;
-        this.HpModifier = 0.3;
-        this.WaterModifier = 2;
-        this.EnergyModifier = 0.5;
+        this.HpModifier = 0.3f;
+        this.WaterModifier = 2f;
+        this.EnergyModifier = 0.5f;
     }
     private void Desert()
     {
         Type = EnvironmentType.DESERT;
-        this.HpModifier = 0.1;
-        this.WaterModifier = 0.5;
-        this.EnergyModifier = 2;
+        this.HpModifier = 0.1f;
+        this.WaterModifier = 0.5f;
+        this.EnergyModifier = 2f;
     }
 }

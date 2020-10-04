@@ -47,6 +47,9 @@ MonoBehaviour:
   hpTxt: {fileID: 0}
   waterTxt: {fileID: 0}
   energyTxt: {fileID: 0}
+  hpImg: {fileID: 0}
+  waterImg: {fileID: 0}
+  energyImg: {fileID: 0}
   hpPerTime: 1
   waterPerTime: 1
   energyPerTime: 1
