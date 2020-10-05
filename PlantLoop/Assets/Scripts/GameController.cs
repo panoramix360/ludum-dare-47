@@ -291,7 +291,7 @@ public class GameController : Singleton<GameController>
 
     private void ApplyEventModifiersInPlayer(GameEvent gameEvent)
     {
-        InsertModifier(new Modifier(gameEvent.Type.ToString(), new Dictionary<AttributeEnum, float>
+        InsertModifier(new Modifier(gameEvent.Identifier, new Dictionary<AttributeEnum, float>
         {
             [AttributeEnum.HP] = gameEvent.HpModifier,
             [AttributeEnum.ENERGY] = gameEvent.EnergyModifier,

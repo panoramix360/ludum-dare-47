@@ -273,6 +273,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4254568061153637541, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: baseHp
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254568061153637541, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: baseWater
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254568061153637541, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: baseEnergy
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 5761297661259541696, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -836,6 +848,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
+      propertyPath: eventRoutineChance
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
+      propertyPath: eventRoutineDelay
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 175321356335401281, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
