@@ -133,30 +133,36 @@ public class GameController : Singleton<GameController>
         switch (gameEvent.Type)
         {
             case GameEventType.CLIMATE:
-                gameEventList.Add(new ClimateEvent(gameEvent));
+                gameEvent = new ClimateEvent(gameEvent);
+                gameEventList.Add(gameEvent);
                 break;
             case GameEventType.DANGER:
-                gameEventList.Add(new DangerEvent(gameEvent));
+                gameEvent = new DangerEvent(gameEvent);
+                gameEventList.Add(gameEvent);
                 break;
             case GameEventType.OTHEREVENT:
-                gameEventList.Add(new OtherEvent(gameEvent));
+                gameEvent = new OtherEvent(gameEvent);
+                gameEventList.Add(gameEvent);
                 break;
             default:
                 Debug.LogError("Erro criando evento");
                 break;
         }
         
-        UpdatePlayerAttributesByEvent(gameEventList.Last());
+        UpdatePlayerAttributesByEvent(gameEvent);
 
-        AddEventIconUI(gameEventList.Last());
+        AddEventIconUI(gameEvent);
     }
 
     private void AddEventIconUI(GameEvent gameEvent)
     {
         if (gameEvent.Type == GameEventType.CLIMATE)
         {
-            GameObject icon = Instantiate(eventIcon, climateEventsContainer.transform);
-            icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
+            GameObject iconLeft = Instantiate(eventIcon, climateEventsContainer.transform);
+            iconLeft.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPathLeft);
+
+            GameObject iconRight = Instantiate(eventIcon, gameEventsContainer.transform);
+            iconRight.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
         } 
         else
         {

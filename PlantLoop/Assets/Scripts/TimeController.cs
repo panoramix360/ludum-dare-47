@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +14,7 @@ public class TimeController : MonoBehaviour
 
     private void Start()
     {
+        UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
         StartCoroutine(BeginTime());
     }
 
@@ -60,10 +60,9 @@ public class TimeController : MonoBehaviour
 
     private void EventRoutine()
     {
-        System.Random rnd = new System.Random();
         if (timeInSeconds % eventRoutineDelay == 0 && canCreateEvent)
         {
-            if (rnd.Next(100) <= eventRoutineChance)
+            if (Random.Range(1, 101) <= eventRoutineChance)
             {
                 GameController.Instance.CreateGameEvent();
                 StartCoroutine(DelayToCreateEvent());

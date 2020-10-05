@@ -1,10 +1,11 @@
 ﻿using System;
+using UnityEngine;
 
 public class GameEvent
 {
-    Random Random;
     public float DurationTime { get; set; }
     public string IconPath { get; set; }
+    public string IconPathLeft { get; set; }
 
     //Game Event Types
     public GameEventType? Type;
@@ -29,12 +30,12 @@ public class GameEvent
 
     public GameEvent(GameEvent gameEvent = null)
     {
+        UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
         //Se o gameevent já foi instanciado e decidido fora, ele só seta as propriedades no filho
         if (gameEvent is null)
         {
-            Random = new System.Random();
             Array values = Enum.GetValues(typeof(GameEventType));
-            Type = (GameEventType)values.GetValue(Random.Next(values.Length));
+            Type = (GameEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
 
             GenerateGameEvent();
         } 
@@ -74,19 +75,19 @@ public class GameEvent
     private void GenerateClimateEvent()
     {
         Array values = Enum.GetValues(typeof(ClimateEventType));
-        ClimateType = (ClimateEventType)values.GetValue(Random.Next(values.Length));
+        ClimateType = (ClimateEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
     }
 
     private void GenerateDangerEvent()
     {
         Array values = Enum.GetValues(typeof(DangerEventType));
-        DangerType = (DangerEventType)values.GetValue(Random.Next(values.Length));
+        DangerType = (DangerEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
     }
 
     private void GenerateOtherEvent()
     {
         Array values = Enum.GetValues(typeof(OtherEventType));
-        OtherType = (OtherEventType)values.GetValue(Random.Next(values.Length));
+        OtherType = (OtherEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
     }
 
     public void SetEventModifiers(float energy = 1, float hp = 1, float water = 1)
