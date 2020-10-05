@@ -14,6 +14,10 @@ public class TimeController : MonoBehaviour
     private void Start()
     {
         UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
+    }
+
+    public void OnGameReady()
+    {
         StartCoroutine(BeginTime());
     }
 
@@ -25,6 +29,8 @@ public class TimeController : MonoBehaviour
 
     private IEnumerator BeginTime()
     {
+        yield return new WaitForSeconds(1f);
+
         while (true)
         {
             // Lógica de tempo do jogo

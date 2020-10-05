@@ -12,6 +12,7 @@ public class GameController : Singleton<GameController>
     [SerializeField] private Player player;
     [SerializeField] private PlayerAttributes playerAttributes;
     [SerializeField] private TimeController timeController;
+    [SerializeField] private Loading loading;
 
     [Header("UI")]
     [SerializeField] private GameObject gameEventsContainer;
@@ -51,6 +52,8 @@ public class GameController : Singleton<GameController>
         currentModifiers = new List<Modifier>();
         gameEventList = new List<GameEvent>();
         currentEnvironment = new Environment(initialEnvironmentType);
+
+        loading.GetComponent<Animator>().Play("FadeOut");
     }
 
     private void Start()
