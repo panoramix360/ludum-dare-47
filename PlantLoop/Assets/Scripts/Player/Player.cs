@@ -150,6 +150,7 @@ public class Player : MonoBehaviour
             CreateLeftUpgradeBranch();
 
             playerAttributes.water.IncrementBaseValue(upgradeWaterValue);
+            playerAttributes.water.IncrementUnitPerTime(upgradeWaterPerSecValue);
 
             nodeUi.SetActive(false);
 
@@ -169,10 +170,12 @@ public class Player : MonoBehaviour
             IncrementMiddleUpgradeBranch();
 
             playerAttributes.hp.IncrementBaseValue(upgradeHpValue);
-
             playerAttributes.water.IncrementBaseValue(upgradeHpValue);
-
             playerAttributes.energy.IncrementBaseValue(upgradeHpValue);
+
+            playerAttributes.hp.IncrementUnitPerTime(upgradeHpPerSecValue);
+            playerAttributes.water.IncrementUnitPerTime(upgradeHpPerSecValue);
+            playerAttributes.energy.IncrementUnitPerTime(upgradeHpPerSecValue);
 
             nodeUi.SetActive(false);
 
@@ -192,6 +195,7 @@ public class Player : MonoBehaviour
             CreateRightUpgradeBranch();
 
             playerAttributes.energy.IncrementBaseValue(upgradeEnergyValue);
+            playerAttributes.energy.IncrementUnitPerTime(upgradeEnergyPerSecValue);
 
             nodeUi.SetActive(false);
 

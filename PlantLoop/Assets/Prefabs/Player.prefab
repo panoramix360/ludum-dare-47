@@ -1584,9 +1584,9 @@ MonoBehaviour:
   upgradeWaterValue: 20
   upgradeHpValue: 10
   upgradeEnergyValue: 15
-  upgradeWaterPerSecValue: 0
-  upgradeHpPerSecValue: 0
-  upgradeEnergyPerSecValue: 0
+  upgradeWaterPerSecValue: 0.2
+  upgradeHpPerSecValue: 0.1
+  upgradeEnergyPerSecValue: 0.3
 --- !u!114 &7970839108920968698
 MonoBehaviour:
   m_ObjectHideFlags: 0
