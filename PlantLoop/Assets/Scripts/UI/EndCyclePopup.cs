@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class EndCyclePopup : MonoBehaviour
 {
+    [SerializeField] private Button button;
+
     private Animator animator;
     private PlayerLevelUp.LevelType levelType;
 
@@ -15,6 +19,11 @@ public class EndCyclePopup : MonoBehaviour
     public void SetLevelType(PlayerLevelUp.LevelType levelType)
     {
         this.levelType = levelType;
+    }
+
+    public void SetOnNextCycleOnClick(UnityAction action)
+    {
+        button.onClick.AddListener(action);
     }
 
     public void OnFinishFadeIn()

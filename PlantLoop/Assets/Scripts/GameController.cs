@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class GameController : Singleton<GameController>
+public class GameController : SingletonDestroyable<GameController>
 {
     [Header("Game Objects")]
     [SerializeField] private Player player;
@@ -49,11 +50,14 @@ public class GameController : Singleton<GameController>
 
     private void Awake()
     {
+        base.Awake();
         currentModifiers = new List<Modifier>();
         gameEventList = new List<GameEvent>();
         currentEnvironment = new Environment(initialEnvironmentType);
 
         loading.GetComponent<Animator>().Play("FadeOut");
+
+        SetupLevelUpValuesIfNeeded();
     }
 
     private void Start()
@@ -86,6 +90,20 @@ public class GameController : Singleton<GameController>
         energyImg.fillAmount = playerAttributes.energy.value / playerAttributes.energy.baseValue;
     }
 
+    public void SetupLevelUpValuesIfNeeded()
+    {
+        if (PersistedObject.Instance.isChanged)
+        {
+            playerAttributes.hp.baseValue = PersistedObject.Instance.baseHp;
+            playerAttributes.energy.baseValue = PersistedObject.Instance.baseEnergy;
+            playerAttributes.water.baseValue = PersistedObject.Instance.baseWater;
+
+            playerAttributes.hp.unitPerTime = PersistedObject.Instance.baseHpUnitPerTime;
+            playerAttributes.energy.unitPerTime = PersistedObject.Instance.baseEnergyUnitPerTime;
+            playerAttributes.water.unitPerTime = PersistedObject.Instance.baseWaterUnitPerTime;
+        }
+    }
+
     public void UpgradePlayerNode()
     {
         player.ShowUpgradeNode();
@@ -105,7 +123,28 @@ public class GameController : Singleton<GameController>
     {
         EndCyclePopup popup = Instantiate(seedGeneratedPopupPrefab, canvas.transform).GetComponent<EndCyclePopup>();
         popup.SetLevelType(levelType);
+        popup.SetOnNextCycleOnClick(GoToNextCycle);
         timeController.PauseTime();
+    }
+
+    public void GoToNextCycle()
+    {
+        loading.GetComponent<Animator>().Play("FadeIn");
+    }
+
+    public void SetupNewCycle()
+    {
+        PersistedObject.Instance.isChanged = true;
+        PersistedObject.Instance.baseHp = playerAttributes.hp.baseValue;
+        PersistedObject.Instance.baseEnergy = playerAttributes.energy.baseValue;
+        PersistedObject.Instance.baseWater = playerAttributes.water.baseValue;
+
+        PersistedObject.Instance.baseHpUnitPerTime = playerAttributes.hp.unitPerTime;
+        PersistedObject.Instance.baseEnergyUnitPerTime = playerAttributes.energy.unitPerTime;
+        PersistedObject.Instance.baseWaterUnitPerTime = playerAttributes.water.unitPerTime;
+
+        SceneManager.LoadScene("MainScene");
+        timeController.ResumeTime();
     }
 
     public void ResumeGame()

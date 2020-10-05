@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float upgradeHpPerSecValue;
     [SerializeField] private float upgradeEnergyPerSecValue;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip upgradeSound;
+
     private int currentLeftUpgradeNode;
     private int currentMiddleUpgradeNode;
     private int currentRightUpgradeNode;
@@ -28,11 +31,13 @@ public class Player : MonoBehaviour
 
     private PlayerAttributes playerAttributes;
     private PlayerLevelUp playerLevelUp;
+    private AudioSource audioSource;
 
     private void Start()
     {
         playerAttributes = GetComponent<PlayerAttributes>();
         playerLevelUp = GetComponent<PlayerLevelUp>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -81,6 +86,7 @@ public class Player : MonoBehaviour
 
     public void ShowUpgradeNode()
     {
+        audioSource.PlayOneShot(upgradeSound);
         nodeUi.SetActive(true);
         leftNode.SetActive(canUpgradeLeftBranch);
         rightNode.SetActive(canUpgradeRightBranch);
@@ -150,6 +156,7 @@ public class Player : MonoBehaviour
             CreateLeftUpgradeBranch();
 
             playerAttributes.water.IncrementBaseValue(upgradeWaterValue);
+            playerAttributes.water.IncrementUnitPerTime(upgradeWaterPerSecValue);
 
             nodeUi.SetActive(false);
 
@@ -169,10 +176,12 @@ public class Player : MonoBehaviour
             IncrementMiddleUpgradeBranch();
 
             playerAttributes.hp.IncrementBaseValue(upgradeHpValue);
-
             playerAttributes.water.IncrementBaseValue(upgradeHpValue);
-
             playerAttributes.energy.IncrementBaseValue(upgradeHpValue);
+
+            playerAttributes.hp.IncrementUnitPerTime(upgradeHpPerSecValue);
+            playerAttributes.water.IncrementUnitPerTime(upgradeHpPerSecValue);
+            playerAttributes.energy.IncrementUnitPerTime(upgradeHpPerSecValue);
 
             nodeUi.SetActive(false);
 
@@ -192,6 +201,7 @@ public class Player : MonoBehaviour
             CreateRightUpgradeBranch();
 
             playerAttributes.energy.IncrementBaseValue(upgradeEnergyValue);
+            playerAttributes.energy.IncrementUnitPerTime(upgradeEnergyPerSecValue);
 
             nodeUi.SetActive(false);
 
