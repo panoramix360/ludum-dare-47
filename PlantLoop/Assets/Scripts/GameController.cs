@@ -157,14 +157,14 @@ public class GameController : Singleton<GameController>
 
     public void UpdatePlayerAttributesByTimeUnits()
     {
+        playerAttributes.hp.IncrementValue(playerAttributes.hp.unitPerTime + totalHpModifiers);
+        playerAttributes.water.IncrementValue(playerAttributes.water.unitPerTime + totalWaterModifiers);
+        playerAttributes.energy.IncrementValue(playerAttributes.energy.unitPerTime + totalEnergyModifiers);
+
         if (playerAttributes.hp.value <= 0)
         {
             EndGame();
         }
-
-        playerAttributes.hp.IncrementValue(playerAttributes.hp.unitPerTime + totalHpModifiers);
-        playerAttributes.water.IncrementValue(playerAttributes.water.unitPerTime + totalWaterModifiers);
-        playerAttributes.energy.IncrementValue(playerAttributes.energy.unitPerTime + totalEnergyModifiers);
 
         UpdatePlayerAttributes();
     }
@@ -172,7 +172,7 @@ public class GameController : Singleton<GameController>
     public void EndGame()
     {
         Instantiate(endGameMenu, canvas.transform);
-        Time.timeScale = 0f;
+        timeController.PauseTime();
     }
 
     #region EVENT
