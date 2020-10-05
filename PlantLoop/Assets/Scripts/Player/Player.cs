@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float upgradeHpPerSecValue;
     [SerializeField] private float upgradeEnergyPerSecValue;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip upgradeSound;
+
     private int currentLeftUpgradeNode;
     private int currentMiddleUpgradeNode;
     private int currentRightUpgradeNode;
@@ -28,11 +31,13 @@ public class Player : MonoBehaviour
 
     private PlayerAttributes playerAttributes;
     private PlayerLevelUp playerLevelUp;
+    private AudioSource audioSource;
 
     private void Start()
     {
         playerAttributes = GetComponent<PlayerAttributes>();
         playerLevelUp = GetComponent<PlayerLevelUp>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -81,6 +86,7 @@ public class Player : MonoBehaviour
 
     public void ShowUpgradeNode()
     {
+        audioSource.PlayOneShot(upgradeSound);
         nodeUi.SetActive(true);
         leftNode.SetActive(canUpgradeLeftBranch);
         rightNode.SetActive(canUpgradeRightBranch);
