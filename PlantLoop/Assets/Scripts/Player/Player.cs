@@ -187,6 +187,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OnClickBaseNode()
+    {
+        Debug.Log("Base Node");
+        playerAttributes.hp.ResetValue();
+        playerAttributes.energy.ResetValue();
+        playerAttributes.water.ResetValue();
+
+        nodeUi.SetActive(false);
+
+        GameController.Instance.UpdatePlayerAttributes();
+
+        GameController.Instance.ResumeGame();
+    }
+
     public void CreateLeftUpgradeBranch()
     {
         if (!canUpgradeLeftBranch) return;

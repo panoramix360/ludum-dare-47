@@ -35,6 +35,11 @@ public class Attribute
         this.value = Math.Max(this.value, 0);
     }
 
+    public void ResetValue()
+    {
+        this.value = this.baseValue / 2;
+    }
+
     public void IncrementModifier(float modifierIncrement)
     {
         this.modifier = modifierIncrement;
