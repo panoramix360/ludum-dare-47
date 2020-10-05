@@ -46,10 +46,15 @@ MonoBehaviour:
   player: {fileID: 0}
   playerAttributes: {fileID: 0}
   timeController: {fileID: 0}
+  gameEventsContainer: {fileID: 0}
+  climateEventsContainer: {fileID: 0}
+  eventIcon: {fileID: 7165488310937195547, guid: 4aad93812675b2b44b18eaaea891e5c5, type: 3}
   hpTxt: {fileID: 0}
   waterTxt: {fileID: 0}
   energyTxt: {fileID: 0}
   hpImg: {fileID: 0}
   waterImg: {fileID: 0}
   energyImg: {fileID: 0}
+  canvas: {fileID: 0}
+  pauseMenu: {fileID: 5858497520066845459, guid: 499d53f63e1377a44b29d5454d6abc4d, type: 3}
   initialEnvironmentType: 0

@@ -25,6 +25,12 @@ public class GameController : Singleton<GameController>
     [SerializeField] private Image waterImg;
     [SerializeField] private Image energyImg;
 
+    [Header("Menu UI")]
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject pauseMenu;
+
+    private bool gameIsPaused;
+
     [Header("Environment Modifiers")]
     [SerializeField] private EnvironmentType initialEnvironmentType;
     private Environment currentEnvironment;
@@ -36,17 +42,31 @@ public class GameController : Singleton<GameController>
     private float totalEnergyModifiers;
     private float totalWaterModifiers;
 
-    private void Start()
+    private void Awake()
     {
         currentModifiers = new List<Modifier>();
         gameEventList = new List<GameEvent>();
         currentEnvironment = new Environment(initialEnvironmentType);
+    }
+
+    private void Start()
+    {
         InsertModifier(new Modifier(currentEnvironment.Type.ToString(), new Dictionary<AttributeEnum, float>
         {
             [AttributeEnum.HP] = currentEnvironment.HpModifier,
             [AttributeEnum.ENERGY] = currentEnvironment.EnergyModifier,
             [AttributeEnum.WATER] = currentEnvironment.WaterModifier
         }));
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("escape") && !gameIsPaused)
+        {
+            gameIsPaused = !gameIsPaused;
+            Instantiate(pauseMenu, canvas.transform);
+            Time.timeScale = 0f;
+        }
     }
 
     public void UpdatePlayerAttributes()
@@ -63,6 +83,12 @@ public class GameController : Singleton<GameController>
     {
         player.ShowUpgradeNode();
         timeController.PauseTime();
+    }
+
+    public void UnpauseGame()
+    {
+        Time.timeScale = 1f;
+        gameIsPaused = false;
     }
 
     public void ResumeGame()

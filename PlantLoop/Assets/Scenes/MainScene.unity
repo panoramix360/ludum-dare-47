@@ -418,6 +418,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1427215719}
     - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: gameEventsContainer
+      value: 
+      objectReference: {fileID: 90399424}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: climateEventsContainer
+      value: 
+      objectReference: {fileID: 1501744471}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: hpTxt
       value: 
       objectReference: {fileID: 954663108}
@@ -442,21 +450,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 808790341}
     - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
-      propertyPath: gameEvents
+      propertyPath: canvas
       value: 
-      objectReference: {fileID: 90399424}
-    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
-      propertyPath: gameEventsContainer
-      value: 
-      objectReference: {fileID: 90399424}
-    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
-      propertyPath: eventIcon
-      value: 
-      objectReference: {fileID: 7165488310937195547, guid: 4aad93812675b2b44b18eaaea891e5c5, type: 3}
-    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
-      propertyPath: climateEventsContainer
-      value: 
-      objectReference: {fileID: 1501744471}
+      objectReference: {fileID: 1322672291}
     - target: {fileID: 9019834244053384063, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: m_Name
       value: GameController
