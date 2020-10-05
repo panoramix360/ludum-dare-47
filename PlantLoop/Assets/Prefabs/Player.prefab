@@ -196,7 +196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1402773976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -918,7 +918,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 2701131775
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.627451}
+  m_fontColor: {r: 1, g: 0, b: 0, a: 0.627451}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1129,7 +1129,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 2701131775
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.627451}
+  m_fontColor: {r: 1, g: 0.1745283, b: 0.1745283, a: 0.627451}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 2701131775
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.627451}
+  m_fontColor: {r: 1, g: 0, b: 0, a: 0.627451}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 2701131775
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.627451}
+  m_fontColor: {r: 1, g: 0, b: 0, a: 0.627451}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1805,7 +1805,7 @@ GameObject:
   - component: {fileID: 8190756932432477842}
   - component: {fileID: 5503032865005449166}
   m_Layer: 0
-  m_Name: Cost
+  m_Name: Health Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1868,7 +1868,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 2701131775
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.627451}
+  m_fontColor: {r: 1, g: 0, b: 0, a: 0.627451}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

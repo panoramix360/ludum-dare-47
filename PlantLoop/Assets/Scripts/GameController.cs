@@ -28,6 +28,7 @@ public class GameController : Singleton<GameController>
     [Header("Menu UI")]
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject endGameMenu;
 
     private bool gameIsPaused;
 
@@ -144,11 +145,22 @@ public class GameController : Singleton<GameController>
 
     public void UpdatePlayerAttributesByTimeUnits()
     {
+        if (playerAttributes.hp.value <= 0)
+        {
+            EndGame();
+        }
+
         playerAttributes.hp.IncrementValue(playerAttributes.hp.unitPerTime + totalHpModifiers);
         playerAttributes.water.IncrementValue(playerAttributes.water.unitPerTime + totalWaterModifiers);
         playerAttributes.energy.IncrementValue(playerAttributes.energy.unitPerTime + totalEnergyModifiers);
 
         UpdatePlayerAttributes();
+    }
+
+    public void EndGame()
+    {
+        Instantiate(endGameMenu, canvas.transform);
+        Time.timeScale = 0f;
     }
 
     #region EVENT

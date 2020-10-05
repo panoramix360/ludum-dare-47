@@ -453,6 +453,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1322672291}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: endGameMenu
+      value: 
+      objectReference: {fileID: 5858497520066845459, guid: 9fd81f9801223294e9e0c11fd57ffe87, type: 3}
     - target: {fileID: 9019834244053384063, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: m_Name
       value: GameController

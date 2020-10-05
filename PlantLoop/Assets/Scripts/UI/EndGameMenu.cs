@@ -8,6 +8,7 @@ public class EndGameMenu : MonoBehaviour
     public void OnClickReplay()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
 
     public void OnClickExit()

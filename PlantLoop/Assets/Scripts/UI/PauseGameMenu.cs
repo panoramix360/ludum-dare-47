@@ -20,6 +20,7 @@ public class PauseGameMenu : MonoBehaviour
     public void OnFinishFadeOut()
     {
         GameController.Instance.UnpauseGame();
+        Destroy(gameObject);
     }
 
     public void OnClickExit()
