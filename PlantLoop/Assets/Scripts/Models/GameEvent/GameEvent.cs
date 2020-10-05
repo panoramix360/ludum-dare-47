@@ -68,25 +68,24 @@ public class GameEvent
         }
         Type = (GameEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
 
-        GenerateDangerEvent();
-        //switch (Type)
-        //{
-        //    case GameEventType.CLIMATE:
-        //        GenerateClimateEvent();
-        //        break;
-        //    case GameEventType.DANGER:
-        //        GenerateDangerEvent();
-        //        break;
-        //    case GameEventType.OTHEREVENT:
-        //        GenerateOtherEvent();
-        //        break;
-        //    case GameEventType.BONUS:
-        //        GenerateBonusEvent();
-        //        break;
-        //    default:
-        //        GenerateClimateEvent();
-        //        break;
-        //}
+        switch (Type)
+        {
+            case GameEventType.CLIMATE:
+                GenerateClimateEvent();
+                break;
+            case GameEventType.DANGER:
+                GenerateDangerEvent();
+                break;
+            case GameEventType.OTHEREVENT:
+                GenerateOtherEvent();
+                break;
+            case GameEventType.BONUS:
+                GenerateBonusEvent();
+                break;
+            default:
+                GenerateClimateEvent();
+                break;
+        }
     }
 
     private void GenerateClimateEvent()

@@ -1600,7 +1600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
-  upgradesToLevelUp: 1
+  upgradesToLevelUp: 5
 --- !u!114 &4254568061153637541
 MonoBehaviour:
   m_ObjectHideFlags: 0

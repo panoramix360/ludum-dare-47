@@ -199,31 +199,28 @@ public class GameController : Singleton<GameController>
             notRandomize = GameEventType.CLIMATE;
         }
         var gameEvent = new GameEvent(null, notRandomize);
-        //switch (gameEvent.Type)
-        //{
-        //    case GameEventType.CLIMATE:
-        //        gameEvent = new ClimateEvent(gameEvent);
-        //        gameEventList.Add(gameEvent);
-        //        break;
-        //    case GameEventType.DANGER:
-        //        gameEvent = new DangerEvent(gameEvent);
-        //        gameEventList.Add(gameEvent);
-        //        break;
-        //    case GameEventType.OTHEREVENT:
-        //        gameEvent = new OtherEvent(gameEvent);
-        //        gameEventList.Add(gameEvent);
-        //        break;
-        //    case GameEventType.BONUS:
-        //        gameEvent = new BonusEvent(gameEvent);
-        //        gameEventList.Add(gameEvent);
-        //        break;
-        //    default:
-        //        Debug.LogError("Erro criando evento");
-        //        break;
-        //}
-
-        gameEvent = new DangerEvent(gameEvent);
-        gameEventList.Add(gameEvent);
+        switch (gameEvent.Type)
+        {
+            case GameEventType.CLIMATE:
+                gameEvent = new ClimateEvent(gameEvent);
+                gameEventList.Add(gameEvent);
+                break;
+            case GameEventType.DANGER:
+                gameEvent = new DangerEvent(gameEvent);
+                gameEventList.Add(gameEvent);
+                break;
+            case GameEventType.OTHEREVENT:
+                gameEvent = new OtherEvent(gameEvent);
+                gameEventList.Add(gameEvent);
+                break;
+            case GameEventType.BONUS:
+                gameEvent = new BonusEvent(gameEvent);
+                gameEventList.Add(gameEvent);
+                break;
+            default:
+                Debug.LogError("Erro criando evento");
+                break;
+        }
 
         UpdatePlayerAttributesByEvent(gameEvent);
 
