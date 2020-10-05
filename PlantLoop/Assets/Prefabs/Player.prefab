@@ -107,7 +107,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 90abbe7c1ad703f4f97b27c6bd08d4b4, type: 3}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 90abbe7c1ad703f4f97b27c6bd08d4b4, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -387,7 +387,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: c0cef4bfd4078cd45a63f6d76c27ef72, type: 3}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: c0cef4bfd4078cd45a63f6d76c27ef72, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -492,8 +492,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 11.540676, y: 4.807482}
+  m_AnchoredPosition: {x: 0, y: 2.3}
+  m_SizeDelta: {x: 11.540676, y: 3.403741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5212457319026175056
 CanvasRenderer:
@@ -640,7 +640,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 1ad429dd06fe6664c89a5040a897b83e, type: 3}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 1ad429dd06fe6664c89a5040a897b83e, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -885,7 +885,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.49}
+  m_AnchoredPosition: {x: 0, y: 1.52}
   m_SizeDelta: {x: 7.448345, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4542912844306995887
@@ -1226,7 +1226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.49}
+  m_AnchoredPosition: {x: 0, y: 1.5}
   m_SizeDelta: {x: 2.60609, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2167739237948235463
@@ -1446,6 +1446,9 @@ MonoBehaviour:
   treeBase: {fileID: 5761297661977322948}
   branchPrefab: {fileID: 5356759098469853450, guid: b0eb0760ffe867a40a91fe99ad1a8283, type: 3}
   nodeUi: {fileID: 1402773972}
+  leftNode: {fileID: 1947181772}
+  middleNode: {fileID: 132011171}
+  rightNode: {fileID: 1324819232623066292}
   upgradeWaterValue: 20
   upgradeHpValue: 10
   upgradeEnergyValue: 15
@@ -1621,7 +1624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.49}
+  m_AnchoredPosition: {x: 0, y: 1.49}
   m_SizeDelta: {x: 2.60609, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &787409130671217764

@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject treeBase;
     [SerializeField] private GameObject branchPrefab;
     [SerializeField] private GameObject nodeUi;
+    [SerializeField] private GameObject leftNode;
+    [SerializeField] private GameObject middleNode;
+    [SerializeField] private GameObject rightNode;
     [SerializeField] private float upgradeWaterValue;
     [SerializeField] private float upgradeHpValue;
     [SerializeField] private float upgradeEnergyValue;
@@ -63,20 +66,8 @@ public class Player : MonoBehaviour
     public void ShowUpgradeNode()
     {
         nodeUi.SetActive(true);
-        nodeUi.transform.GetChild(0).gameObject.SetActive(canUpgradeLeftBranch);
-        nodeUi.transform.GetChild(2).gameObject.SetActive(canUpgradeRightBranch);
-
-        HideAllChilds(nodeUi.transform.GetChild(0));
-        HideAllChilds(nodeUi.transform.GetChild(1));
-        HideAllChilds(nodeUi.transform.GetChild(2));
-    }
-    
-    private void HideAllChilds(Transform transform)
-    {
-        foreach(Transform node in transform)
-        {
-            node.gameObject.SetActive(false);
-        }
+        leftNode.SetActive(canUpgradeLeftBranch);
+        rightNode.SetActive(canUpgradeRightBranch);
     }
 
     private bool CheckAndPayAttributeCost(Attribute attribute)
