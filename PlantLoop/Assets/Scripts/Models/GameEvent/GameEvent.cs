@@ -7,10 +7,10 @@ public class GameEvent
     public string IconPath { get; set; }
 
     //Game Event Types
-    public GameEventType Type;
-    public DangerEventType DangerType;
-    public ClimateEventType ClimateType;
-    public OtherEventType OtherType;
+    public GameEventType? Type;
+    public DangerEventType? DangerType;
+    public ClimateEventType? ClimateType;
+    public OtherEventType? OtherType;
 
     //Game Event Modifiers
     public float EnergyModifier;

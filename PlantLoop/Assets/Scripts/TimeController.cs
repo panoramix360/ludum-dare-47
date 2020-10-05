@@ -73,10 +73,8 @@ public class TimeController : MonoBehaviour
 
     private IEnumerator DelayToCreateEvent()
     {
-        Debug.Log("canCreateEvent entrando");
         canCreateEvent = false;
         yield return new WaitForSeconds(eventRoutineDelay);
         canCreateEvent = true;
-        Debug.Log("canCreateEvent saindo");
     }
 }

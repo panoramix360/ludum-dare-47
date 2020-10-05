@@ -14,6 +14,7 @@ public class GameController : Singleton<GameController>
 
     [Header("UI")]
     [SerializeField] private GameObject gameEventsContainer;
+    [SerializeField] private GameObject climateEventsContainer;
     [SerializeField] private GameObject eventIcon;
 
     [Header("Player Attributes UI")]
@@ -152,8 +153,16 @@ public class GameController : Singleton<GameController>
 
     private void AddEventIconUI(GameEvent gameEvent)
     {
-        GameObject icon = Instantiate(eventIcon, gameEventsContainer.transform);
-        icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
+        if (gameEvent.Type == GameEventType.CLIMATE)
+        {
+            GameObject icon = Instantiate(eventIcon, climateEventsContainer.transform);
+            icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
+        } 
+        else
+        {
+            GameObject icon = Instantiate(eventIcon, gameEventsContainer.transform);
+            icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
+        }
     }
 
     private void UpdatePlayerAttributesByEvent(GameEvent gameEvent)
