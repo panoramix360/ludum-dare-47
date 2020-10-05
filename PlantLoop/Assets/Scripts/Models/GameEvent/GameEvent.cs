@@ -4,6 +4,7 @@ public class GameEvent
 {
     Random Random;
     public float DurationTime { get; set; }
+    public string IconPath { get; set; }
 
     //Game Event Types
     public GameEventType Type;

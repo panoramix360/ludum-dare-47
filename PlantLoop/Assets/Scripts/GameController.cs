@@ -12,6 +12,10 @@ public class GameController : Singleton<GameController>
     [SerializeField] private PlayerAttributes playerAttributes;
     [SerializeField] private TimeController timeController;
 
+    [Header("UI")]
+    [SerializeField] private GameObject gameEventsContainer;
+    [SerializeField] private GameObject eventIcon;
+
     [Header("Player Attributes UI")]
     [SerializeField] private TextMeshProUGUI hpTxt;
     [SerializeField] private TextMeshProUGUI waterTxt;
@@ -140,7 +144,16 @@ public class GameController : Singleton<GameController>
                 Debug.LogError("Erro criando evento");
                 break;
         }
-        UpdatePlayerAttributesByEvent(gameEvent);
+        
+        UpdatePlayerAttributesByEvent(gameEventList.Last());
+
+        AddEventIconUI(gameEventList.Last());
+    }
+
+    private void AddEventIconUI(GameEvent gameEvent)
+    {
+        GameObject icon = Instantiate(eventIcon, gameEventsContainer.transform);
+        icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
     }
 
     private void UpdatePlayerAttributesByEvent(GameEvent gameEvent)

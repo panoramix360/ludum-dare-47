@@ -17,11 +17,13 @@ public class DangerEvent : GameEvent
                 SetEventModifiers(-0.1f, -0.8f, 0f);
                 SetEventInstaDamage(0f, 10f, 0f);
                 DurationTime = 5;
+                IconPath = "danger_lagarta";
                 break;
             case DangerEventType.FUNGUS:
                 SetEventModifiers(1f, -0.8f, -0.3f);
                 SetEventInstaDamage(0f, 10f, 0f);
                 DurationTime = 5;
+                IconPath = "danger_fungos";
                 break;
             default:
                 Debug.LogError("Sem tipo de evento de perigos");
