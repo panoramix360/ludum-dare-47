@@ -35,10 +35,13 @@ public class GameController : SingletonDestroyable<GameController>
     [SerializeField] private GameObject endGameMenu;
     [SerializeField] private GameObject seedGeneratedPopupPrefab;
 
+    [SerializeField] private GameObject forestPrefab;
+    [SerializeField] private GameObject desertPrefab;
+    [SerializeField] private GameObject swampPrefab;
+
     private bool gameIsPaused;
 
     [Header("Environment Modifiers")]
-    [SerializeField] private EnvironmentType initialEnvironmentType;
     private Environment currentEnvironment;
     private List<GameEvent> gameEventList;
 
@@ -53,7 +56,6 @@ public class GameController : SingletonDestroyable<GameController>
         base.Awake();
         currentModifiers = new List<Modifier>();
         gameEventList = new List<GameEvent>();
-        currentEnvironment = new Environment(initialEnvironmentType);
 
         loading.GetComponent<Animator>().Play("FadeOut");
 
@@ -102,6 +104,23 @@ public class GameController : SingletonDestroyable<GameController>
             playerAttributes.energy.unitPerTime = PersistedObject.Instance.baseEnergyUnitPerTime;
             playerAttributes.water.unitPerTime = PersistedObject.Instance.baseWaterUnitPerTime;
         }
+
+        currentEnvironment = new Environment(Enum.GetValues(typeof(EnvironmentType)).Cast<EnvironmentType>().ToList()[PersistedObject.Instance.currentEnvironment]);
+        switch(currentEnvironment.Type)
+        {
+            case EnvironmentType.FOREST:
+                GameObject env = Instantiate(forestPrefab);
+                env.GetComponent<Canvas>().worldCamera = Camera.main;
+                break;
+            case EnvironmentType.DESERT:
+                GameObject env2 = Instantiate(desertPrefab);
+                env2.GetComponent<Canvas>().worldCamera = Camera.main;
+                break;
+            case EnvironmentType.SWAMP:
+                GameObject env3 = Instantiate(swampPrefab);
+                env3.GetComponent<Canvas>().worldCamera = Camera.main;
+                break;
+        }
     }
 
     public void UpgradePlayerNode()
@@ -142,6 +161,9 @@ public class GameController : SingletonDestroyable<GameController>
         PersistedObject.Instance.baseHpUnitPerTime = playerAttributes.hp.unitPerTime;
         PersistedObject.Instance.baseEnergyUnitPerTime = playerAttributes.energy.unitPerTime;
         PersistedObject.Instance.baseWaterUnitPerTime = playerAttributes.water.unitPerTime;
+
+        PersistedObject.Instance.currentEnvironment += 1;
+        PersistedObject.Instance.currentEnvironment = Math.Min(PersistedObject.Instance.currentEnvironment, 2);
 
         SceneManager.LoadScene("MainScene");
         timeController.ResumeTime();

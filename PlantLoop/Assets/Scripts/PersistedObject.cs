@@ -13,4 +13,6 @@ public class PersistedObject : Singleton<PersistedObject>
     public float baseHpUnitPerTime;
     public float baseWaterUnitPerTime;
     public float baseEnergyUnitPerTime;
+
+    public int currentEnvironment;
 }
