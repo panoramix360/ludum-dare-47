@@ -283,7 +283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5761297661259541696, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5761297661259541696, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1621,6 +1621,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1575128011761232915, guid: 1ea70b2f6d9263a43b4ede3a60cdb406, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 622
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575128011761232915, guid: 1ea70b2f6d9263a43b4ede3a60cdb406, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575128011761232915, guid: 1ea70b2f6d9263a43b4ede3a60cdb406, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -78
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575128011761232915, guid: 1ea70b2f6d9263a43b4ede3a60cdb406, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806679086967942322, guid: 1ea70b2f6d9263a43b4ede3a60cdb406, type: 3}
+      propertyPath: m_Name
+      value: Background01-Details
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048739563102315604, guid: 1ea70b2f6d9263a43b4ede3a60cdb406, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eaaced026284a234faf9cf5767c946a2, type: 3}
     - target: {fileID: 7138265081784173607, guid: 1ea70b2f6d9263a43b4ede3a60cdb406, type: 3}
       propertyPath: m_Name
       value: Background Forest
