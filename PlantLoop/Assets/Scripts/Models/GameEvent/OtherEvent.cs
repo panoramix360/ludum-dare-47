@@ -28,7 +28,5 @@ public class OtherEvent : GameEvent
                 Debug.LogError("Sem tipo de evento Outros");
                 break;
         }
-
-        BeginCoroutine();
     }
 }

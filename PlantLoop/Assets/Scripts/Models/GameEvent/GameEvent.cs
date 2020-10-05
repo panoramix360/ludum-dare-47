@@ -3,12 +3,11 @@ using UnityEngine;
 using System.Linq;
 using System.Collections;
 
-public class GameEvent : MonoBehaviour
+public class GameEvent
 {
     public float DurationTime { get; set; }
     public string IconPath { get; set; }
     public string IconPathLeft { get; set; }
-    public bool isDead = false;
     public string Identifier { get; set; }
 
     //Game Event Types
@@ -55,6 +54,7 @@ public class GameEvent : MonoBehaviour
         this.ClimateType = gameEvent.ClimateType;
         this.OtherType = gameEvent.OtherType;
         this.BonusType = gameEvent.BonusType;
+        this.Identifier = gameEvent.Identifier;
     }
 
     //TODO: REFACTOR
@@ -68,24 +68,25 @@ public class GameEvent : MonoBehaviour
         }
         Type = (GameEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
 
-        switch (Type)
-        {
-            case GameEventType.CLIMATE:
-                GenerateClimateEvent();
-                break;
-            case GameEventType.DANGER:
-                GenerateDangerEvent();
-                break;
-            case GameEventType.OTHEREVENT:
-                GenerateOtherEvent();
-                break;
-            case GameEventType.BONUS:
-                GenerateBonusEvent();
-                break;
-            default:
-                GenerateClimateEvent();
-                break;
-        }
+        GenerateDangerEvent();
+        //switch (Type)
+        //{
+        //    case GameEventType.CLIMATE:
+        //        GenerateClimateEvent();
+        //        break;
+        //    case GameEventType.DANGER:
+        //        GenerateDangerEvent();
+        //        break;
+        //    case GameEventType.OTHEREVENT:
+        //        GenerateOtherEvent();
+        //        break;
+        //    case GameEventType.BONUS:
+        //        GenerateBonusEvent();
+        //        break;
+        //    default:
+        //        GenerateClimateEvent();
+        //        break;
+        //}
     }
 
     private void GenerateClimateEvent()
@@ -137,24 +138,5 @@ public class GameEvent : MonoBehaviour
         this.EnergyBonus = energy;
         this.HpBonus = hp;
         this.WaterBonus = water;
-    }
-
-    public void ResetEventModifiers()
-    {
-        this.EnergyModifier = 0;
-        this.HpModifier = 0;
-        this.WaterModifier = 0;
-    }
-
-    private IEnumerator CountdownTimer()
-    {
-        yield return new WaitForSeconds(DurationTime);
-        ResetEventModifiers();
-        isDead = true;
-    }
-
-    public void BeginCoroutine()
-    {
-        StartCoroutine(CountdownTimer());
     }
 }

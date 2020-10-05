@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float upgradeWaterValue;
     [SerializeField] private float upgradeHpValue;
     [SerializeField] private float upgradeEnergyValue;
+    [SerializeField] private float upgradeWaterPerSecValue;
+    [SerializeField] private float upgradeHpPerSecValue;
+    [SerializeField] private float upgradeEnergyPerSecValue;
 
     private int currentLeftUpgradeNode;
     private int currentMiddleUpgradeNode;
@@ -69,6 +72,11 @@ public class Player : MonoBehaviour
 
             GameController.Instance.NextSeed(levelType);
         }
+    }
+
+    public bool CheckIfNodeUIShow()
+    {
+        return nodeUi.activeInHierarchy;
     }
 
     public void ShowUpgradeNode()

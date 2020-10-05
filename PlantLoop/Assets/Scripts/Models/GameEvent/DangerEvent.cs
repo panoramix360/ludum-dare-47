@@ -47,7 +47,5 @@ public class DangerEvent : GameEvent
                 Debug.LogError("Sem tipo de evento de perigos");
                 break;
         }
-
-        BeginCoroutine();
     }
 }

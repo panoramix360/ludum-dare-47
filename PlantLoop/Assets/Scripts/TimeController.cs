@@ -5,7 +5,6 @@ using UnityEngine;
 public class TimeController : MonoBehaviour
 {
     private int timeInSeconds = 0;
-    private bool isPaused = false;
     private bool canCreateEvent = true;
 
     [SerializeField] private int timeToUpgrade;
@@ -28,15 +27,8 @@ public class TimeController : MonoBehaviour
     {
         while (true)
         {
-            while (isPaused)
-            {
-                yield return null;
-            }
-
             // Lógica de tempo do jogo
             GameController.Instance.UpdatePlayerAttributesByTimeUnits();
-            // Manutenção dos eventos
-            GameController.Instance.DestroyGameEventRoutine();
 
             if (CheckIfIsTime(timeToUpgrade))
             {
@@ -52,12 +44,12 @@ public class TimeController : MonoBehaviour
 
     public void PauseTime()
     {
-        isPaused = true;
+        Time.timeScale = 0f;
     }
 
     public void ResumeTime()
     {
-        isPaused = false;
+        Time.timeScale = 1f;
     }
 
     private void EventRoutine()

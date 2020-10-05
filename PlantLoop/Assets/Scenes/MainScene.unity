@@ -273,10 +273,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1402773972, guid: 165c4350cb644b047906ec81d227009f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5761297661259541696, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -327,7 +323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7970839108920968698, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: upgradesToLevelUp
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165c4350cb644b047906ec81d227009f, type: 3}
@@ -842,11 +838,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: eventRoutineChance
-      value: 50
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: eventRoutineDelay
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 175321356335401281, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: m_LocalPosition.x

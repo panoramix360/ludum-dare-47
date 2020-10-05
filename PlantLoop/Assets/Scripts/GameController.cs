@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.Collections;
 
 public class GameController : Singleton<GameController>
 {
@@ -67,7 +68,7 @@ public class GameController : Singleton<GameController>
         {
             gameIsPaused = !gameIsPaused;
             Instantiate(pauseMenu, canvas.transform);
-            Time.timeScale = 0f;
+            timeController.PauseTime();
         }
     }
 
@@ -89,7 +90,10 @@ public class GameController : Singleton<GameController>
 
     public void UnpauseGame()
     {
-        Time.timeScale = 1f;
+        if (!player.CheckIfNodeUIShow())
+        {
+            timeController.ResumeTime();
+        }
         gameIsPaused = false;
     }
 
@@ -172,17 +176,6 @@ public class GameController : Singleton<GameController>
     }
 
     #region EVENT
-    public void DestroyGameEventRoutine()
-    {
-        var deadEvents = gameEventList.Where(x => x.isDead).ToList();
-        foreach (var gameEvent in deadEvents)
-        {
-            RemoveModifier(gameEvent.Identifier);
-            RemoveEventIconUI(gameEvent);
-            gameEventList.Remove(gameEvent);
-        }
-    }
-
     public void CreateGameEvent()
     {
         Debug.Log("Criou evento");
@@ -193,32 +186,45 @@ public class GameController : Singleton<GameController>
             notRandomize = GameEventType.CLIMATE;
         }
         var gameEvent = new GameEvent(null, notRandomize);
-        switch (gameEvent.Type)
-        {
-            case GameEventType.CLIMATE:
-                gameEvent = new ClimateEvent(gameEvent);
-                gameEventList.Add(gameEvent);
-                break;
-            case GameEventType.DANGER:
-                gameEvent = new DangerEvent(gameEvent);
-                gameEventList.Add(gameEvent);
-                break;
-            case GameEventType.OTHEREVENT:
-                gameEvent = new OtherEvent(gameEvent);
-                gameEventList.Add(gameEvent);
-                break;
-            case GameEventType.BONUS:
-                gameEvent = new BonusEvent(gameEvent);
-                gameEventList.Add(gameEvent);
-                break;
-            default:
-                Debug.LogError("Erro criando evento");
-                break;
-        }
-        
+        //switch (gameEvent.Type)
+        //{
+        //    case GameEventType.CLIMATE:
+        //        gameEvent = new ClimateEvent(gameEvent);
+        //        gameEventList.Add(gameEvent);
+        //        break;
+        //    case GameEventType.DANGER:
+        //        gameEvent = new DangerEvent(gameEvent);
+        //        gameEventList.Add(gameEvent);
+        //        break;
+        //    case GameEventType.OTHEREVENT:
+        //        gameEvent = new OtherEvent(gameEvent);
+        //        gameEventList.Add(gameEvent);
+        //        break;
+        //    case GameEventType.BONUS:
+        //        gameEvent = new BonusEvent(gameEvent);
+        //        gameEventList.Add(gameEvent);
+        //        break;
+        //    default:
+        //        Debug.LogError("Erro criando evento");
+        //        break;
+        //}
+
+        gameEvent = new DangerEvent(gameEvent);
+        gameEventList.Add(gameEvent);
+
         UpdatePlayerAttributesByEvent(gameEvent);
 
         AddEventIconUI(gameEvent);
+
+        StartCoroutine(DestroyEventAfter(gameEvent));
+    }
+
+    private IEnumerator DestroyEventAfter(GameEvent gameEvent)
+    {
+        yield return new WaitForSeconds(gameEvent.DurationTime);
+        RemoveModifier(gameEvent.Identifier);
+        RemoveEventIconUI(gameEvent.Identifier);
+        gameEventList.Remove(gameEvent);
     }
 
     private void AddEventIconUI(GameEvent gameEvent)
@@ -241,11 +247,11 @@ public class GameController : Singleton<GameController>
         }
     }
 
-    private void RemoveEventIconUI(GameEvent gameEvent)
+    private void RemoveEventIconUI(string identifier)
     {
         foreach (Transform item in gameEventsContainer.transform)
         {
-            if (item.gameObject.name == gameEvent.Identifier)
+            if (item.gameObject.name == identifier)
             {
                 Destroy(item.gameObject);
             }

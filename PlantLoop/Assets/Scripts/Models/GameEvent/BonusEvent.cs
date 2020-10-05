@@ -35,7 +35,5 @@ public class BonusEvent : GameEvent
                 Debug.LogError("Sem tipo de evento de bonus");
                 break;
         }
-
-        BeginCoroutine();
     }
 }
