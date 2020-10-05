@@ -129,7 +129,13 @@ public class GameController : Singleton<GameController>
     public void CreateGameEvent()
     {
         Debug.Log("Criou evento");
-        var gameEvent = new GameEvent();
+        //TODO:REFACTOR
+        GameEventType? notRandomize = null;
+        if (gameEventList.Any(x => x.Type == GameEventType.CLIMATE))
+        {
+            notRandomize = GameEventType.CLIMATE;
+        }
+        var gameEvent = new GameEvent(null, notRandomize);
         switch (gameEvent.Type)
         {
             case GameEventType.CLIMATE:
@@ -142,6 +148,10 @@ public class GameController : Singleton<GameController>
                 break;
             case GameEventType.OTHEREVENT:
                 gameEvent = new OtherEvent(gameEvent);
+                gameEventList.Add(gameEvent);
+                break;
+            case GameEventType.BONUS:
+                gameEvent = new BonusEvent(gameEvent);
                 gameEventList.Add(gameEvent);
                 break;
             default:

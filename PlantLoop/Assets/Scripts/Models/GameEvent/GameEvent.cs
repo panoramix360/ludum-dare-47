@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Linq;
 
 public class GameEvent
 {
@@ -12,6 +13,7 @@ public class GameEvent
     public DangerEventType? DangerType;
     public ClimateEventType? ClimateType;
     public OtherEventType? OtherType;
+    public BonusEventType? BonusType;
 
     //Game Event Modifiers
     public float EnergyModifier;
@@ -28,16 +30,14 @@ public class GameEvent
     public float HpBonus;
     public float WaterBonus;
 
-    public GameEvent(GameEvent gameEvent = null)
+    //TODO: REFACTOR
+    public GameEvent(GameEvent gameEvent = null, GameEventType? notRandomize = null)
     {
         UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
         //Se o gameevent já foi instanciado e decidido fora, ele só seta as propriedades no filho
         if (gameEvent is null)
         {
-            Array values = Enum.GetValues(typeof(GameEventType));
-            Type = (GameEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
-
-            GenerateGameEvent();
+            GenerateGameEvent(notRandomize);
         } 
         else
         {
@@ -51,10 +51,20 @@ public class GameEvent
         this.DangerType = gameEvent.DangerType;
         this.ClimateType = gameEvent.ClimateType;
         this.OtherType = gameEvent.OtherType;
+        this.BonusType = gameEvent.BonusType;
     }
 
-    private void GenerateGameEvent()
+    //TODO: REFACTOR
+    private void GenerateGameEvent(GameEventType? typeNot = null)
     {
+        //TODO: REFACTOR
+        var values = Enum.GetValues(typeof(GameEventType));
+        if (typeNot != null)
+        {
+            values = values.Cast<GameEventType>().ToList().Where(x => x != typeNot).ToArray();
+        }
+        Type = (GameEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+
         switch (Type)
         {
             case GameEventType.CLIMATE:
@@ -65,6 +75,9 @@ public class GameEvent
                 break;
             case GameEventType.OTHEREVENT:
                 GenerateOtherEvent();
+                break;
+            case GameEventType.BONUS:
+                GenerateBonusEvent();
                 break;
             default:
                 GenerateClimateEvent();
@@ -88,6 +101,12 @@ public class GameEvent
     {
         Array values = Enum.GetValues(typeof(OtherEventType));
         OtherType = (OtherEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+    }
+
+    private void GenerateBonusEvent()
+    {
+        Array values = Enum.GetValues(typeof(BonusEventType));
+        BonusType = (BonusEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
     }
 
     public void SetEventModifiers(float energy = 1, float hp = 1, float water = 1)

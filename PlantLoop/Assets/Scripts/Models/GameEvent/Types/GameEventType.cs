@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum GameEventType
 {
-    CLIMATE, DANGER, OTHEREVENT
+    CLIMATE, DANGER, OTHEREVENT, BONUS
 }

@@ -1,4 +1,4 @@
 ﻿public enum DangerEventType
 {
-    CATTERPILLAR, FUNGUS
+    CATTERPILLAR, FUNGUS, WEED, GRASSHOPPER, FIRE
 }

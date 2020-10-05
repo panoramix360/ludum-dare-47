@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum ClimateEventType
 {
-    SUNNY, CLOUDY, RAINY
+    SUNNY, CLOUDY, RAINY, STORMY, HURRICANY, WINDY
 }

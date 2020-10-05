@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum OtherEventType
 {
-    PoorSoilQuality
+    POORSOILQUALITY, GOODSOILQUALITY
 }
