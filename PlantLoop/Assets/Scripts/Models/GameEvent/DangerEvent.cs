@@ -16,10 +16,12 @@ public class DangerEvent : GameEvent
             case DangerEventType.CATTERPILLAR:
                 SetEventModifiers(-0.1f, -0.8f, 0f);
                 SetEventInstaDamage(0f, 10f, 0f);
+                DurationTime = 5;
                 break;
             case DangerEventType.FUNGUS:
                 SetEventModifiers(1f, -0.8f, -0.3f);
                 SetEventInstaDamage(0f, 10f, 0f);
+                DurationTime = 5;
                 break;
             default:
                 Debug.LogError("Sem tipo de evento de perigos");

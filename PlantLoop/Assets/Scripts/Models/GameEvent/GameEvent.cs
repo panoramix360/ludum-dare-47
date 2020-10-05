@@ -1,29 +1,27 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class GameEvent : MonoBehaviour
+public class GameEvent
 {
-    System.Random Random;
+    Random Random;
+    public float DurationTime { get; set; }
 
-    [Header("Game Event Types")]
+    //Game Event Types
     public GameEventType Type;
     public DangerEventType DangerType;
     public ClimateEventType ClimateType;
     public OtherEventType OtherType;
 
-    [Header("Game Event Modifiers")]
+    //Game Event Modifiers
     public float EnergyModifier;
     public float HpModifier;
     public float WaterModifier;
 
-    [Header("Game Event Damage")]
+    //Game Event Damage
     public float EnergyDamage;
     public float HpDamage;
     public float WaterDamage;
 
-    [Header("Game Event Damage")]
+    //Game Event Bonus
     public float EnergyBonus;
     public float HpBonus;
     public float WaterBonus;

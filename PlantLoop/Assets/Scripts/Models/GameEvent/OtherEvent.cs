@@ -16,6 +16,7 @@ public class OtherEvent : GameEvent
             case OtherEventType.PoorSoilQuality:
                 SetEventModifiers(-0.3f, -0.3f, -0.5f);
                 SetEventInstaDamage(0f, 10f, 10f);
+                DurationTime = 30;
                 break;
             default:
                 Debug.LogError("Sem tipo de evento Outros");

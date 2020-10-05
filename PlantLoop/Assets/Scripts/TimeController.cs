@@ -7,9 +7,11 @@ public class TimeController : MonoBehaviour
 {
     private int timeInSeconds = 0;
     private bool isPaused = false;
+    private bool canCreateEvent = true;
 
     [SerializeField] private int timeToUpgrade;
     [SerializeField] private int eventRoutineChance;
+    [SerializeField] private int eventRoutineDelay;
 
     private void Start()
     {
@@ -24,9 +26,9 @@ public class TimeController : MonoBehaviour
 
     private IEnumerator BeginTime()
     {
-        while(true)
+        while (true)
         {
-            while(isPaused)
+            while (isPaused)
             {
                 yield return null;
             }
@@ -59,53 +61,22 @@ public class TimeController : MonoBehaviour
     private void EventRoutine()
     {
         System.Random rnd = new System.Random();
-        if (rnd.Next(100) <= eventRoutineChance)
+        if (timeInSeconds % eventRoutineDelay == 0 && canCreateEvent)
         {
-            Debug.Log("Criando evento");
-            GameController.Instance.CreateGameEvent();
+            if (rnd.Next(100) <= eventRoutineChance)
+            {
+                GameController.Instance.CreateGameEvent();
+                StartCoroutine(DelayToCreateEvent());
+            }
         }
-        //COMENTEI PRA SER MAIS FÁCIL PRA TESTAR
-        //if (timeInSeconds == 10)
-        //{
-        //    //if (rnd.Next(100) <= 10)
-        //    //{
-        //        GameController.Instance.CreateGameEvent();
-        //    //}
-        //} 
-        //else if(timeInSeconds == 30)
-        //{
-        //    //if (rnd.Next(100) <= 95)
-        //    //{
-        //        GameController.Instance.CreateGameEvent();
-        //    //}
-        //}
-        //else if (timeInSeconds == 50)
-        //{
-        //    //if (rnd.Next(100) <= 95)
-        //    //{
-        //        GameController.Instance.CreateGameEvent();
-        //    //}
-        //}
-        //else if (timeInSeconds == 80)
-        //{
-        //    //if (rnd.Next(100) <= 95)
-        //    //{
-        //        GameController.Instance.CreateGameEvent();
-        //    //}
-        //}
-        //else if (timeInSeconds == 100)
-        //{
-        //    //if (rnd.Next(100) <= 95)
-        //    //{
-        //        GameController.Instance.CreateGameEvent();
-        //    //}
-        //}
-        //else if (timeInSeconds == 120)
-        //{
-        //    //if (rnd.Next(100) <= 95)
-        //    //{
-        //        GameController.Instance.CreateGameEvent();
-        //    //}
-        //}
+    }
+
+    private IEnumerator DelayToCreateEvent()
+    {
+        Debug.Log("canCreateEvent entrando");
+        canCreateEvent = false;
+        yield return new WaitForSeconds(eventRoutineDelay);
+        canCreateEvent = true;
+        Debug.Log("canCreateEvent saindo");
     }
 }

@@ -123,53 +123,54 @@ public class GameController : Singleton<GameController>
     #region EVENT
     public void CreateGameEvent()
     {
-        var gameEventBase = new GameEvent();
-        switch (gameEventBase.Type)
+        Debug.Log("Criou evento");
+        var gameEvent = new GameEvent();
+        switch (gameEvent.Type)
         {
             case GameEventType.CLIMATE:
-                gameEventList.Add(new ClimateEvent(gameEventBase));
+                gameEventList.Add(new ClimateEvent(gameEvent));
                 break;
             case GameEventType.DANGER:
-                gameEventList.Add(new DangerEvent(gameEventBase));
+                gameEventList.Add(new DangerEvent(gameEvent));
                 break;
             case GameEventType.OTHEREVENT:
-                gameEventList.Add(new OtherEvent(gameEventBase));
+                gameEventList.Add(new OtherEvent(gameEvent));
                 break;
             default:
                 Debug.LogError("Erro criando evento");
                 break;
         }
-        UpdatePlayerAttributesByEvent();
+        UpdatePlayerAttributesByEvent(gameEvent);
     }
 
-    private void UpdatePlayerAttributesByEvent()
+    private void UpdatePlayerAttributesByEvent(GameEvent gameEvent)
     {
-        ApplyInstantBonusEventsInPlayer();
-        ApplyInstantDamageEventsInPlayer();
-        ApplyEventModifiersInPlayer();
+        ApplyInstantBonusEventsInPlayer(gameEvent);
+        ApplyInstantDamageEventsInPlayer(gameEvent);
+        ApplyEventModifiersInPlayer(gameEvent);
     }
 
-    private void ApplyInstantBonusEventsInPlayer()
+    private void ApplyInstantBonusEventsInPlayer(GameEvent gameEvent)
     {
-        playerAttributes.hp.IncrementValue(GameEvent.HpBonus);
-        playerAttributes.energy.IncrementValue(GameEvent.EnergyBonus);
-        playerAttributes.water.IncrementValue(GameEvent.WaterBonus);
+        playerAttributes.hp.IncrementValue(gameEvent.HpBonus);
+        playerAttributes.energy.IncrementValue(gameEvent.EnergyBonus);
+        playerAttributes.water.IncrementValue(gameEvent.WaterBonus);
     }
 
-    private void ApplyInstantDamageEventsInPlayer()
+    private void ApplyInstantDamageEventsInPlayer(GameEvent gameEvent)
     {
-        playerAttributes.hp.DecrementValue(GameEvent.HpDamage);
-        playerAttributes.energy.DecrementValue(GameEvent.EnergyDamage);
-        playerAttributes.water.DecrementValue(GameEvent.WaterDamage);
+        playerAttributes.hp.DecrementValue(gameEvent.HpDamage);
+        playerAttributes.energy.DecrementValue(gameEvent.EnergyDamage);
+        playerAttributes.water.DecrementValue(gameEvent.WaterDamage);
     }
 
-    private void ApplyEventModifiersInPlayer()
+    private void ApplyEventModifiersInPlayer(GameEvent gameEvent)
     {
-        InsertModifier(new Modifier(GameEvent.Type.ToString(), new Dictionary<AttributeEnum, float>
+        InsertModifier(new Modifier(gameEvent.Type.ToString(), new Dictionary<AttributeEnum, float>
         {
-            [AttributeEnum.HP] = GameEvent.HpModifier,
-            [AttributeEnum.ENERGY] = GameEvent.EnergyModifier,
-            [AttributeEnum.WATER] = GameEvent.WaterModifier
+            [AttributeEnum.HP] = gameEvent.HpModifier,
+            [AttributeEnum.ENERGY] = gameEvent.EnergyModifier,
+            [AttributeEnum.WATER] = gameEvent.WaterModifier
         }));
     }
     #endregion

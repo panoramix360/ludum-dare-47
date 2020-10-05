@@ -15,13 +15,16 @@ public class ClimateEvent : GameEvent
         {
             case ClimateEventType.SUNNY:
                 SetEventModifiers(1f, 0f, -0.5f);
+                DurationTime = 20;
                 break;
             case ClimateEventType.CLOUDY:
                 SetEventModifiers(-0.5f, 0f, 0f);
+                DurationTime = 20;
                 break;
             case ClimateEventType.RAINY:
                 SetEventModifiers(-1f, 0f, 1f);
                 SetEventInstaBonuses(0f, 0f, 10f);
+                DurationTime = 20;
                 break;
             default:
                 Debug.LogError("Sem tipo de evento de clima");
