@@ -40,26 +40,34 @@ public class Player : MonoBehaviour
             bool isMaiorityLeft = currentLeftUpgradeNode > currentMiddleUpgradeNode && currentLeftUpgradeNode > currentRightUpgradeNode ? true : false;
             bool isMaiorityMiddle = currentMiddleUpgradeNode > currentLeftUpgradeNode && currentMiddleUpgradeNode > currentRightUpgradeNode ? true : false;
             bool isMaiorityRight = currentRightUpgradeNode > currentLeftUpgradeNode && currentRightUpgradeNode > currentMiddleUpgradeNode ? true : false;
+
+            PlayerLevelUp.LevelType levelType = PlayerLevelUp.LevelType.DRAW;
             if (isMaiorityLeft)
             {
-                playerLevelUp.NextLevel(PlayerLevelUp.LevelType.WATER);
+                levelType = PlayerLevelUp.LevelType.WATER;
+                playerLevelUp.NextLevel(levelType);
             }
             else if (isMaiorityMiddle)
             {
-                playerLevelUp.NextLevel(PlayerLevelUp.LevelType.HP);
+                levelType = PlayerLevelUp.LevelType.HP;
+                playerLevelUp.NextLevel(levelType);
             }
             else if (isMaiorityRight)
             {
-                playerLevelUp.NextLevel(PlayerLevelUp.LevelType.ENERGY);
+                levelType = PlayerLevelUp.LevelType.ENERGY;
+                playerLevelUp.NextLevel(levelType);
             }
             else
             {
-                playerLevelUp.NextLevel(PlayerLevelUp.LevelType.DRAW);
+                levelType = PlayerLevelUp.LevelType.DRAW;
+                playerLevelUp.NextLevel(levelType);
             }
 
             currentLeftUpgradeNode = 0;
             currentMiddleUpgradeNode = 0;
             currentRightUpgradeNode = 0;
+
+            GameController.Instance.NextSeed(levelType);
         }
     }
 

@@ -29,6 +29,7 @@ public class GameController : Singleton<GameController>
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject endGameMenu;
+    [SerializeField] private GameObject seedGeneratedPopupPrefab;
 
     private bool gameIsPaused;
 
@@ -90,6 +91,13 @@ public class GameController : Singleton<GameController>
     {
         Time.timeScale = 1f;
         gameIsPaused = false;
+    }
+
+    public void NextSeed(PlayerLevelUp.LevelType levelType)
+    {
+        EndCyclePopup popup = Instantiate(seedGeneratedPopupPrefab, canvas.transform).GetComponent<EndCyclePopup>();
+        popup.SetLevelType(levelType);
+        timeController.PauseTime();
     }
 
     public void ResumeGame()

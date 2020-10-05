@@ -325,6 +325,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7970839108920968698, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: upgradesToLevelUp
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165c4350cb644b047906ec81d227009f, type: 3}
 --- !u!114 &582893947 stripped
@@ -457,6 +461,14 @@ PrefabInstance:
       propertyPath: endGameMenu
       value: 
       objectReference: {fileID: 5858497520066845459, guid: 9fd81f9801223294e9e0c11fd57ffe87, type: 3}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: seedGeneratedPopup
+      value: 
+      objectReference: {fileID: 476721662245449972, guid: 6f634cb653327bf4e8c50552b1f7b648, type: 3}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: seedGeneratedPopupPrefab
+      value: 
+      objectReference: {fileID: 5858497520066845459, guid: 6f634cb653327bf4e8c50552b1f7b648, type: 3}
     - target: {fileID: 9019834244053384063, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -830,7 +842,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: eventRoutineChance
-      value: 99
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: eventRoutineDelay
