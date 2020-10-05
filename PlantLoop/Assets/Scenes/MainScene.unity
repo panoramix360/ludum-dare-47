@@ -321,6 +321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7970839108920968698, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: upgradesToLevelUp
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165c4350cb644b047906ec81d227009f, type: 3}
 --- !u!114 &582893947 stripped
@@ -840,6 +844,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
+      propertyPath: timeToUpgrade
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 175321356335401281, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1441,6 +1449,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
+      propertyPath: OnFadeIn.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
       propertyPath: OnFadeOut.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -1462,6 +1474,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
       propertyPath: OnFadeOut.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
+      propertyPath: OnFadeIn.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
+      propertyPath: OnFadeIn.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
+      propertyPath: OnFadeIn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2054362549}
+    - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
+      propertyPath: OnFadeIn.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
+      propertyPath: OnFadeIn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetupNewCycle
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
+      propertyPath: OnFadeIn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1524,6 +1560,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 4613709322711057243, guid: 0856782c1c9603c4da84caaca5b2be71, type: 3}
   m_PrefabInstance: {fileID: 1321752465}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2054362549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+  m_PrefabInstance: {fileID: 748182009}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29bcaf9fe5dc6949bbaa587596ee665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2097471775 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2826416662156745796, guid: 0ada25f9b9bb0ee4bae59f83a3159e5f, type: 3}
