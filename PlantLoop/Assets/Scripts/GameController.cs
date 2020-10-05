@@ -164,6 +164,17 @@ public class GameController : Singleton<GameController>
     }
 
     #region EVENT
+    public void DestroyGameEventRoutine()
+    {
+        var deadEvents = gameEventList.Where(x => x.isDead).ToList();
+        foreach (var gameEvent in deadEvents)
+        {
+            RemoveModifier(gameEvent.Identifier);
+            RemoveEventIconUI(gameEvent);
+            gameEventList.Remove(gameEvent);
+        }
+    }
+
     public void CreateGameEvent()
     {
         Debug.Log("Criou evento");
@@ -208,14 +219,28 @@ public class GameController : Singleton<GameController>
         {
             GameObject iconLeft = Instantiate(eventIcon, climateEventsContainer.transform);
             iconLeft.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPathLeft);
+            iconLeft.name = gameEvent.Identifier;
 
             GameObject iconRight = Instantiate(eventIcon, gameEventsContainer.transform);
             iconRight.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
+            iconRight.name = gameEvent.Identifier;
         } 
         else
         {
             GameObject icon = Instantiate(eventIcon, gameEventsContainer.transform);
             icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
+            icon.name = gameEvent.Identifier;
+        }
+    }
+
+    private void RemoveEventIconUI(GameEvent gameEvent)
+    {
+        foreach (Transform item in gameEventsContainer.transform)
+        {
+            if (item.gameObject.name == gameEvent.Identifier)
+            {
+                Destroy(item.gameObject);
+            }
         }
     }
 

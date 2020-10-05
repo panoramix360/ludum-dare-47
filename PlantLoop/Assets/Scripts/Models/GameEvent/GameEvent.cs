@@ -1,12 +1,15 @@
 ﻿using System;
 using UnityEngine;
 using System.Linq;
+using System.Collections;
 
-public class GameEvent
+public class GameEvent : MonoBehaviour
 {
     public float DurationTime { get; set; }
     public string IconPath { get; set; }
     public string IconPathLeft { get; set; }
+    public bool isDead = false;
+    public string Identifier { get; set; }
 
     //Game Event Types
     public GameEventType? Type;
@@ -89,24 +92,28 @@ public class GameEvent
     {
         Array values = Enum.GetValues(typeof(ClimateEventType));
         ClimateType = (ClimateEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+        Identifier = ClimateType.ToString();
     }
 
     private void GenerateDangerEvent()
     {
         Array values = Enum.GetValues(typeof(DangerEventType));
         DangerType = (DangerEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+        Identifier = DangerType.ToString();
     }
 
     private void GenerateOtherEvent()
     {
         Array values = Enum.GetValues(typeof(OtherEventType));
         OtherType = (OtherEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+        Identifier = OtherType.ToString();
     }
 
     private void GenerateBonusEvent()
     {
         Array values = Enum.GetValues(typeof(BonusEventType));
         BonusType = (BonusEventType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+        Identifier = BonusType.ToString();
     }
 
     public void SetEventModifiers(float energy = 1, float hp = 1, float water = 1)
@@ -130,5 +137,24 @@ public class GameEvent
         this.EnergyBonus = energy;
         this.HpBonus = hp;
         this.WaterBonus = water;
+    }
+
+    public void ResetEventModifiers()
+    {
+        this.EnergyModifier = 0;
+        this.HpModifier = 0;
+        this.WaterModifier = 0;
+    }
+
+    private IEnumerator CountdownTimer()
+    {
+        yield return new WaitForSeconds(DurationTime);
+        ResetEventModifiers();
+        isDead = true;
+    }
+
+    public void BeginCoroutine()
+    {
+        StartCoroutine(CountdownTimer());
     }
 }

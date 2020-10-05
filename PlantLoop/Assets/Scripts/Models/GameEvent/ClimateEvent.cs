@@ -57,5 +57,7 @@ public class ClimateEvent : GameEvent
                 Debug.LogError("Sem tipo de evento de clima");
                 break;
         }
+
+        BeginCoroutine();
     }
 }

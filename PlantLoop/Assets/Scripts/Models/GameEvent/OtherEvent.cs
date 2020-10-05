@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class OtherEvent : GameEvent
 {
@@ -27,5 +28,7 @@ public class OtherEvent : GameEvent
                 Debug.LogError("Sem tipo de evento Outros");
                 break;
         }
+
+        BeginCoroutine();
     }
 }

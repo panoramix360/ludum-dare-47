@@ -35,6 +35,8 @@ public class TimeController : MonoBehaviour
 
             // Lógica de tempo do jogo
             GameController.Instance.UpdatePlayerAttributesByTimeUnits();
+            // Manutenção dos eventos
+            GameController.Instance.DestroyGameEventRoutine();
 
             if (CheckIfIsTime(timeToUpgrade))
             {
