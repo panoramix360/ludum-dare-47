@@ -323,7 +323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7970839108920968698, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: upgradesToLevelUp
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165c4350cb644b047906ec81d227009f, type: 3}
@@ -465,6 +465,10 @@ PrefabInstance:
       propertyPath: seedGeneratedPopupPrefab
       value: 
       objectReference: {fileID: 5858497520066845459, guid: 6f634cb653327bf4e8c50552b1f7b648, type: 3}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: unitPerTimePrefab
+      value: 
+      objectReference: {fileID: 7062448085252741997, guid: 67fb1a69b6f5b6740af20af83b215609, type: 3}
     - target: {fileID: 9019834244053384063, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: m_Name
       value: GameController

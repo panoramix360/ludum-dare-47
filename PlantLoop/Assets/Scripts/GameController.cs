@@ -25,6 +25,7 @@ public class GameController : Singleton<GameController>
     [SerializeField] private Image hpImg;
     [SerializeField] private Image waterImg;
     [SerializeField] private Image energyImg;
+    [SerializeField] private GameObject unitPerTimePrefab;
 
     [Header("Menu UI")]
     [SerializeField] private GameObject canvas;
@@ -157,9 +158,14 @@ public class GameController : Singleton<GameController>
 
     public void UpdatePlayerAttributesByTimeUnits()
     {
-        playerAttributes.hp.IncrementValue(playerAttributes.hp.unitPerTime + totalHpModifiers);
-        playerAttributes.water.IncrementValue(playerAttributes.water.unitPerTime + totalWaterModifiers);
-        playerAttributes.energy.IncrementValue(playerAttributes.energy.unitPerTime + totalEnergyModifiers);
+        float hpPerSec = playerAttributes.hp.unitPerTime + totalHpModifiers;
+        float waterPerSec = playerAttributes.water.unitPerTime + totalWaterModifiers;
+        float energyPerSec = playerAttributes.energy.unitPerTime + totalEnergyModifiers;
+        playerAttributes.hp.IncrementValue(hpPerSec);
+        playerAttributes.water.IncrementValue(waterPerSec);
+        playerAttributes.energy.IncrementValue(energyPerSec);
+
+        CreatePerSecUI(hpPerSec, waterPerSec, energyPerSec);
 
         if (playerAttributes.hp.value <= 0)
         {
@@ -167,6 +173,13 @@ public class GameController : Singleton<GameController>
         }
 
         UpdatePlayerAttributes();
+    }
+
+    public void CreatePerSecUI(float hpPerSec, float waterPerSec, float energyPerSec)
+    {
+        Instantiate(unitPerTimePrefab, hpImg.transform).GetComponent<TextMeshProUGUI>().text = string.Format("{0:0.0}", hpPerSec);
+        Instantiate(unitPerTimePrefab, waterImg.transform).GetComponent<TextMeshProUGUI>().text = string.Format("{0:0.0}", waterPerSec);
+        Instantiate(unitPerTimePrefab, energyImg.transform).GetComponent<TextMeshProUGUI>().text = string.Format("{0:0.0}", energyPerSec);
     }
 
     public void EndGame()
