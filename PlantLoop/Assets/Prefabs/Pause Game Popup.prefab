@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5636976903377200420}
   - component: {fileID: 341104283374994775}
   - component: {fileID: 1102975095706439600}
-  - component: {fileID: 5410546927968877092}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -132,27 +131,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!223 &5410546927968877092
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5844160320327886166}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 21
-  m_TargetDisplay: 0
 --- !u!1 &5858497519407469467
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +143,6 @@ GameObject:
   - component: {fileID: 5858497519407469464}
   - component: {fileID: 5858497519407469465}
   - component: {fileID: 5854477968740031636}
-  - component: {fileID: 4832087752030175390}
   m_Layer: 5
   m_Name: Replay
   m_TagString: Untagged
@@ -285,27 +262,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!223 &4832087752030175390
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5858497519407469467}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 21
-  m_TargetDisplay: 0
 --- !u!1 &5858497519643980852
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +273,6 @@ GameObject:
   - component: {fileID: 5858497519643980851}
   - component: {fileID: 5858497519643980848}
   - component: {fileID: 5858497519643980849}
-  - component: {fileID: 813731304933897522}
   m_Layer: 5
   m_Name: You Withered!
   m_TagString: Untagged
@@ -382,27 +337,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!223 &813731304933897522
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5858497519643980852}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 21
-  m_TargetDisplay: 0
 --- !u!1 &5858497520066845459
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +429,6 @@ GameObject:
   - component: {fileID: 120615647060875644}
   - component: {fileID: 3491802190714489595}
   - component: {fileID: 8549165852395453341}
-  - component: {fileID: 7317482994386796390}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -560,24 +493,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!223 &7317482994386796390
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7515570743425868480}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 20
-  m_TargetDisplay: 0
