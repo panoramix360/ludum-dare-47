@@ -90,6 +90,18 @@ public class Player : MonoBehaviour
         nodeUi.SetActive(true);
         leftNode.SetActive(canUpgradeLeftBranch);
         rightNode.SetActive(canUpgradeRightBranch);
+
+        HideAllChilds(leftNode.transform);
+        HideAllChilds(middleNode.transform);
+        HideAllChilds(rightNode.transform);
+    }
+
+    private void HideAllChilds(Transform transform)
+    {
+        foreach (Transform node in transform)
+        {
+            node.gameObject.SetActive(false);
+        }
     }
 
     private bool CheckAndPayAttributeCost(Attribute attribute)
