@@ -330,6 +330,14 @@ public class GameController : SingletonDestroyable<GameController>
                 Destroy(item.gameObject);
             }
         }
+
+        foreach (Transform item in climateEventsContainer.transform)
+        {
+            if (item.gameObject.name == identifier)
+            {
+                Destroy(item.gameObject);
+            }
+        }
     }
 
     private void UpdatePlayerAttributesByEvent(GameEvent gameEvent)
