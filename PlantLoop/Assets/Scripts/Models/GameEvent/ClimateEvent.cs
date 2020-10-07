@@ -14,7 +14,7 @@ public class ClimateEvent : GameEvent
         switch (ClimateType)
         {
             case ClimateEventType.SUNNY:
-                SetEventModifiers(1f, 0f, -0.5f);
+                SetEventModifiers(1f, -0.2f, -0.5f);
                 DurationTime = 60;
                 IconPath = "event_ensolarado";
                 IconPathLeft = "clima_ensolarado";
@@ -33,7 +33,7 @@ public class ClimateEvent : GameEvent
                 IconPathLeft = "clima_chuva";
                 break;
             case ClimateEventType.STORMY:
-                SetEventModifiers(-1f, -0.2f, 1f);
+                SetEventModifiers(-1f, -0.5f, 1f);
                 SetEventInstaBonuses(0f, 0f, 20f);
                 SetEventInstaDamage(0f, 20f, 0f);
                 DurationTime = 60;
@@ -41,7 +41,7 @@ public class ClimateEvent : GameEvent
                 IconPathLeft = "clima_tempestade";
                 break;
             case ClimateEventType.HURRICANY:
-                SetEventModifiers(-0.2f, -0.5f, 0f);
+                SetEventModifiers(-0.2f, -0.7f, 0f);
                 SetEventInstaDamage(0f, 20f, 0f);
                 DurationTime = 60;
                 IconPath = "event_furacao";

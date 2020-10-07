@@ -13,7 +13,7 @@ public class OtherEvent : GameEvent
         switch (OtherType)
         {
             case OtherEventType.POORSOILQUALITY:
-                SetEventModifiers(-0.3f, -0.3f, -0.5f);
+                SetEventModifiers(-1f, -0.3f, -1f);
                 SetEventInstaDamage(0f, 10f, 10f);
                 DurationTime = 30;
                 IconPath = "event_solo_desgastado";
