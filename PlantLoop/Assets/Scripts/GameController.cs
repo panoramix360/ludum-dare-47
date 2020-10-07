@@ -106,20 +106,33 @@ public class GameController : SingletonDestroyable<GameController>
         }
 
         currentEnvironment = new Environment(Enum.GetValues(typeof(EnvironmentType)).Cast<EnvironmentType>().ToList()[PersistedObject.Instance.currentEnvironment]);
+        GameObject env = null;
         switch(currentEnvironment.Type)
         {
             case EnvironmentType.FOREST:
-                GameObject env = Instantiate(forestPrefab);
-                env.GetComponent<Canvas>().worldCamera = Camera.main;
+                env = Instantiate(forestPrefab);
                 break;
             case EnvironmentType.DESERT:
-                GameObject env2 = Instantiate(desertPrefab);
-                env2.GetComponent<Canvas>().worldCamera = Camera.main;
+                env = Instantiate(desertPrefab);
                 break;
             case EnvironmentType.SWAMP:
-                GameObject env3 = Instantiate(swampPrefab);
-                env3.GetComponent<Canvas>().worldCamera = Camera.main;
+                env = Instantiate(swampPrefab);
                 break;
+        }
+
+        if (env != null)
+        {
+            Canvas canvas = env.GetComponent<Canvas>();
+            canvas.worldCamera = Camera.main;
+            canvas.sortingLayerName = "Background";
+            foreach(Transform child in env.transform)
+            {
+                Canvas childCanvas = child.GetComponent<Canvas>();
+                if (childCanvas != null)
+                {
+                    childCanvas.sortingLayerName = "Background";
+                }
+            }
         }
     }
 

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1575128011761232915}
   - component: {fileID: 3142107676160780277}
   - component: {fileID: 7048739563102315604}
-  - component: {fileID: 2237834641886545435}
+  - component: {fileID: 7627972592742543825}
   m_Layer: 5
-  m_Name: Background01-Details
+  m_Name: Background Details
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7138265081784173627}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!223 &2237834641886545435
+--- !u!223 &7627972592742543825
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &7138265081777242106
 GameObject:
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 7138265081777242109}
   - component: {fileID: 7138265081777242111}
   - component: {fileID: 7138265081777242108}
-  - component: {fileID: 7138265081777242110}
+  - component: {fileID: 945599875381777251}
   m_Layer: 5
   m_Name: Background04
   m_TagString: Untagged
@@ -128,7 +128,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7138265081784173627}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!223 &7138265081777242110
+--- !u!223 &945599875381777251
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,10 +225,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 7138265082520991470}
-  - {fileID: 1575128011761232915}
   - {fileID: 7138265081889809994}
-  - {fileID: 7138265083580434149}
   - {fileID: 7138265081777242109}
+  - {fileID: 1575128011761232915}
+  - {fileID: 7138265083580434149}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 7138265081889809994}
   - component: {fileID: 7138265081889809996}
   - component: {fileID: 7138265081889809997}
-  - component: {fileID: 7138265081889809999}
+  - component: {fileID: 7051619187585703179}
   m_Layer: 5
   m_Name: Background02
   m_TagString: Untagged
@@ -328,7 +328,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7138265081784173627}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!223 &7138265081889809999
+--- !u!223 &7051619187585703179
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 7138265082520991470}
   - component: {fileID: 7138265082520991456}
   - component: {fileID: 7138265082520991457}
-  - component: {fileID: 7138265082520991459}
+  - component: {fileID: 6508418514844799337}
   m_Layer: 5
   m_Name: Background01
   m_TagString: Untagged
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!223 &7138265082520991459
+--- !u!223 &6508418514844799337
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -489,7 +489,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -5
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &7138265083580434146
 GameObject:
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 7138265083580434149}
   - component: {fileID: 7138265083580434151}
   - component: {fileID: 7138265083580434148}
-  - component: {fileID: 7138265083580434150}
+  - component: {fileID: 5318810138560196225}
   m_Layer: 5
   m_Name: Background03
   m_TagString: Untagged
@@ -522,7 +522,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7138265081784173627}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!223 &7138265083580434150
+--- !u!223 &5318810138560196225
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -586,5 +586,5 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_TargetDisplay: 0
