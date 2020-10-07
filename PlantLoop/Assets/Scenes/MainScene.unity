@@ -275,15 +275,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4254568061153637541, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: baseHp
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4254568061153637541, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: baseWater
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4254568061153637541, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: baseEnergy
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5761297661259541696, guid: 165c4350cb644b047906ec81d227009f, type: 3}
       propertyPath: m_LocalPosition.x
