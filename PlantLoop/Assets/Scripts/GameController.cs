@@ -321,16 +321,19 @@ public class GameController : SingletonDestroyable<GameController>
             GameObject iconLeft = Instantiate(eventIcon, climateEventsContainer.transform);
             iconLeft.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPathLeft);
             iconLeft.name = gameEvent.Identifier;
+            iconLeft.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.HpModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
 
             GameObject iconRight = Instantiate(eventIcon, gameEventsContainer.transform);
             iconRight.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
             iconRight.name = gameEvent.Identifier;
+            iconRight.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.HpModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
         } 
         else
         {
             GameObject icon = Instantiate(eventIcon, gameEventsContainer.transform);
             icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
             icon.name = gameEvent.Identifier;
+            icon.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.HpModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
         }
     }
 

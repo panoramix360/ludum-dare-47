@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: -20}
+  m_AnchoredPosition: {x: -40, y: -20}
   m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &90399426
@@ -852,6 +852,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
+      propertyPath: eventRoutineChance
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: 175321356335401281, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1575,6 +1579,10 @@ PrefabInstance:
     - target: {fileID: 1978762939685709766, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
       propertyPath: m_Name
       value: Loading
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978762939685709766, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
       propertyPath: OnFadeIn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
