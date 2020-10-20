@@ -11,6 +11,8 @@ public class TimeController : MonoBehaviour
     [SerializeField] private int eventRoutineChance;
     [SerializeField] private int eventRoutineDelay;
 
+    [SerializeField] private bool createEvents;
+
     private void Start()
     {
         UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
@@ -41,7 +43,10 @@ public class TimeController : MonoBehaviour
                 GameController.Instance.UpgradePlayerNode();
             }
 
-            EventRoutine();
+            if (createEvents)
+            {
+                CreateRandomEvent();
+            }
 
             yield return new WaitForSeconds(1f);
             timeInSeconds++;
@@ -58,7 +63,7 @@ public class TimeController : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private void EventRoutine()
+    private void CreateRandomEvent()
     {
         if (timeInSeconds % eventRoutineDelay == 0 && canCreateEvent)
         {

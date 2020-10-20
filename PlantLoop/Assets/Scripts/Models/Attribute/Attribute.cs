@@ -26,6 +26,7 @@ public class Attribute
         {
             this.value += value;
             this.value = Math.Min(this.value, baseValue);
+            this.value = Math.Max(this.value, 0);
         }
     }
 

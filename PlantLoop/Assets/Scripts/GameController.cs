@@ -242,6 +242,8 @@ public class GameController : SingletonDestroyable<GameController>
         playerAttributes.water.IncrementValue(waterPerSec);
         playerAttributes.energy.IncrementValue(energyPerSec);
 
+        playerAttributes.CheckIfAttributesAreBelow(waterPerSec, energyPerSec);
+
         CreatePerSecUI(hpPerSec, waterPerSec, energyPerSec);
 
         if (playerAttributes.hp.value <= 0)

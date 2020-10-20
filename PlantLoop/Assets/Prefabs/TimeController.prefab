@@ -46,3 +46,4 @@ MonoBehaviour:
   timeToUpgrade: 10
   eventRoutineChance: 70
   eventRoutineDelay: 10
+  createEvents: 1
