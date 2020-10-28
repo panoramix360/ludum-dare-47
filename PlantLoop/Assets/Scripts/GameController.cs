@@ -84,9 +84,9 @@ public class GameController : SingletonDestroyable<GameController>
 
     public void UpdatePlayerAttributes()
     {
-        hpTxt.text = playerAttributes.hp.value.ToString();
-        waterTxt.text = playerAttributes.water.value.ToString();
-        energyTxt.text = playerAttributes.energy.value.ToString();
+        hpTxt.text = string.Format("{0:0.0}", playerAttributes.hp.value);
+        waterTxt.text = string.Format("{0:0.0}", playerAttributes.water.value);
+        energyTxt.text = string.Format("{0:0.0}", playerAttributes.energy.value);
         hpImg.fillAmount = playerAttributes.hp.value / playerAttributes.hp.baseValue;
         waterImg.fillAmount = playerAttributes.water.value / playerAttributes.water.baseValue;
         energyImg.fillAmount = playerAttributes.energy.value / playerAttributes.energy.baseValue;
