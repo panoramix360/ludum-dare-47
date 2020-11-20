@@ -15,6 +15,10 @@ public class GameController : SingletonDestroyable<GameController>
     [SerializeField] private TimeController timeController;
     [SerializeField] private Loading loading;
 
+    [Header("Game Event Difficulty")]
+    [SerializeField] private int difficultyPointsMax = 4;
+    private int difficultyPointsLeft = 0;
+
     [Header("UI")]
     [SerializeField] private GameObject gameEventsContainer;
     [SerializeField] private GameObject climateEventsContainer;
@@ -43,7 +47,7 @@ public class GameController : SingletonDestroyable<GameController>
 
     [Header("Environment Modifiers")]
     private Environment currentEnvironment;
-    private List<GameEvent> gameEventList;
+    private List<GameEventV2> gameEventList;
 
     private List<Modifier> currentModifiers;
 
@@ -55,7 +59,7 @@ public class GameController : SingletonDestroyable<GameController>
     {
         base.Awake();
         currentModifiers = new List<Modifier>();
-        gameEventList = new List<GameEvent>();
+        gameEventList = new List<GameEventV2>();
 
         loading.GetComponent<Animator>().Play("FadeOut");
 
@@ -64,6 +68,9 @@ public class GameController : SingletonDestroyable<GameController>
 
     private void Start()
     {
+        //Seta 
+        difficultyPointsLeft = difficultyPointsMax;
+
         InsertModifier(new Modifier(currentEnvironment.Type.ToString(), new Dictionary<AttributeEnum, float>
         {
             [AttributeEnum.HP] = currentEnvironment.HpModifier,
@@ -270,73 +277,49 @@ public class GameController : SingletonDestroyable<GameController>
     #region EVENT
     public void CreateGameEvent()
     {
-        Debug.Log("Criou evento");
-        //TODO:REFACTOR
-        GameEventType? notRandomize = null;
-        if (gameEventList.Any(x => x.Type == GameEventType.CLIMATE))
+        if (difficultyPointsLeft > 0)
         {
-            notRandomize = GameEventType.CLIMATE;
+            Debug.Log("Começou a criar evento");
+            //if (gameEventList.Any(x => x.Type == GameEventType.CLIMATE))
+            //{
+                //Não randomizar eventos de clima caso exista
+                //Não fiz isso por enquanto pq sempre vai haver somente 1 evento de clima
+            //}
+            var gameEvent = new GameEventV2().RandomizeGameEventByDifficultyPoints(difficultyPointsLeft);
+            gameEventList.Add(gameEvent);
+            difficultyPointsLeft -= gameEvent.DifficultyPoints;
+
+            UpdatePlayerAttributesByEvent(gameEvent);
+
+            AddEventIconUI(gameEvent);
+
+            StartCoroutine(DestroyEventAfter(gameEvent));
         }
-        var gameEvent = new GameEvent(null, notRandomize);
-        switch (gameEvent.Type)
-        {
-            case GameEventType.CLIMATE:
-                gameEvent = new ClimateEvent(gameEvent);
-                gameEventList.Add(gameEvent);
-                break;
-            case GameEventType.DANGER:
-                gameEvent = new DangerEvent(gameEvent);
-                gameEventList.Add(gameEvent);
-                break;
-            case GameEventType.OTHEREVENT:
-                gameEvent = new OtherEvent(gameEvent);
-                gameEventList.Add(gameEvent);
-                break;
-            case GameEventType.BONUS:
-                gameEvent = new BonusEvent(gameEvent);
-                gameEventList.Add(gameEvent);
-                break;
-            default:
-                Debug.LogError("Erro criando evento");
-                break;
-        }
-
-        UpdatePlayerAttributesByEvent(gameEvent);
-
-        AddEventIconUI(gameEvent);
-
-        StartCoroutine(DestroyEventAfter(gameEvent));
     }
 
-    private IEnumerator DestroyEventAfter(GameEvent gameEvent)
+    private IEnumerator DestroyEventAfter(GameEventV2 gameEvent)
     {
         yield return new WaitForSeconds(gameEvent.DurationTime);
         RemoveModifier(gameEvent.Identifier);
         RemoveEventIconUI(gameEvent.Identifier);
         gameEventList.Remove(gameEvent);
+        difficultyPointsLeft += gameEvent.DifficultyPoints;
+
     }
 
-    private void AddEventIconUI(GameEvent gameEvent)
+    private void AddEventIconUI(GameEventV2 gameEvent)
     {
-        if (gameEvent.Type == GameEventType.CLIMATE)
+        if (!string.IsNullOrEmpty(gameEvent.IconPathLeft))
         {
             GameObject iconLeft = Instantiate(eventIcon, climateEventsContainer.transform);
             iconLeft.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPathLeft);
             iconLeft.name = gameEvent.Identifier;
             iconLeft.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.HpModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
-
-            GameObject iconRight = Instantiate(eventIcon, gameEventsContainer.transform);
-            iconRight.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
-            iconRight.name = gameEvent.Identifier;
-            iconRight.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.HpModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
-        } 
-        else
-        {
-            GameObject icon = Instantiate(eventIcon, gameEventsContainer.transform);
-            icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
-            icon.name = gameEvent.Identifier;
-            icon.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.HpModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
         }
+        GameObject icon = Instantiate(eventIcon, gameEventsContainer.transform);
+        icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
+        icon.name = gameEvent.Identifier;
+        icon.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.HpModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
     }
 
     private void RemoveEventIconUI(string identifier)
@@ -358,28 +341,28 @@ public class GameController : SingletonDestroyable<GameController>
         }
     }
 
-    private void UpdatePlayerAttributesByEvent(GameEvent gameEvent)
+    private void UpdatePlayerAttributesByEvent(GameEventV2 gameEvent)
     {
         ApplyInstantBonusEventsInPlayer(gameEvent);
         ApplyInstantDamageEventsInPlayer(gameEvent);
         ApplyEventModifiersInPlayer(gameEvent);
     }
 
-    private void ApplyInstantBonusEventsInPlayer(GameEvent gameEvent)
+    private void ApplyInstantBonusEventsInPlayer(GameEventV2 gameEvent)
     {
         playerAttributes.hp.IncrementValue(gameEvent.HpBonus);
         playerAttributes.energy.IncrementValue(gameEvent.EnergyBonus);
         playerAttributes.water.IncrementValue(gameEvent.WaterBonus);
     }
 
-    private void ApplyInstantDamageEventsInPlayer(GameEvent gameEvent)
+    private void ApplyInstantDamageEventsInPlayer(GameEventV2 gameEvent)
     {
         playerAttributes.hp.DecrementValue(gameEvent.HpDamage);
         playerAttributes.energy.DecrementValue(gameEvent.EnergyDamage);
         playerAttributes.water.DecrementValue(gameEvent.WaterDamage);
     }
 
-    private void ApplyEventModifiersInPlayer(GameEvent gameEvent)
+    private void ApplyEventModifiersInPlayer(GameEventV2 gameEvent)
     {
         InsertModifier(new Modifier(gameEvent.Identifier, new Dictionary<AttributeEnum, float>
         {
