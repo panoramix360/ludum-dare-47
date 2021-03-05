@@ -5,21 +5,21 @@ using UnityEngine;
 public class PlayerAttributes : MonoBehaviour
 {
     [Header("Initial Bases")]
-    [SerializeField] private float baseHp;
+    [SerializeField] private float baseStructure;
     [SerializeField] private float baseWater;
     [SerializeField] private float baseEnergy;
 
     [Header("Initial stats")]
-    [SerializeField] private float initialHp;
+    [SerializeField] private float initialStructure;
     [SerializeField] private float initialWater;
     [SerializeField] private float initialEnergy;
 
     [Header("Initial PerSec")]
-    [SerializeField] private float initialHpPerSec;
+    [SerializeField] private float initialStructurePerSec;
     [SerializeField] private float initialWaterPerSec;
     [SerializeField] private float initialEnergyPerSec;
 
-    [SerializeField] public Attribute hp;
+    [SerializeField] public Attribute structure;
     [SerializeField] public Attribute water;
     [SerializeField] public Attribute energy;
 
@@ -35,7 +35,7 @@ public class PlayerAttributes : MonoBehaviour
 
     private void SetupPlayerAttributes()
     {
-        hp = new HpAttribute(baseHp, initialHp, initialHpPerSec);
+        structure = new StructureAttribute(baseStructure, initialStructure, initialStructurePerSec);
         water = new WaterAttribute(baseWater, initialWater, initialWaterPerSec);
         energy = new EnergyAttribute(baseEnergy, initialEnergy, initialEnergyPerSec);
     }
@@ -55,6 +55,6 @@ public class PlayerAttributes : MonoBehaviour
             removePerSec = energyPerSec;
         }
 
-        hp.IncrementValue(removePerSec);
+        structure.IncrementValue(removePerSec);
     }
 }

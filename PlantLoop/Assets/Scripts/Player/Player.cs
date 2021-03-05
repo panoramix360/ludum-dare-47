@@ -12,11 +12,14 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject leftNode;
     [SerializeField] private GameObject middleNode;
     [SerializeField] private GameObject rightNode;
+    
+    [Header("Upgrade")]
     [SerializeField] private float upgradeWaterValue;
-    [SerializeField] private float upgradeHpValue;
+    [SerializeField] private float upgradeStructureValue;
     [SerializeField] private float upgradeEnergyValue;
+
     [SerializeField] private float upgradeWaterPerSecValue;
-    [SerializeField] private float upgradeHpPerSecValue;
+    [SerializeField] private float upgradeStructurePerSecValue;
     [SerializeField] private float upgradeEnergyPerSecValue;
 
     [Header("SFX")]
@@ -57,7 +60,7 @@ public class Player : MonoBehaviour
             }
             else if (isMaiorityMiddle)
             {
-                levelType = PlayerLevelUp.LevelType.HP;
+                levelType = PlayerLevelUp.LevelType.STRUCTURE;
                 playerLevelUp.NextLevel(levelType);
             }
             else if (isMaiorityRight)
@@ -108,7 +111,7 @@ public class Player : MonoBehaviour
     {
         bool hasIncome = true;
 
-        int totalHpToDecrement = 0;
+        int totalStructureToDecrement = 0;
         int totalWaterToDecrement = 0;
         int totalEnergyToDecrement = 0;
 
@@ -136,10 +139,10 @@ public class Player : MonoBehaviour
                         hasIncome = false;
                     }
                     break;
-                case AttributeEnum.HP:
-                    if (playerAttributes.hp.value >= upgradeCost.cost)
+                case AttributeEnum.STRUCTURE:
+                    if (playerAttributes.structure.value >= upgradeCost.cost)
                     {
-                        totalHpToDecrement = upgradeCost.cost;
+                        totalStructureToDecrement = upgradeCost.cost;
                     }
                     else
                     {
@@ -151,7 +154,7 @@ public class Player : MonoBehaviour
 
         if (hasIncome)
         {
-            playerAttributes.hp.DecrementValue(totalHpToDecrement);
+            playerAttributes.structure.DecrementValue(totalStructureToDecrement);
             playerAttributes.water.DecrementValue(totalWaterToDecrement);
             playerAttributes.energy.DecrementValue(totalEnergyToDecrement);
         }
@@ -180,20 +183,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnClickHpNode()
+    public void OnClickStructureNode()
     {
         Debug.Log("Middle Node");
-        if (CheckAndPayAttributeCost(playerAttributes.hp))
+        if (CheckAndPayAttributeCost(playerAttributes.structure))
         {
             IncrementMiddleUpgradeBranch();
 
-            playerAttributes.hp.IncrementBaseValue(upgradeHpValue);
-            playerAttributes.water.IncrementBaseValue(upgradeHpValue);
-            playerAttributes.energy.IncrementBaseValue(upgradeHpValue);
+            playerAttributes.structure.IncrementBaseValue(upgradeStructureValue);
+            playerAttributes.water.IncrementBaseValue(upgradeStructureValue);
+            playerAttributes.energy.IncrementBaseValue(upgradeStructureValue);
 
-            playerAttributes.hp.IncrementUnitPerTime(upgradeHpPerSecValue);
-            playerAttributes.water.IncrementUnitPerTime(upgradeHpPerSecValue);
-            playerAttributes.energy.IncrementUnitPerTime(upgradeHpPerSecValue);
+            playerAttributes.structure.IncrementUnitPerTime(upgradeStructurePerSecValue);
+            playerAttributes.water.IncrementUnitPerTime(upgradeStructurePerSecValue);
+            playerAttributes.energy.IncrementUnitPerTime(upgradeStructurePerSecValue);
 
             nodeUi.SetActive(false);
 
@@ -228,7 +231,7 @@ public class Player : MonoBehaviour
     public void OnClickBaseNode()
     {
         Debug.Log("Base Node");
-        playerAttributes.hp.ResetValue();
+        playerAttributes.structure.ResetValue();
         playerAttributes.energy.ResetValue();
         playerAttributes.water.ResetValue();
 

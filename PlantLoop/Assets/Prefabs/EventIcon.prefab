@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 6090770220101073634}
   - component: {fileID: 6337794374097683153}
   m_Layer: 0
-  m_Name: HP
+  m_Name: Structure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventName: {fileID: 6251234864996117609}
   waterTxt: {fileID: 4844320657217754294}
-  hpTxt: {fileID: 6337794374097683153}
+  structureTxt: {fileID: 6337794374097683153}
   energyTxt: {fileID: 5311108732905765298}
 --- !u!114 &4782953373571871158
 MonoBehaviour:

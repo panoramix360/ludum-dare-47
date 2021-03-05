@@ -6,11 +6,11 @@ public class PersistedObject : Singleton<PersistedObject>
 {
     public bool isChanged = false;
 
-    public float baseHp;
+    public float baseStructure;
     public float baseWater;
     public float baseEnergy;
 
-    public float baseHpUnitPerTime;
+    public float baseStructureUnitPerTime;
     public float baseWaterUnitPerTime;
     public float baseEnergyUnitPerTime;
 

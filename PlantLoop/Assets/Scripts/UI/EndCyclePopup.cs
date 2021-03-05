@@ -36,8 +36,8 @@ public class EndCyclePopup : MonoBehaviour
             case PlayerLevelUp.LevelType.ENERGY:
                 ShowEnergyUpgrade();
                 break;
-            case PlayerLevelUp.LevelType.HP:
-                ShowHpUpgrade();
+            case PlayerLevelUp.LevelType.STRUCTURE:
+                ShowStructureUpgrade();
                 break;
             case PlayerLevelUp.LevelType.DRAW:
                 ShowAllUpgrade();
@@ -63,8 +63,8 @@ public class EndCyclePopup : MonoBehaviour
         animator.SetTrigger("PlayEnergyUpgrade");
     }
 
-    public void ShowHpUpgrade()
+    public void ShowStructureUpgrade()
     {
-        animator.SetTrigger("PlayHpUpgrade");
+        animator.SetTrigger("PlayStructureUpgrade");
     }
 }

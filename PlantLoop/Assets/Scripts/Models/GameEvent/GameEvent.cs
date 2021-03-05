@@ -19,17 +19,17 @@ public class GameEvent
 
     //Game Event Modifiers
     public float EnergyModifier;
-    public float HpModifier;
+    public float StructureModifier;
     public float WaterModifier;
 
     //Game Event Damage
     public float EnergyDamage;
-    public float HpDamage;
+    public float StructureDamage;
     public float WaterDamage;
 
     //Game Event Bonus
     public float EnergyBonus;
-    public float HpBonus;
+    public float StructureBonus;
     public float WaterBonus;
 
     //TODO: REFACTOR
@@ -116,26 +116,26 @@ public class GameEvent
         Identifier = BonusType.ToString();
     }
 
-    public void SetEventModifiers(float energy = 1, float hp = 1, float water = 1)
+    public void SetEventModifiers(float energy = 1, float structure = 1, float water = 1)
     {
         this.EnergyModifier = energy;
-        this.HpModifier = hp;
+        this.StructureModifier = structure;
         this.WaterModifier = water;
     }
 
-    public void SetEventInstaDamage(float energy = 0, float hp = 0, float water = 0)
+    public void SetEventInstaDamage(float energy = 0, float structure = 0, float water = 0)
     {
         //Subtrair a quantidade
         this.EnergyDamage = energy;
-        this.HpDamage = hp;
+        this.StructureDamage = structure;
         this.WaterDamage = water;
     }
 
-    public void SetEventInstaBonuses(float energy = 0, float hp = 0, float water = 0)
+    public void SetEventInstaBonuses(float energy = 0, float structure = 0, float water = 0)
     {
         //Adicionar a quantidade
         this.EnergyBonus = energy;
-        this.HpBonus = hp;
+        this.StructureBonus = structure;
         this.WaterBonus = water;
     }
 }

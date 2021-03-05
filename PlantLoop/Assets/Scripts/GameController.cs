@@ -25,10 +25,10 @@ public class GameController : SingletonDestroyable<GameController>
     [SerializeField] private GameObject eventIcon;
 
     [Header("Player Attributes UI")]
-    [SerializeField] private TextMeshProUGUI hpTxt;
+    [SerializeField] private TextMeshProUGUI structureTxt;
     [SerializeField] private TextMeshProUGUI waterTxt;
     [SerializeField] private TextMeshProUGUI energyTxt;
-    [SerializeField] private Image hpImg;
+    [SerializeField] private Image structureImg;
     [SerializeField] private Image waterImg;
     [SerializeField] private Image energyImg;
     [SerializeField] private GameObject unitPerTimePrefab;
@@ -51,7 +51,7 @@ public class GameController : SingletonDestroyable<GameController>
 
     private List<Modifier> currentModifiers;
 
-    private float totalHpModifiers;
+    private float totalStructureModifiers;
     private float totalEnergyModifiers;
     private float totalWaterModifiers;
 
@@ -73,7 +73,7 @@ public class GameController : SingletonDestroyable<GameController>
 
         InsertModifier(new Modifier(currentEnvironment.Type.ToString(), new Dictionary<AttributeEnum, float>
         {
-            [AttributeEnum.HP] = currentEnvironment.HpModifier,
+            [AttributeEnum.STRUCTURE] = currentEnvironment.StructureModifier,
             [AttributeEnum.ENERGY] = currentEnvironment.EnergyModifier,
             [AttributeEnum.WATER] = currentEnvironment.WaterModifier
         }));
@@ -91,10 +91,10 @@ public class GameController : SingletonDestroyable<GameController>
 
     public void UpdatePlayerAttributes()
     {
-        hpTxt.text = string.Format("{0:0.0}", playerAttributes.hp.value);
+        structureTxt.text = string.Format("{0:0.0}", playerAttributes.structure.value);
         waterTxt.text = string.Format("{0:0.0}", playerAttributes.water.value);
         energyTxt.text = string.Format("{0:0.0}", playerAttributes.energy.value);
-        hpImg.fillAmount = playerAttributes.hp.value / playerAttributes.hp.baseValue;
+        structureImg.fillAmount = playerAttributes.structure.value / playerAttributes.structure.baseValue;
         waterImg.fillAmount = playerAttributes.water.value / playerAttributes.water.baseValue;
         energyImg.fillAmount = playerAttributes.energy.value / playerAttributes.energy.baseValue;
     }
@@ -103,11 +103,11 @@ public class GameController : SingletonDestroyable<GameController>
     {
         if (PersistedObject.Instance.isChanged)
         {
-            playerAttributes.hp.baseValue = PersistedObject.Instance.baseHp;
+            playerAttributes.structure.baseValue = PersistedObject.Instance.baseStructure;
             playerAttributes.energy.baseValue = PersistedObject.Instance.baseEnergy;
             playerAttributes.water.baseValue = PersistedObject.Instance.baseWater;
 
-            playerAttributes.hp.unitPerTime = PersistedObject.Instance.baseHpUnitPerTime;
+            playerAttributes.structure.unitPerTime = PersistedObject.Instance.baseStructureUnitPerTime;
             playerAttributes.energy.unitPerTime = PersistedObject.Instance.baseEnergyUnitPerTime;
             playerAttributes.water.unitPerTime = PersistedObject.Instance.baseWaterUnitPerTime;
         }
@@ -174,11 +174,11 @@ public class GameController : SingletonDestroyable<GameController>
     public void SetupNewCycle()
     {
         PersistedObject.Instance.isChanged = true;
-        PersistedObject.Instance.baseHp = playerAttributes.hp.baseValue;
+        PersistedObject.Instance.baseStructure = playerAttributes.structure.baseValue;
         PersistedObject.Instance.baseEnergy = playerAttributes.energy.baseValue;
         PersistedObject.Instance.baseWater = playerAttributes.water.baseValue;
 
-        PersistedObject.Instance.baseHpUnitPerTime = playerAttributes.hp.unitPerTime;
+        PersistedObject.Instance.baseStructureUnitPerTime = playerAttributes.structure.unitPerTime;
         PersistedObject.Instance.baseEnergyUnitPerTime = playerAttributes.energy.unitPerTime;
         PersistedObject.Instance.baseWaterUnitPerTime = playerAttributes.water.unitPerTime;
 
@@ -209,7 +209,7 @@ public class GameController : SingletonDestroyable<GameController>
 
     public void CalculateAndUpdateTotalModifiers()
     {
-        float totalHp = 0f;
+        float totalStructure = 0f;
         float totalEnergy = 0f;
         float totalWater = 0f;
 
@@ -219,8 +219,8 @@ public class GameController : SingletonDestroyable<GameController>
             {
                 switch (entry.Key)
                 {
-                    case AttributeEnum.HP:
-                        totalHp += entry.Value * playerAttributes.hp.unitPerTime;
+                    case AttributeEnum.STRUCTURE:
+                        totalStructure += entry.Value * playerAttributes.structure.unitPerTime;
                         break;
                     case AttributeEnum.ENERGY:
                         totalEnergy += entry.Value * playerAttributes.energy.unitPerTime;
@@ -235,25 +235,25 @@ public class GameController : SingletonDestroyable<GameController>
             }
         }
 
-        totalHpModifiers = totalHp;
+        totalStructureModifiers = totalStructure;
         totalEnergyModifiers = totalEnergy;
         totalWaterModifiers = totalWater;
     }
 
     public void UpdatePlayerAttributesByTimeUnits()
     {
-        float hpPerSec = playerAttributes.hp.unitPerTime + totalHpModifiers;
+        float structurePerSec = playerAttributes.structure.unitPerTime + totalStructureModifiers;
         float waterPerSec = playerAttributes.water.unitPerTime + totalWaterModifiers;
         float energyPerSec = playerAttributes.energy.unitPerTime + totalEnergyModifiers;
-        playerAttributes.hp.IncrementValue(hpPerSec);
+        playerAttributes.structure.IncrementValue(structurePerSec);
         playerAttributes.water.IncrementValue(waterPerSec);
         playerAttributes.energy.IncrementValue(energyPerSec);
 
         playerAttributes.CheckIfAttributesAreBelow(waterPerSec, energyPerSec);
 
-        CreatePerSecUI(hpPerSec, waterPerSec, energyPerSec);
+        CreatePerSecUI(structurePerSec, waterPerSec, energyPerSec);
 
-        if (playerAttributes.hp.value <= 0)
+        if (playerAttributes.structure.value <= 0)
         {
             EndGame();
         }
@@ -261,9 +261,9 @@ public class GameController : SingletonDestroyable<GameController>
         UpdatePlayerAttributes();
     }
 
-    public void CreatePerSecUI(float hpPerSec, float waterPerSec, float energyPerSec)
+    public void CreatePerSecUI(float structurePerSec, float waterPerSec, float energyPerSec)
     {
-        Instantiate(unitPerTimePrefab, hpImg.transform).GetComponent<TextMeshProUGUI>().text = string.Format("{0:0.0}", hpPerSec);
+        Instantiate(unitPerTimePrefab, structureImg.transform).GetComponent<TextMeshProUGUI>().text = string.Format("{0:0.0}", structurePerSec);
         Instantiate(unitPerTimePrefab, waterImg.transform).GetComponent<TextMeshProUGUI>().text = string.Format("{0:0.0}", waterPerSec);
         Instantiate(unitPerTimePrefab, energyImg.transform).GetComponent<TextMeshProUGUI>().text = string.Format("{0:0.0}", energyPerSec);
     }
@@ -314,12 +314,12 @@ public class GameController : SingletonDestroyable<GameController>
             GameObject iconLeft = Instantiate(eventIcon, climateEventsContainer.transform);
             iconLeft.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPathLeft);
             iconLeft.name = gameEvent.Identifier;
-            iconLeft.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.HpModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
+            iconLeft.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.StructureModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
         }
         GameObject icon = Instantiate(eventIcon, gameEventsContainer.transform);
         icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameEvent.IconPath);
         icon.name = gameEvent.Identifier;
-        icon.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.HpModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
+        icon.GetComponent<EventIcon>().SetEventIconText(gameEvent.Identifier, string.Format("{0:0.0}", gameEvent.WaterModifier), string.Format("{0:0.0}", gameEvent.StructureModifier), string.Format("{0:0.0}", gameEvent.EnergyModifier));
     }
 
     private void RemoveEventIconUI(string identifier)
@@ -350,14 +350,14 @@ public class GameController : SingletonDestroyable<GameController>
 
     private void ApplyInstantBonusEventsInPlayer(GameEventV2 gameEvent)
     {
-        playerAttributes.hp.IncrementValue(gameEvent.HpBonus);
+        playerAttributes.structure.IncrementValue(gameEvent.StructureBonus);
         playerAttributes.energy.IncrementValue(gameEvent.EnergyBonus);
         playerAttributes.water.IncrementValue(gameEvent.WaterBonus);
     }
 
     private void ApplyInstantDamageEventsInPlayer(GameEventV2 gameEvent)
     {
-        playerAttributes.hp.DecrementValue(gameEvent.HpDamage);
+        playerAttributes.structure.DecrementValue(gameEvent.StructureDamage);
         playerAttributes.energy.DecrementValue(gameEvent.EnergyDamage);
         playerAttributes.water.DecrementValue(gameEvent.WaterDamage);
     }
@@ -366,7 +366,7 @@ public class GameController : SingletonDestroyable<GameController>
     {
         InsertModifier(new Modifier(gameEvent.Identifier, new Dictionary<AttributeEnum, float>
         {
-            [AttributeEnum.HP] = gameEvent.HpModifier,
+            [AttributeEnum.STRUCTURE] = gameEvent.StructureModifier,
             [AttributeEnum.ENERGY] = gameEvent.EnergyModifier,
             [AttributeEnum.WATER] = gameEvent.WaterModifier
         }));

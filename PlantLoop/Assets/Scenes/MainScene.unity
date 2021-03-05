@@ -321,6 +321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7970839108920968698, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: upgradesToLevelUp
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165c4350cb644b047906ec81d227009f, type: 3}
 --- !u!114 &582893947 stripped
@@ -453,6 +457,14 @@ PrefabInstance:
       propertyPath: forestPrefab
       value: 
       objectReference: {fileID: 7138265081784173607, guid: 1ea70b2f6d9263a43b4ede3a60cdb406, type: 3}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: structureImg
+      value: 
+      objectReference: {fileID: 1752166387}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: structureTxt
+      value: 
+      objectReference: {fileID: 954663108}
     - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: timeController
       value: 
@@ -723,7 +735,7 @@ GameObject:
   - component: {fileID: 954663109}
   - component: {fileID: 954663108}
   m_Layer: 5
-  m_Name: HP
+  m_Name: Structure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -993,10 +1005,6 @@ PrefabInstance:
     - target: {fileID: 175321356335401280, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: eventRoutineChance
       value: 99
-      objectReference: {fileID: 0}
-    - target: {fileID: 175321356335401281, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 175321356335401281, guid: 8542ac6214c1de9458db2196c33c8ec2, type: 3}
       propertyPath: m_RootOrder
@@ -1884,6 +1892,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 819922713}
     m_Modifications:
+    - target: {fileID: 1743378559462430017, guid: 2ac2bfa89c1857348b4d79c4c862e0a2, type: 3}
+      propertyPath: m_Name
+      value: StructureFill
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743378560163134192, guid: 2ac2bfa89c1857348b4d79c4c862e0a2, type: 3}
+      propertyPath: m_Name
+      value: StructureBackground
+      objectReference: {fileID: 0}
     - target: {fileID: 1743378561023863926, guid: 2ac2bfa89c1857348b4d79c4c862e0a2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1970,7 +1986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1743378561023863927, guid: 2ac2bfa89c1857348b4d79c4c862e0a2, type: 3}
       propertyPath: m_Name
-      value: HealthBorder
+      value: StructureBorder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ac2bfa89c1857348b4d79c4c862e0a2, type: 3}

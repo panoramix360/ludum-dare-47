@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum AttributeEnum
 {
-    HP, WATER, ENERGY
+    STRUCTURE, WATER, ENERGY
 }

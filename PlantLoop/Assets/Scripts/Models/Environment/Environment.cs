@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Environment
 {
-    public float HpModifier;
+    public float StructureModifier;
     public float WaterModifier;
     public float EnergyModifier;
     public EnvironmentType Type;
@@ -32,7 +32,7 @@ public class Environment
     private void Forest()
     {
         Type = EnvironmentType.FOREST;
-        this.HpModifier = 0.5f;
+        this.StructureModifier = 0.5f;
         this.WaterModifier = 0.5f;
         this.EnergyModifier = 0f;
     }
@@ -40,7 +40,7 @@ public class Environment
     private void Swamp()
     {
         Type = EnvironmentType.SWAMP;
-        this.HpModifier = 0.3f;
+        this.StructureModifier = 0.3f;
         this.WaterModifier = 1f;
         this.EnergyModifier = -0.5f;
     }
@@ -48,7 +48,7 @@ public class Environment
     private void Desert()
     {
         Type = EnvironmentType.DESERT;
-        this.HpModifier = 0.1f;
+        this.StructureModifier = 0.1f;
         this.WaterModifier = -0.5f;
         this.EnergyModifier = 1f;
     }

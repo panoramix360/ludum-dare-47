@@ -14,17 +14,17 @@ public struct GameEventV2
 
     //Game Event Modifiers
     public float EnergyModifier;
-    public float HpModifier;
+    public float StructureModifier;
     public float WaterModifier;
 
     //Game Event Damage
     public float EnergyDamage;
-    public float HpDamage;
+    public float StructureDamage;
     public float WaterDamage;
 
     //Game Event Bonus
     public float EnergyBonus;
-    public float HpBonus;
+    public float StructureBonus;
     public float WaterBonus;
 
     public GameEventV2(int difficultyPoints,
@@ -33,13 +33,13 @@ public struct GameEventV2
         string iconPath,
         string iconPathLeft,
         float energyModifier = 0, 
-        float hpModifier = 0, 
+        float structureModifier = 0, 
         float waterModifier = 0, 
         float energyDamage = 0, 
-        float hpDamage = 0, 
+        float structureDamage = 0, 
         float waterDamage = 0, 
         float energyBonus = 0, 
-        float hpBonus = 0, 
+        float structureBonus = 0, 
         float waterBonus = 0)
     {
         DifficultyPoints = difficultyPoints;
@@ -48,17 +48,17 @@ public struct GameEventV2
         IconPath = iconPath;
         IconPathLeft = iconPathLeft;
         EnergyModifier = energyModifier;
-        HpModifier = hpModifier;
+        StructureModifier = structureModifier;
         WaterModifier = waterModifier;
         EnergyDamage = energyDamage;
-        HpDamage = hpDamage;
+        StructureDamage = structureDamage;
         WaterDamage = waterDamage;
         EnergyBonus = energyBonus;
-        HpBonus = hpBonus;
+        StructureBonus = structureBonus;
         WaterBonus = waterBonus;
     }
 
-    // DurationTime, Identifier, IconPath, IconPathLeft, EnergyModifier, HpModifier, WaterModifier, EnergyDamage, HpDamage, WaterDamage, EnergyBonus, HpBonus, WaterBonus
+    // DurationTime, Identifier, IconPath, IconPathLeft, EnergyModifier, StructureModifier, WaterModifier, EnergyDamage, StructureDamage, WaterDamage, EnergyBonus, StructureBonus, WaterBonus
 
     #region CLIMATE
     public static readonly GameEventV2 SUNNY = new GameEventV2(4, 60, "Sunny", "event_ensolarado", "clima_ensolarado", 1f, -0.2f, -0.5f);

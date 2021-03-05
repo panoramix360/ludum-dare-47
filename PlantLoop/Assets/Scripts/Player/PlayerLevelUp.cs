@@ -34,13 +34,13 @@ public class PlayerLevelUp : MonoBehaviour
                 case LevelType.WATER:
                     incrementors.Add(new AttributeIncrementor(AttributeEnum.WATER, 0, 0.3f));
                     break;
-                case LevelType.HP:
-                    incrementors.Add(new AttributeIncrementor(AttributeEnum.HP, 0, 0.3f));
+                case LevelType.STRUCTURE:
+                    incrementors.Add(new AttributeIncrementor(AttributeEnum.STRUCTURE, 0, 0.3f));
                     break;
                 case LevelType.DRAW:
                     incrementors.Add(new AttributeIncrementor(AttributeEnum.ENERGY, 0, 0.1f));
                     incrementors.Add(new AttributeIncrementor(AttributeEnum.WATER, 0, 0.1f));
-                    incrementors.Add(new AttributeIncrementor(AttributeEnum.HP, 0, 0.1f));
+                    incrementors.Add(new AttributeIncrementor(AttributeEnum.STRUCTURE, 0, 0.1f));
                     break;
             }
         }
@@ -54,13 +54,13 @@ public class PlayerLevelUp : MonoBehaviour
                 case LevelType.WATER:
                     incrementors.Add(new AttributeIncrementor(AttributeEnum.WATER, 30, 0));
                     break;
-                case LevelType.HP:
-                    incrementors.Add(new AttributeIncrementor(AttributeEnum.HP, 30, 0));
+                case LevelType.STRUCTURE:
+                    incrementors.Add(new AttributeIncrementor(AttributeEnum.STRUCTURE, 30, 0));
                     break;
                 case LevelType.DRAW:
                     incrementors.Add(new AttributeIncrementor(AttributeEnum.ENERGY, 10, 0));
                     incrementors.Add(new AttributeIncrementor(AttributeEnum.WATER, 10, 0));
-                    incrementors.Add(new AttributeIncrementor(AttributeEnum.HP, 10, 0));
+                    incrementors.Add(new AttributeIncrementor(AttributeEnum.STRUCTURE, 10, 0));
                     break;
             }
         }
@@ -84,9 +84,9 @@ public class PlayerLevelUp : MonoBehaviour
                     playerAttributes.water.IncrementBaseValue(incrementor.baseIncrementor);
                     playerAttributes.water.IncrementUnitPerTime(incrementor.perTimeIncrementor);
                     break;
-                case AttributeEnum.HP:
-                    playerAttributes.hp.IncrementBaseValue(incrementor.baseIncrementor);
-                    playerAttributes.hp.IncrementUnitPerTime(incrementor.perTimeIncrementor);
+                case AttributeEnum.STRUCTURE:
+                    playerAttributes.structure.IncrementBaseValue(incrementor.baseIncrementor);
+                    playerAttributes.structure.IncrementUnitPerTime(incrementor.perTimeIncrementor);
                     break;
             }
         }
@@ -94,6 +94,6 @@ public class PlayerLevelUp : MonoBehaviour
 
     public enum LevelType
     {
-        WATER, ENERGY, HP, DRAW
+        WATER, ENERGY, STRUCTURE, DRAW
     }
 }
