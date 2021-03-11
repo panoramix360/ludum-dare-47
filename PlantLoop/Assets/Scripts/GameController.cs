@@ -89,7 +89,7 @@ public class GameController : SingletonDestroyable<GameController>
         }
     }
 
-    public void UpdatePlayerAttributes()
+    public void UpdatePlayerAttributesUI()
     {
         structureTxt.text = string.Format("{0:0.0}", playerAttributes.structure.value);
         waterTxt.text = string.Format("{0:0.0}", playerAttributes.water.value);
@@ -249,16 +249,34 @@ public class GameController : SingletonDestroyable<GameController>
         playerAttributes.water.IncrementValue(waterPerSec);
         playerAttributes.energy.IncrementValue(energyPerSec);
 
-        playerAttributes.CheckIfAttributesAreBelow(waterPerSec, energyPerSec);
+        UpdatePlayerAttributesUI();
 
         CreatePerSecUI(structurePerSec, waterPerSec, energyPerSec);
 
-        if (playerAttributes.structure.value <= 0)
+        CheckIfPlayerLoseHealth(structurePerSec, waterPerSec, energyPerSec);
+
+        if (player.IsDead())
         {
             EndGame();
         }
+    }
 
-        UpdatePlayerAttributes();
+    private void CheckIfPlayerLoseHealth(float structurePerSec, float waterPerSec, float energyPerSec)
+    {
+        float amountOfDamage = 0;
+        if (playerAttributes.structure.value <= 0)
+        {
+            amountOfDamage = structurePerSec;
+        }
+        if (playerAttributes.water.value <= 0)
+        {
+            amountOfDamage = waterPerSec;
+        }
+        if (playerAttributes.energy.value <= 0)
+        {
+            amountOfDamage = energyPerSec;
+        }
+        player.LoseHealth(amountOfDamage);
     }
 
     public void CreatePerSecUI(float structurePerSec, float waterPerSec, float energyPerSec)

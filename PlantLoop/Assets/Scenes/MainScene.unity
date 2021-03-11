@@ -321,6 +321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8038894638042483299, guid: 165c4350cb644b047906ec81d227009f, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1161570138}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165c4350cb644b047906ec81d227009f, type: 3}
 --- !u!114 &582893947 stripped
@@ -1806,7 +1810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1978762939685709766, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9004531336402312918, guid: a4b2e1632125edb4aa4fe193c1ebedc7, type: 3}
       propertyPath: OnFadeIn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
