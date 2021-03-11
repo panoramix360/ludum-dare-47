@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Damage(float amount)
     {
-        health -= amount;
+        health -= Mathf.Abs(amount);
         healthBar.fillAmount = health / initialHealth;
     }
 }
