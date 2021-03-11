@@ -30,7 +30,7 @@ public class PlayerAttributes : MonoBehaviour
 
     private void Start()
     {
-        GameController.Instance.UpdatePlayerAttributes();
+        GameController.Instance.UpdatePlayerAttributesUI();
     }
 
     private void SetupPlayerAttributes()
@@ -38,23 +38,5 @@ public class PlayerAttributes : MonoBehaviour
         structure = new StructureAttribute(baseStructure, initialStructure, initialStructurePerSec);
         water = new WaterAttribute(baseWater, initialWater, initialWaterPerSec);
         energy = new EnergyAttribute(baseEnergy, initialEnergy, initialEnergyPerSec);
-    }
-
-    public void CheckIfAttributesAreBelow(float waterPerSec, float energyPerSec)
-    {
-        if (waterPerSec >= 0 || energyPerSec >= 0) return;
-
-        float removePerSec = 0.0f;
-        if (water.value <= 0)
-        {
-            removePerSec = waterPerSec;
-        }
-
-        if (energy.value <= 0)
-        {
-            removePerSec = energyPerSec;
-        }
-
-        structure.IncrementValue(removePerSec);
     }
 }

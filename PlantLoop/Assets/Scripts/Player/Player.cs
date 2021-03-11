@@ -34,12 +34,14 @@ public class Player : MonoBehaviour
 
     private PlayerAttributes playerAttributes;
     private PlayerLevelUp playerLevelUp;
+    private PlayerHealth playerHealth;
     private AudioSource audioSource;
 
     private void Start()
     {
         playerAttributes = GetComponent<PlayerAttributes>();
         playerLevelUp = GetComponent<PlayerLevelUp>();
+        playerHealth = GetComponent<PlayerHealth>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -175,7 +177,7 @@ public class Player : MonoBehaviour
 
             nodeUi.SetActive(false);
 
-            GameController.Instance.UpdatePlayerAttributes();
+            GameController.Instance.UpdatePlayerAttributesUI();
 
             currentLeftUpgradeNode++;
 
@@ -200,7 +202,7 @@ public class Player : MonoBehaviour
 
             nodeUi.SetActive(false);
 
-            GameController.Instance.UpdatePlayerAttributes();
+            GameController.Instance.UpdatePlayerAttributesUI();
 
             currentMiddleUpgradeNode++;
 
@@ -220,7 +222,7 @@ public class Player : MonoBehaviour
 
             nodeUi.SetActive(false);
 
-            GameController.Instance.UpdatePlayerAttributes();
+            GameController.Instance.UpdatePlayerAttributesUI();
 
             currentRightUpgradeNode++;
 
@@ -237,7 +239,7 @@ public class Player : MonoBehaviour
 
         nodeUi.SetActive(false);
 
-        GameController.Instance.UpdatePlayerAttributes();
+        GameController.Instance.UpdatePlayerAttributesUI();
 
         GameController.Instance.ResumeGame();
     }
@@ -266,5 +268,15 @@ public class Player : MonoBehaviour
         treeBase.transform.position = new Vector2(treeBase.transform.position.x, treeBase.transform.position.y + 2);
         canUpgradeLeftBranch = true;
         canUpgradeRightBranch = true;
+    }
+
+    public bool IsDead()
+    {
+        return playerHealth.health <= 0;
+    }
+
+    public void LoseHealth(float amount)
+    {
+        playerHealth.Damage(amount);
     }
 }
