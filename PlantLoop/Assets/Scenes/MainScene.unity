@@ -493,6 +493,10 @@ PrefabInstance:
       propertyPath: seedGeneratedPopupPrefab
       value: 
       objectReference: {fileID: 5858497520066845459, guid: 6f634cb653327bf4e8c50552b1f7b648, type: 3}
+    - target: {fileID: 9019834244053384062, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
+      propertyPath: currentModifiers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9019834244053384063, guid: 4d7fcc38d74bb1d4ca53d75850b120dd, type: 3}
       propertyPath: m_Name
       value: GameController
