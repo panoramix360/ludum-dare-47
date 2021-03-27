@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     private PlayerAttributes playerAttributes;
     private PlayerLevelUp playerLevelUp;
     private PlayerHealth playerHealth;
+    private PlayerSkills playerSkills;
+
     private AudioSource audioSource;
 
     private void Start()
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
         playerAttributes = GetComponent<PlayerAttributes>();
         playerLevelUp = GetComponent<PlayerLevelUp>();
         playerHealth = GetComponent<PlayerHealth>();
+        playerSkills = GetComponent<PlayerSkills>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -278,5 +281,10 @@ public class Player : MonoBehaviour
     public void LoseHealth(float amount)
     {
         playerHealth.Damage(amount);
+    }
+
+    public PlayerSkills GetPlayerSkills()
+    {
+        return playerSkills;
     }
 }

@@ -1547,6 +1547,7 @@ GameObject:
   - component: {fileID: 7970839108920968698}
   - component: {fileID: 4254568061153637541}
   - component: {fileID: 8038894638042483299}
+  - component: {fileID: 1069082975547427939}
   - component: {fileID: 5325759069806024915}
   m_Layer: 0
   m_Name: Player
@@ -1660,7 +1661,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662299f6439205245944b0ffcc94ed58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialHealth: 30
+  health: 0
   healthBar: {fileID: 0}
+--- !u!114 &1069082975547427939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5761297661259541697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0ab69256d80d9459899dd9f9802f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skills:
+  - {fileID: 11400000, guid: 6b2ce06b44699f34c984a3254d36f7a8, type: 2}
+  - {fileID: 11400000, guid: 5665c88daca22794caf71275cc5675dd, type: 2}
+  - {fileID: 11400000, guid: fecc7c72a3eeefe47bbd8436173e54f8, type: 2}
+  - {fileID: 11400000, guid: 44c212a9e9ca92642a8f76da9c28e7f8, type: 2}
 --- !u!82 &5325759069806024915
 AudioSource:
   m_ObjectHideFlags: 0

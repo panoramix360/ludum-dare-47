@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d616ffc60caeca748a5e3f25387584cf, type: 3}
-  m_Name: New Active Skill
+  m_Name: ActivePreserveWater
   m_EditorClassIdentifier: 
   aName: "Preservar \xC1gua"
   modifier:
     identifier: preservarAgua
     values: []
+  costs:
+  - attr: 1
+    value: 20
   duration: 10
   cooldown: 20
