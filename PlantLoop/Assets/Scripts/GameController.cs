@@ -49,7 +49,7 @@ public class GameController : SingletonDestroyable<GameController>
     private Environment currentEnvironment;
     private List<GameEventV2> gameEventList;
 
-    private List<Modifier> currentModifiers;
+    [SerializeField] private List<Modifier> currentModifiers;
 
     private float totalStructureModifiers;
     private float totalEnergyModifiers;
@@ -71,11 +71,11 @@ public class GameController : SingletonDestroyable<GameController>
         //Seta 
         difficultyPointsLeft = difficultyPointsMax;
 
-        InsertModifier(new Modifier(currentEnvironment.Type.ToString(), new Dictionary<AttributeEnum, float>
+        InsertModifier(new Modifier(currentEnvironment.Type.ToString(), new List<AttributeModifier>()
         {
-            [AttributeEnum.STRUCTURE] = currentEnvironment.StructureModifier,
-            [AttributeEnum.ENERGY] = currentEnvironment.EnergyModifier,
-            [AttributeEnum.WATER] = currentEnvironment.WaterModifier
+            new AttributeModifier(AttributeEnum.STRUCTURE, currentEnvironment.StructureModifier),
+            new AttributeModifier(AttributeEnum.ENERGY, currentEnvironment.EnergyModifier),
+            new AttributeModifier(AttributeEnum.WATER, currentEnvironment.WaterModifier)
         }));
     }
 
@@ -143,18 +143,9 @@ public class GameController : SingletonDestroyable<GameController>
         }
     }
 
-    public void UpgradePlayerNode()
-    {
-        player.ShowUpgradeNode();
-        timeController.PauseTime();
-    }
-
     public void UnpauseGame()
     {
-        if (!player.CheckIfNodeUIShow())
-        {
-            timeController.ResumeTime();
-        }
+        timeController.ResumeTime();
         gameIsPaused = false;
     }
 
@@ -215,18 +206,18 @@ public class GameController : SingletonDestroyable<GameController>
 
         foreach (Modifier modifier in currentModifiers)
         {
-            foreach (KeyValuePair<AttributeEnum, float> entry in modifier.values)
+            foreach (AttributeModifier entry in modifier.values)
             {
-                switch (entry.Key)
+                switch (entry.attr)
                 {
                     case AttributeEnum.STRUCTURE:
-                        totalStructure += entry.Value * playerAttributes.structure.unitPerTime;
+                        totalStructure += entry.value * playerAttributes.structure.unitPerTime;
                         break;
                     case AttributeEnum.ENERGY:
-                        totalEnergy += entry.Value * playerAttributes.energy.unitPerTime;
+                        totalEnergy += entry.value * playerAttributes.energy.unitPerTime;
                         break;
                     case AttributeEnum.WATER:
-                        totalWater += entry.Value * playerAttributes.water.unitPerTime;
+                        totalWater += entry.value * playerAttributes.water.unitPerTime;
                         break;
                     default:
                         Debug.LogError("Atributo não encontrado");
@@ -382,11 +373,11 @@ public class GameController : SingletonDestroyable<GameController>
 
     private void ApplyEventModifiersInPlayer(GameEventV2 gameEvent)
     {
-        InsertModifier(new Modifier(gameEvent.Identifier, new Dictionary<AttributeEnum, float>
+        InsertModifier(new Modifier(gameEvent.Identifier, new List<AttributeModifier>()
         {
-            [AttributeEnum.STRUCTURE] = gameEvent.StructureModifier,
-            [AttributeEnum.ENERGY] = gameEvent.EnergyModifier,
-            [AttributeEnum.WATER] = gameEvent.WaterModifier
+            new AttributeModifier(AttributeEnum.STRUCTURE, gameEvent.StructureModifier),
+            new AttributeModifier(AttributeEnum.ENERGY, gameEvent.EnergyModifier),
+            new AttributeModifier(AttributeEnum.WATER, gameEvent.WaterModifier)
         }));
     }
     #endregion
