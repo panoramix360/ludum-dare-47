@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
         playerLevelUp = GetComponent<PlayerLevelUp>();
         playerHealth = GetComponent<PlayerHealth>();
         playerSkills = GetComponent<PlayerSkills>();
+        playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
+        FindObjectOfType<UISkillTree>().SetPlayerSkills(playerSkills);
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -286,5 +288,14 @@ public class Player : MonoBehaviour
     public PlayerSkills GetPlayerSkills()
     {
         return playerSkills;
+    }
+
+    private void PlayerSkills_OnSkillUnlocked(object sender, PlayerSkills.OnSkillUnlockedEventArgs e)
+    {
+        var passiveSkill = e.skill as PassiveSkill;
+        if (passiveSkill != null)
+        {
+            GameController.Instance.InsertModifier(passiveSkill.modifier);
+        }
     }
 }

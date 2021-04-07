@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f886d8a6d98c34a4a9c143c51969bc71, type: 3}
   m_Name: PassiveRaizWater
   m_EditorClassIdentifier: 
-  aName: "Raiz - Aumenta \xC1gua"
   modifier:
     identifier: raizAumentaAgua
     values:
@@ -21,3 +20,4 @@ MonoBehaviour:
   costs:
   - attr: 1
     value: 20
+  requirement: {fileID: 11400000, guid: fecc7c72a3eeefe47bbd8436173e54f8, type: 2}

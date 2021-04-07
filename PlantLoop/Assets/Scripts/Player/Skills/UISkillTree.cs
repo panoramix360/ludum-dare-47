@@ -7,18 +7,61 @@ public class UISkillTree : MonoBehaviour
 {
     private PlayerSkills playerSkills;
 
+    private List<Button> skillButtons;
+
     private void Awake()
     {
-        transform.Find("SkillBtn").GetComponent<Button>().onClick.AddListener(OnClickSkill);
-    }
+        skillButtons = new List<Button>(transform.GetComponentsInChildren<Button>());
 
-    private void OnClickSkill()
-    {
-        Debug.Log("Skill clicked");
+        foreach(Button button in skillButtons)
+        {
+            AttachOnClickListener(button);
+        }
     }
 
     public void SetPlayerSkills(PlayerSkills playerSkills)
     {
         this.playerSkills = playerSkills;
+        playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
+        UpdateVisuals();
+    }
+
+    private void AttachOnClickListener(Button buttonToAttach)
+    {
+        buttonToAttach.onClick.AddListener(() =>
+        {
+            if (!playerSkills.TryUnlockSkill(playerSkills.GetSkillByName(buttonToAttach.name)))
+            {
+                Debug.Log("Cannot unlock " + buttonToAttach.name);
+            }
+        });
+    }
+
+    private void UpdateVisuals()
+    {
+        foreach(Button button in skillButtons)
+        {
+            BaseSkill skill = playerSkills.GetSkillByName(button.name);
+            if (playerSkills.IsSkillUnlocked(skill))
+            {
+                button.gameObject.GetComponentInChildren<Image>().color = Color.yellow;
+            }
+            else
+            {
+                if (playerSkills.CanUnlock(skill))
+                {
+                    button.gameObject.GetComponentInChildren<Image>().color = Color.green;
+                }
+                else
+                {
+                    button.gameObject.GetComponentInChildren<Image>().color = Color.black;
+                }
+            }
+        }
+    }
+
+    private void PlayerSkills_OnSkillUnlocked(object sender, PlayerSkills.OnSkillUnlockedEventArgs e)
+    {
+        UpdateVisuals();
     }
 }

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f886d8a6d98c34a4a9c143c51969bc71, type: 3}
   m_Name: PassiveFolhaEnergy
   m_EditorClassIdentifier: 
-  aName: Folha - Aumenta Energia
   modifier:
     identifier: folhaAumentaEnergia
     values:

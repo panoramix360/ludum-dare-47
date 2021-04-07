@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeController : MonoBehaviour
@@ -7,7 +6,6 @@ public class TimeController : MonoBehaviour
     private int timeInSeconds = 0;
     private bool canCreateEvent = true;
 
-    [SerializeField] private int timeToUpgrade;
     [SerializeField] private int eventRoutineChance;
     [SerializeField] private int eventRoutineDelay;
 
@@ -15,7 +13,7 @@ public class TimeController : MonoBehaviour
 
     private void Start()
     {
-        UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
+        Random.InitState(System.DateTime.Now.Millisecond);
     }
 
     public void OnGameReady()
@@ -37,11 +35,6 @@ public class TimeController : MonoBehaviour
         {
             // Lógica de tempo do jogo
             GameController.Instance.UpdatePlayerAttributesByTimeUnits();
-
-            if (CheckIfIsTime(timeToUpgrade))
-            {
-                GameController.Instance.UpgradePlayerNode();
-            }
 
             if (createEvents)
             {

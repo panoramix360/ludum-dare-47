@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class BaseSkill : ScriptableObject
 {
-    public string aName = "New Skill";
     public Modifier modifier;
     public List<AttributeModifier> costs;
+    public BaseSkill requirement;
 }
