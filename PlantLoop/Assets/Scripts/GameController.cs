@@ -143,18 +143,9 @@ public class GameController : SingletonDestroyable<GameController>
         }
     }
 
-    public void UpgradePlayerNode()
-    {
-        player.ShowUpgradeNode();
-        timeController.PauseTime();
-    }
-
     public void UnpauseGame()
     {
-        if (!player.CheckIfNodeUIShow())
-        {
-            timeController.ResumeTime();
-        }
+        timeController.ResumeTime();
         gameIsPaused = false;
     }
 
