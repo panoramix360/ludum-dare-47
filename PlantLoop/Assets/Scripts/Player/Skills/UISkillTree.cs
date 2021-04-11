@@ -30,7 +30,17 @@ public class UISkillTree : MonoBehaviour
     {
         buttonToAttach.onClick.AddListener(() =>
         {
-            if (!playerSkills.TryUnlockSkill(playerSkills.GetSkillByName(buttonToAttach.name)))
+            BaseSkill skill = playerSkills.GetSkillByName(buttonToAttach.name);
+
+            if (playerSkills.IsSkillUnlocked(skill))
+            {
+                ActiveSkill activeSkill = skill as ActiveSkill;
+                if (activeSkill != null && !playerSkills.TryActivateSkill(activeSkill))
+                {
+                    Debug.Log("Cannot activate " + buttonToAttach.name);
+                }
+            }
+            else if (!playerSkills.TryUnlockSkill(skill))
             {
                 Debug.Log("Cannot unlock " + buttonToAttach.name);
             }

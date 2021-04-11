@@ -51,6 +51,8 @@ public class GameController : SingletonDestroyable<GameController>
 
     [SerializeField] private List<Modifier> currentModifiers;
 
+    private List<ActiveSkill> activeSkills;
+
     private float totalStructureModifiers;
     private float totalEnergyModifiers;
     private float totalWaterModifiers;
@@ -60,6 +62,7 @@ public class GameController : SingletonDestroyable<GameController>
         base.Awake();
         currentModifiers = new List<Modifier>();
         gameEventList = new List<GameEventV2>();
+        activeSkills = new List<ActiveSkill>();
 
         loading.GetComponent<Animator>().Play("FadeOut");
 
@@ -234,11 +237,10 @@ public class GameController : SingletonDestroyable<GameController>
     public void UpdatePlayerAttributesByTimeUnits()
     {
         float structurePerSec = playerAttributes.structure.unitPerTime + totalStructureModifiers;
-        float waterPerSec = playerAttributes.water.unitPerTime + totalWaterModifiers;
+        float waterPerSec = CheckPreventWaterLossSkill(playerAttributes.water.unitPerTime + totalWaterModifiers);
         float energyPerSec = playerAttributes.energy.unitPerTime + totalEnergyModifiers;
-        playerAttributes.structure.IncrementValue(structurePerSec);
-        playerAttributes.water.IncrementValue(waterPerSec);
-        playerAttributes.energy.IncrementValue(energyPerSec);
+
+        playerAttributes.IncrementAttributesByValue(structurePerSec, waterPerSec, energyPerSec);
 
         UpdatePlayerAttributesUI();
 
@@ -379,6 +381,37 @@ public class GameController : SingletonDestroyable<GameController>
             new AttributeModifier(AttributeEnum.ENERGY, gameEvent.EnergyModifier),
             new AttributeModifier(AttributeEnum.WATER, gameEvent.WaterModifier)
         }));
+    }
+    #endregion
+
+    #region Skills
+    public void AddActiveSkill(ActiveSkill skill)
+    {
+        activeSkills.Add(skill);
+    }
+
+    public void RemoveActiveSkill(ActiveSkill skill)
+    {
+        activeSkills.Remove(skill);
+    }
+
+    private bool CheckActiveSkill(ActiveType type)
+    {
+        foreach (ActiveSkill activeSkill in activeSkills)
+        {
+            if (activeSkill.type == type)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public float CheckPreventWaterLossSkill(float waterPerSec)
+    {
+        if (!CheckActiveSkill(ActiveType.PREVENT_WATER_LOSS)) return waterPerSec;
+        return (waterPerSec < Mathf.Epsilon) ? 0f : waterPerSec;
     }
     #endregion
 }
