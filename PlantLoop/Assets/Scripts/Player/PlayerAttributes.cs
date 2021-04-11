@@ -39,4 +39,49 @@ public class PlayerAttributes : MonoBehaviour
         water = new WaterAttribute(baseWater, initialWater, initialWaterPerSec);
         energy = new EnergyAttribute(baseEnergy, initialEnergy, initialEnergyPerSec);
     }
+
+    public bool CanPayAttributes(List<AttributeModifier> costs)
+    {
+        foreach (AttributeModifier attrModifier in costs)
+        {
+            switch (attrModifier.attr)
+            {
+                case AttributeEnum.ENERGY:
+                    return energy.value >= attrModifier.value;
+                case AttributeEnum.WATER:
+                    return water.value >= attrModifier.value;
+                case AttributeEnum.STRUCTURE:
+                    return structure.value >= attrModifier.value;
+            }
+        }
+
+        return true;
+    }
+
+    public void PayAttributesCost(List<AttributeModifier> attrsModifiers)
+    {
+        float totalStructureToDecrement = 0;
+        float totalWaterToDecrement = 0;
+        float totalEnergyToDecrement = 0;
+
+        foreach (AttributeModifier attrModifier in attrsModifiers)
+        {
+            switch (attrModifier.attr)
+            {
+                case AttributeEnum.ENERGY:
+                    totalEnergyToDecrement = attrModifier.value;
+                    break;
+                case AttributeEnum.WATER:
+                    totalWaterToDecrement = attrModifier.value;
+                    break;
+                case AttributeEnum.STRUCTURE:
+                    totalStructureToDecrement = attrModifier.value;
+                    break;
+            }
+        }
+
+        structure.DecrementValue(totalStructureToDecrement);
+        water.DecrementValue(totalWaterToDecrement);
+        energy.DecrementValue(totalEnergyToDecrement);
+    }
 }
