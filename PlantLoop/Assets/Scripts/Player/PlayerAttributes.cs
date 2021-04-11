@@ -40,6 +40,13 @@ public class PlayerAttributes : MonoBehaviour
         energy = new EnergyAttribute(baseEnergy, initialEnergy, initialEnergyPerSec);
     }
 
+    public void IncrementAttributesByValue(float totalStructureModifiers, float totalWaterModifiers, float totalEnergyModifiers)
+    {
+        structure.IncrementValue(totalStructureModifiers);
+        water.IncrementValue(totalWaterModifiers);
+        energy.IncrementValue(totalEnergyModifiers);
+    }
+
     public bool CanPayAttributes(List<AttributeModifier> costs)
     {
         foreach (AttributeModifier attrModifier in costs)

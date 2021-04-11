@@ -236,9 +236,8 @@ public class GameController : SingletonDestroyable<GameController>
         float structurePerSec = playerAttributes.structure.unitPerTime + totalStructureModifiers;
         float waterPerSec = playerAttributes.water.unitPerTime + totalWaterModifiers;
         float energyPerSec = playerAttributes.energy.unitPerTime + totalEnergyModifiers;
-        playerAttributes.structure.IncrementValue(structurePerSec);
-        playerAttributes.water.IncrementValue(waterPerSec);
-        playerAttributes.energy.IncrementValue(energyPerSec);
+
+        playerAttributes.IncrementAttributesByValue(structurePerSec, waterPerSec, energyPerSec);
 
         UpdatePlayerAttributesUI();
 

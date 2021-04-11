@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
         playerSkills = GetComponent<PlayerSkills>();
         playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
+        playerSkills.OnSkillActivated += PlayerSkills_OnSkillActivated;
         FindObjectOfType<UISkillTree>().SetPlayerSkills(playerSkills);
     }
 
@@ -37,11 +38,15 @@ public class Player : MonoBehaviour
 
     private void PlayerSkills_OnSkillUnlocked(object sender, PlayerSkills.OnSkillUnlockedEventArgs e)
     {
-        var passiveSkill = e.skill as PassiveSkill;
-        if (passiveSkill != null)
+        playerAttributes.PayAttributesCost(e.skill.costs);
+        GameController.Instance.InsertModifier(e.skill.modifier);
+    }
+
+    private void PlayerSkills_OnSkillActivated(object sender, PlayerSkills.OnSkillActivatedEventArgs e)
+    {
+        if (e.skill != null)
         {
-            playerAttributes.PayAttributesCost(passiveSkill.costs);
-            GameController.Instance.InsertModifier(passiveSkill.modifier);
+            Debug.Log("Activate skill!");
         }
     }
 }
