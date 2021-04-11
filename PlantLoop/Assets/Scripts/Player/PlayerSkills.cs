@@ -12,6 +12,12 @@ public class PlayerSkills : MonoBehaviour
 
     [SerializeField] private List<BaseSkill> skills;
     private List<BaseSkill> unlockedSkills;
+    private PlayerAttributes playerAttributes;
+
+    private void Awake()
+    {
+        playerAttributes = GetComponent<PlayerAttributes>();
+    }
 
     public PlayerSkills()
     {
@@ -29,7 +35,7 @@ public class PlayerSkills : MonoBehaviour
 
     public bool TryUnlockSkill(BaseSkill skill)
     {
-        if (CanUnlock(skill))
+        if (CanUnlock(skill) && playerAttributes.CanPayAttributes(skill.costs))
         {
             UnlockSkill(skill);
             return true;

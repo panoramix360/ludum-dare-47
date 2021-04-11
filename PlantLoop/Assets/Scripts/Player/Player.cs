@@ -20,50 +20,6 @@ public class Player : MonoBehaviour
         FindObjectOfType<UISkillTree>().SetPlayerSkills(playerSkills);
     }
 
-    private bool CheckAndPayAttributesCost(List<AttributeModifier> attrsModifiers)
-    {
-        bool hasIncome = true;
-
-        float totalStructureToDecrement = 0;
-        float totalWaterToDecrement = 0;
-        float totalEnergyToDecrement = 0;
-
-        foreach (AttributeModifier attrModifier in attrsModifiers)
-        {
-            float attributeValueToCompare = 0;
-            switch(attrModifier.attr)
-            {
-                case AttributeEnum.ENERGY:
-                    attributeValueToCompare = playerAttributes.energy.value;
-                    totalEnergyToDecrement = attrModifier.value;
-                    break;
-                case AttributeEnum.WATER:
-                    attributeValueToCompare = playerAttributes.water.value;
-                    totalWaterToDecrement = attrModifier.value;
-                    break;
-                case AttributeEnum.STRUCTURE:
-                    attributeValueToCompare = playerAttributes.structure.value;
-                    totalStructureToDecrement = attrModifier.value;
-                    break;
-            }
-
-            if (attributeValueToCompare < attrModifier.value)
-            {
-                hasIncome = false;
-                break;
-            }
-        }
-
-        if (hasIncome)
-        {
-            playerAttributes.structure.DecrementValue(totalStructureToDecrement);
-            playerAttributes.water.DecrementValue(totalWaterToDecrement);
-            playerAttributes.energy.DecrementValue(totalEnergyToDecrement);
-        }
-
-        return hasIncome;
-    }
-
     public bool IsDead()
     {
         return playerHealth.health <= 0;
@@ -84,6 +40,7 @@ public class Player : MonoBehaviour
         var passiveSkill = e.skill as PassiveSkill;
         if (passiveSkill != null)
         {
+            playerAttributes.PayAttributesCost(passiveSkill.costs);
             GameController.Instance.InsertModifier(passiveSkill.modifier);
         }
     }
