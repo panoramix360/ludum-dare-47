@@ -39,7 +39,11 @@ public class Player : MonoBehaviour
     private void PlayerSkills_OnSkillUnlocked(object sender, PlayerSkills.OnSkillUnlockedEventArgs e)
     {
         playerAttributes.PayAttributesCost(e.skill.costs);
-        GameController.Instance.InsertModifier(e.skill.modifier);
+        var passiveSkill = e.skill as PassiveSkill;
+        if (passiveSkill != null)
+        {
+            GameController.Instance.InsertModifier(e.skill.modifier);
+        }
     }
 
     private void PlayerSkills_OnSkillActivated(object sender, PlayerSkills.OnSkillActivatedEventArgs e)
@@ -47,6 +51,27 @@ public class Player : MonoBehaviour
         if (e.skill != null)
         {
             Debug.Log("Activate skill!");
+            StartCoroutine(OnSkillActivateFinish(e.skill));
+            StartCoroutine(OnSkillCooldownFinish(e.skill));
         }
+    }
+
+    private IEnumerator OnSkillActivateFinish(ActiveSkill skill)
+    {
+        GameController.Instance.AddActiveSkill(skill);
+
+        yield return new WaitForSeconds(skill.duration);
+
+        Debug.Log("Deactivating skill!");
+        GameController.Instance.RemoveActiveSkill(skill);
+    }
+
+
+    private IEnumerator OnSkillCooldownFinish(ActiveSkill skill)
+    {
+        yield return new WaitForSeconds(skill.cooldown);
+
+        Debug.Log("Skill cooldown over!");
+        playerSkills.RemoveActiveSkillFromCooldown(skill);
     }
 }

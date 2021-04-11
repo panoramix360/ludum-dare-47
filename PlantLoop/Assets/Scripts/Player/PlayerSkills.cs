@@ -18,7 +18,7 @@ public class PlayerSkills : MonoBehaviour
 
     [SerializeField] private List<BaseSkill> skills;
     private List<BaseSkill> unlockedSkills;
-    private List<ActiveSkill> currentActiveSkills;
+    private List<ActiveSkill> activeSkillsCooldown;
     private PlayerAttributes playerAttributes;
 
     private void Awake()
@@ -29,7 +29,7 @@ public class PlayerSkills : MonoBehaviour
     public PlayerSkills()
     {
         unlockedSkills = new List<BaseSkill>();
-        currentActiveSkills = new List<ActiveSkill>();
+        activeSkillsCooldown = new List<ActiveSkill>();
     }
 
     private void UnlockSkill(BaseSkill skill)
@@ -45,7 +45,7 @@ public class PlayerSkills : MonoBehaviour
     {
         if (!IsSkillActive(skill))
         {
-            currentActiveSkills.Add(skill);
+            activeSkillsCooldown.Add(skill);
             OnSkillActivated?.Invoke(this, new OnSkillActivatedEventArgs { skill = skill });
         }
     }
@@ -83,7 +83,7 @@ public class PlayerSkills : MonoBehaviour
 
     public bool IsSkillActive(ActiveSkill skill)
     {
-        return currentActiveSkills.Contains(skill);
+        return activeSkillsCooldown.Contains(skill);
     }
 
     public bool CanUnlock(BaseSkill skill)
@@ -103,6 +103,11 @@ public class PlayerSkills : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void RemoveActiveSkillFromCooldown(ActiveSkill skill)
+    {
+        activeSkillsCooldown.Remove(skill);
     }
 
     public BaseSkill GetSkillByName(string name)
